@@ -89,3 +89,7 @@ end
 group :development, :test do
   gem 'fasterer'
 end
+
+group :development do
+  gem 'bundler-audit'
+end
