@@ -23,6 +23,10 @@ echo "Running fasterer"
 bundle exec fasterer
 
 
+echo "Running strong versions"
+bundle exec strong_versions
+
+
 echo "Running eslint"
 npx eslint app
 

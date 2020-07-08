@@ -232,6 +232,7 @@ GEM
       sawyer (~> 0.8.0, >= 0.5.3)
     oj (2.18.5)
     orm_adapter (0.5.0)
+    paint (2.2.0)
     parallel (1.19.2)
     parlour (2.1.0)
       commander (~> 4.5)
@@ -428,6 +429,9 @@ GEM
       sprockets (>= 3.0.0)
     strong_migrations (0.6.8)
       activerecord (>= 5)
+    strong_versions (0.4.4)
+      i18n (>= 0.5.0)
+      paint (~> 2.0)
     terminal-notifier-guard (1.7.0)
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
@@ -467,69 +471,70 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activeadmin
-  annotate
-  bcrypt
-  better_errors
-  binding_of_caller
-  bootsnap (>= 1.4.2)
-  brakeman
-  bullet
-  bundler-audit
-  byebug
-  cancancan
-  capybara (>= 2.15)
-  database_consistency
-  devise
-  devise-pwned_password
-  fasterer
-  gravatar_image_tag
-  guard
-  guard-minitest
-  guard-sorbet
-  hiredis
+  activeadmin (~> 2.7)
+  annotate (~> 3.1)
+  bcrypt (~> 3.1)
+  better_errors (~> 2.7)
+  binding_of_caller (~> 0.8.0)
+  bootsnap (~> 1.4, >= 1.4.2)
+  brakeman (~> 4.8)
+  bullet (~> 6.1)
+  bundler-audit (~> 0.7.0)
+  byebug (~> 11.1)
+  cancancan (~> 3.1)
+  capybara (~> 3.33)
+  database_consistency (~> 0.8.4)
+  devise (~> 4.7)
+  devise-pwned_password (~> 0.1.8)
+  fasterer (~> 0.8.3)
+  gravatar_image_tag (~> 1.2)
+  guard (~> 2.16)
+  guard-minitest (~> 2.4)
+  guard-sorbet (~> 0.5.0)
+  hiredis (~> 0.6.3)
   jbuilder (~> 2.7)
   listen (~> 3.2)
-  marginalia
-  pg
-  pghero
-  pronto
-  pronto-brakeman
-  pronto-bundler_audit
-  pronto-eslint_npm
-  pronto-fasterer
-  pronto-json
-  pronto-rails_best_practices
-  pronto-rails_schema
-  pronto-rubocop
-  pronto-shellcheck
-  pronto-sorbet
-  pronto-stylelint
+  marginalia (~> 1.8)
+  pg (~> 1.2)
+  pghero (~> 2.5)
+  pronto (~> 0.10.0)
+  pronto-brakeman (~> 0.10.0)
+  pronto-bundler_audit (~> 0.6.0)
+  pronto-eslint_npm (~> 0.10.1)
+  pronto-fasterer (~> 0.10.0)
+  pronto-json (~> 0.1.5)
+  pronto-rails_best_practices (~> 0.10.0)
+  pronto-rails_schema (~> 0.10.0)
+  pronto-rubocop (~> 0.10.0)
+  pronto-shellcheck (~> 0.1.4)
+  pronto-sorbet (~> 0.2.0)
+  pronto-stylelint (~> 0.10.0)
   puma (~> 4.1)
-  pundit
-  rails (~> 6.0.3, >= 6.0.3.2)
-  rails_best_practices
-  redis
-  rubocop
-  rubocop-minitest
-  rubocop-performance
-  rubocop-rails
-  rubocop-sorbet
-  sass-rails (>= 6)
-  selenium-webdriver
-  sidekiq
-  sidekiq-statistic
-  sorbet
-  sorbet-rails
-  sorbet-runtime
-  spring
-  spring-watcher-listen (~> 2.0.0)
-  strong_migrations
-  terminal-notifier-guard
-  turbolinks (~> 5)
-  tzinfo-data
-  web-console (>= 3.3.0)
-  webdrivers
+  pundit (~> 2.1)
+  rails (~> 6.0, >= 6.0.3.2)
+  rails_best_practices (~> 1.20)
+  redis (~> 4.2)
+  rubocop (~> 0.87.1)
+  rubocop-minitest (~> 0.9.0)
+  rubocop-performance (~> 1.7)
+  rubocop-rails (~> 2.6)
+  rubocop-sorbet (~> 0.4.0)
+  sass-rails (~> 6.0)
+  selenium-webdriver (~> 3.142)
+  sidekiq (~> 6.1)
+  sidekiq-statistic (~> 1.4)
+  sorbet (~> 0.5.5808)
+  sorbet-rails (~> 0.7.0)
+  sorbet-runtime (~> 0.5.5803)
+  spring (~> 2.1)
+  spring-watcher-listen (~> 2.0)
+  strong_migrations (~> 0.6.8)
+  strong_versions (~> 0.4.4)
+  terminal-notifier-guard (~> 1.7)
+  turbolinks (~> 5.2)
+  tzinfo-data (~> 1.2)
+  web-console (~> 4.0)
+  webdrivers (~> 4.4)
   webpacker (~> 4.0)
 
 RUBY VERSION
