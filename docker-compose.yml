@@ -1,0 +1,14 @@
+version: "3.1"
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: pairing
+      POSTGRES_PASSWORD: pairing
+      POSTGRES_DB: pairing_development
+    volumes:
+      - ./tmp/postgresql:/var/lib/postgresql
+    ports:
+      - 5432:5432
