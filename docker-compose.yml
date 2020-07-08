@@ -12,3 +12,10 @@ services:
       - ./tmp/postgresql:/var/lib/postgresql
     ports:
       - 5432:5432
+  redis-cache:
+    image: redis
+    restart: always
+    volumes:
+      - ./tmp/redis-cache:/data
+    ports:
+      - 6379:6379

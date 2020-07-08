@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Pairing
   class Application < Rails::Application
+    config.cache_store = :redis_cache_store, {url: ENV["REDIS_URL"]}
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
