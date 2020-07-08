@@ -56,3 +56,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'devise-pwned_password'
 gem 'gravatar_image_tag'
+gem 'activeadmin'
+gem 'bcrypt'
