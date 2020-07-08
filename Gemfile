@@ -63,3 +63,8 @@ gem 'redis'
 gem 'hiredis'
 gem 'sidekiq'
 gem 'sidekiq-statistic'
+group :development, :test do
+  gem 'guard'
+  gem 'guard-minitest'
+  gem 'terminal-notifier-guard'
+end
