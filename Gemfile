@@ -118,3 +118,5 @@ group :development, :test do
   gem 'pronto-sorbet'
   gem 'pronto-stylelint'
 end
+
+gem 'marginalia'
