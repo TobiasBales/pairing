@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   config.after_initialize do
-      Bullet.enable        = true
-      Bullet.alert         = true
-      Bullet.bullet_logger = true
-      Bullet.console       = true
+    Bullet.enable = true
+    Bullet.alert         = true
+    Bullet.bullet_logger = true
+    Bullet.console       = true
     # Bullet.growl         = true
-      Bullet.rails_logger  = true
-      Bullet.add_footer    = true
-    end  
+    Bullet.rails_logger  = true
+    Bullet.add_footer    = true
+  end
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -22,7 +24,7 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp', 'caching-dev.txt').exist?
+  if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
