@@ -19,3 +19,10 @@ services:
       - ./tmp/redis-cache:/data
     ports:
       - 6379:6379
+  redis-sidekiq:
+    image: redis
+    restart: always
+    volumes:
+      - ./tmp/redis-sidekiq:/data
+    ports:
+      - 6380:6379

@@ -1,3 +1,4 @@
 web: rails server
 webpacker: ./bin/webpack-dev-server
 dependencies: docker-compose up
+worker: bundle exec sidekiq -t 25
