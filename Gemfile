@@ -78,3 +78,6 @@ group :development do
 end
 
 gem 'strong_migrations'
+group :development do
+  gem 'annotate'
+end
