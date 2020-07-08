@@ -93,3 +93,7 @@ end
 group :development do
   gem 'bundler-audit'
 end
+
+group :development do
+  gem 'brakeman'
+end
