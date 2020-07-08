@@ -93,6 +93,8 @@ GEM
     concurrent-ruby (1.1.6)
     connection_pool (2.2.3)
     crass (1.0.6)
+    database_consistency (0.8.4)
+      activerecord (>= 3.2)
     devise (4.7.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -308,6 +310,7 @@ DEPENDENCIES
   bullet
   byebug
   capybara (>= 2.15)
+  database_consistency
   devise
   devise-pwned_password
   gravatar_image_tag

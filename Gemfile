@@ -72,3 +72,7 @@ end
 group :development, :test do
   gem 'bullet'
 end
+
+group :development do
+  gem 'database_consistency'
+end
