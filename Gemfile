@@ -103,3 +103,18 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
 end
+
+group :development, :test do
+  gem 'pronto'
+  gem 'pronto-brakeman'
+  gem 'pronto-bundler_audit'
+  gem 'pronto-eslint_npm'
+  gem 'pronto-fasterer'
+  gem 'pronto-json'
+  gem 'pronto-rails_best_practices'
+  gem 'pronto-rails_schema'
+  gem 'pronto-rubocop'
+  gem 'pronto-shellcheck'
+  gem 'pronto-sorbet'
+  gem 'pronto-stylelint'
+end
