@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-class CreateActiveAdminComments < ActiveRecord::Migration[6.0]
+CreateActiveAdminCommentsParent = ActiveRecord::Migration[6.0]
+class CreateActiveAdminComments < CreateActiveAdminCommentsParent
   def self.up
     create_table :active_admin_comments do |t|
       t.string :namespace, null: false

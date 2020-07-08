@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-class EnableUuid < ActiveRecord::Migration[6.0]
+EnableUuidParent = ActiveRecord::Migration[6.0]
+class EnableUuid < EnableUuidParent
   def change
     enable_extension 'pgcrypto'
   end

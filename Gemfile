@@ -128,3 +128,16 @@ group :development, :test do
   gem 'rubocop-performance'
   gem 'rubocop-rails'
 end
+
+group :development, :test do
+  gem 'sorbet'
+end
+
+gem 'cancancan'
+gem 'guard-sorbet'
+gem 'pundit'
+gem 'sorbet-rails'
+gem 'sorbet-runtime'
+group :development, :test do
+  gem 'rubocop-sorbet', require: false
+end

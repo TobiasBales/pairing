@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+guard :sorbet do
+  watch(/^.*.rb$/)
+  watch(/^.*.rbi$/)
+end
+# frozen_string_literal: true
+
 notification :terminal_notifier if /Darwin/.match?(`uname`)
 
 guard :minitest, spring: 'bin/rails test' do
