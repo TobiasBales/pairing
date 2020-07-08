@@ -76,3 +76,5 @@ end
 group :development do
   gem 'database_consistency'
 end
+
+gem 'strong_migrations'
