@@ -97,3 +97,5 @@ end
 group :development do
   gem 'brakeman'
 end
+
+gem 'pghero'

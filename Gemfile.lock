@@ -196,6 +196,8 @@ GEM
       shellany (~> 0.0)
     orm_adapter (0.5.0)
     pg (1.2.3)
+    pghero (2.5.1)
+      activerecord (>= 5)
     polyamorous (2.3.2)
       activerecord (>= 5.2.1)
     pry (0.13.1)
@@ -354,6 +356,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   listen (~> 3.2)
   pg
+  pghero
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.2)
   rails_best_practices
