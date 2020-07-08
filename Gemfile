@@ -68,3 +68,7 @@ group :development, :test do
   gem 'guard-minitest'
   gem 'terminal-notifier-guard'
 end
+
+group :development, :test do
+  gem 'bullet'
+end
