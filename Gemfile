@@ -81,3 +81,7 @@ gem 'strong_migrations'
 group :development do
   gem 'annotate'
 end
+
+group :development do
+  gem 'rails_best_practices'
+end
