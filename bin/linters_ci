@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+
+echo "Running rubocop"
+bundle exec rubocop
+
+
+echo "Running annotate"
+bundle exec annotate --frozen
+
+
+
+echo "Running rails_best_practices"
+bundle exec rails_best_practices --config rails_best_practices.yml --silent
+
+
+echo "Running database_consistency"
+bundle exec database_consistency
+
+
+echo "Running fasterer"
+bundle exec fasterer
+
+
+echo "Running eslint"
+npx eslint app
+
+
+echo "Running stylelint"
+npx stylelint "app/**/*.?(s)css"
+
+

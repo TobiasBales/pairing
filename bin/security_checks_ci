@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+
+echo "Running brakeman"
+bundle exec brakeman --run-all-checks --routes --no-pager --summary --no-progress --quiet
+
+
+echo "Running bundler-audit"
+bundle exec bundle-audit update
+
+
+echo "Running bundler-audit"
+bundle exec bundle-audit
+
+
+
