@@ -30,4 +30,5 @@ npx eslint app
 echo "Running stylelint"
 npx stylelint "app/**/*.?(s)css"
 
-
+echo "Running sorbet"
+bundle exec srb tc

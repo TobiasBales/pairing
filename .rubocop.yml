@@ -1,6 +1,5 @@
 require:
   - rubocop-sorbet
-
   - rubocop-rails
   - rubocop-performance
   - rubocop-minitest

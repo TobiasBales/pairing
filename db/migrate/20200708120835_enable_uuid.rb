@@ -1,3 +1,4 @@
+# typed: false
 # frozen_string_literal: true
 
 EnableUuidParent = ActiveRecord::Migration[6.0]

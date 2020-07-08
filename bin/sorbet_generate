@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+bundle exec rake rails_rbi:all
+bundle exec srb rbi hidden-definitions
+bundle exec srb rbi suggest-typed
