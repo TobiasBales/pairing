@@ -3,28 +3,28 @@
     <h5 class="card-title">
       <%= team.name %>
     </h5>
-    <div class="card-body">
-      <table class="table">
-        <thead>
-          <th></th>
-          <% team.members.each do |member| %>
-            <th scope="col" class="text-center"><%= member.name %></th>
-         <% end %> </thead>
-        <tbody>
-          <% team.members.each do |member| %>
-            <tr>
-              <th scope="row"><%= member.name %></th>
-              <% team.members.each do |partner| %>
-                <% if member == partner %>
-                  <td class="bg-light"></td>
-                <% else %>
-                  <td class="text-center">x</td>
-                <% end %>
+    <table class="table">
+      <thead>
+        <th></th>
+        <% team.members.each do |member| %>
+          <th scope="col" class="text-center"><%= member.name %></th>
+        <% end %> </thead>
+      <tbody>
+        <% team.members.each do |member| %>
+          <tr>
+            <th scope="row"><%= member.name %></th>
+            <% team.members.each do |partner| %>
+              <% if member == partner %>
+                <td class="bg-light"></td>
+              <% else %>
+                <td class="text-center">
+                  <%= team.number_of_sessions_for(member, partner) %>
+                </td>
               <% end %>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

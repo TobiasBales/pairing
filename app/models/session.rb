@@ -8,4 +8,6 @@ class Session < ApplicationRecord
   has_many :participants, class_name: 'Participation', dependent: :destroy
 
   validates :team, presence: true
+
+  scope :current, ->(days = 14) { where('date >= ?', days.days.ago.beginning_of_day) }
 end
