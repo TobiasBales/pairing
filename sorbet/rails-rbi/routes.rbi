@@ -42,6 +42,27 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def team_url(*args, **kwargs); end
 
+  # Sigs for route /sessions(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def sessions_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def sessions_url(*args, **kwargs); end
+
+  # Sigs for route /
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def root_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def root_url(*args, **kwargs); end
+
+  # Sigs for route /dashboard/index(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def dashboard_index_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def dashboard_index_url(*args, **kwargs); end
+
   # Sigs for route /pghero
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def pg_hero_path(*args, **kwargs); end
@@ -195,20 +216,6 @@ module GeneratedUrlHelpers
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def admin_comment_url(*args, **kwargs); end
-
-  # Sigs for route /
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def root_path(*args, **kwargs); end
-
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def root_url(*args, **kwargs); end
-
-  # Sigs for route /dashboard/index(.:format)
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def dashboard_index_path(*args, **kwargs); end
-
-  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def dashboard_index_url(*args, **kwargs); end
 
   # Sigs for route /users/sign_in(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }

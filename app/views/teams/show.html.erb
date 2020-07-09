@@ -12,8 +12,8 @@
       <p class="font-weight-bold">Members</p>
       <p class="font-weight-normal">
       <ul>
-        <% @team.team_members.each do |tm| %>
-          <li><%= tm.user.email %></li>
+        <% @team.members.each do |member| %>
+          <li><%= member.name %></li>
         <% end %>
       </ul>
     </li>

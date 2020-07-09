@@ -1,9 +1,10 @@
+# rubocop:disable Layout/LineLength
 # == Schema Information
 #
 # Table name: teams
 #
 #  id         :uuid             not null, primary key
-#  name       :string
+#  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -11,6 +12,7 @@
 #
 #  index_teams_on_name  (name) UNIQUE
 #
+# rubocop:enable Layout/LineLength
 
 one:
   name: TeamOne

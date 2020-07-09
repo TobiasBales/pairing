@@ -1,0 +1,26 @@
+<h5>
+  The last two weeks
+</h5>
+<table class="table">
+  <thead>
+    <th></th>
+    <% team.members.each do |member| %>
+      <th scope="col" class="text-center"><%= member.name %></th>
+    <% end %> </thead>
+  <tbody>
+    <% team.members.each do |member| %>
+      <tr>
+        <th scope="row"><%= member.name %></th>
+        <% team.members.each do |partner| %>
+          <% if member == partner %>
+            <td class="bg-light"></td>
+          <% else %>
+            <td class="text-center">
+              <%= team.number_of_sessions_for(member, partner) %>
+            </td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

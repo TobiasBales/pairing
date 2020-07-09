@@ -12,6 +12,9 @@
 #                                       PATCH      /teams/:id(.:format)                                                                     teams#update
 #                                       PUT        /teams/:id(.:format)                                                                     teams#update
 #                                       DELETE     /teams/:id(.:format)                                                                     teams#destroy
+#                              sessions POST       /sessions(.:format)                                                                      sessions#create
+#                                  root GET        /                                                                                        dashboard#index
+#                       dashboard_index GET        /dashboard/index(.:format)                                                               dashboard#index
 #                               pg_hero            /pghero                                                                                  PgHero::Engine
 #                           sidekiq_web            /sidekiq                                                                                 Sidekiq::Web
 #                new_admin_user_session GET        /admin/login(.:format)                                                                   active_admin/devise/sessions#new
@@ -46,8 +49,6 @@
 #                                       POST       /admin/comments(.:format)                                                                admin/comments#create
 #                         admin_comment GET        /admin/comments/:id(.:format)                                                            admin/comments#show
 #                                       DELETE     /admin/comments/:id(.:format)                                                            admin/comments#destroy
-#                                  root GET        /                                                                                        dashboard#index
-#                       dashboard_index GET        /dashboard/index(.:format)                                                               dashboard#index
 #                      new_user_session GET        /users/sign_in(.:format)                                                                 devise/sessions#new
 #                          user_session POST       /users/sign_in(.:format)                                                                 devise/sessions#create
 #                  destroy_user_session DELETE     /users/sign_out(.:format)                                                                devise/sessions#destroy
@@ -116,12 +117,14 @@
 
 Rails.application.routes.draw do
   resources :teams
+  resources :sessions, only: [:create]
+  root to: 'dashboard#index'
+  get 'dashboard/index'
+
   mount PgHero::Engine, at: 'pghero'
   mount Sidekiq::Web => '/sidekiq'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  root to: 'dashboard#index'
-  get 'dashboard/index'
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

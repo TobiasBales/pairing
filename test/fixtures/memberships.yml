@@ -1,8 +1,7 @@
-# typed: strict
-
+# rubocop:disable Layout/LineLength
 # == Schema Information
 #
-# Table name: team_members
+# Table name: memberships
 #
 #  id         :uuid             not null, primary key
 #  created_at :datetime         not null
@@ -12,20 +11,20 @@
 #
 # Indexes
 #
-#  index_team_members_on_team_id  (team_id)
-#  index_team_members_on_user_id  (user_id)
+#  index_memberships_on_team_id  (team_id)
+#  index_memberships_on_user_id  (user_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (team_id => teams.id)
 #  fk_rails_...  (user_id => users.id)
 #
-# frozen_string_literal: true
+# rubocop:enable Layout/LineLength
 
-require 'test_helper'
+one:
+  user: one
+  team: one
 
-class TeamMemberTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-end
+two:
+  user: two
+  team: two
