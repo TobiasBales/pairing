@@ -22,6 +22,8 @@ jobs:
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.6.3'
 
       - name: Ruby gem cache
         uses: actions/cache@v1
@@ -100,6 +102,8 @@ jobs:
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.6.3'
 
       - name: Ruby gem cache
         uses: actions/cache@v1
