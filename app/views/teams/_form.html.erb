@@ -1,0 +1,33 @@
+<% if team.errors.any? %>
+  <% team.errors.full_messages.each do |message| %>
+  <div class="alert alert-danger" role="alert">
+    <%= message %>
+  </div>
+  <% end %>
+<% end %>
+<%= form_with(model: team, local: true) do |form| -%>
+<div class="card">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <div class="form-group">
+        <%= form.label :name, class: "font-weight-bold" %>
+        <%= form.text_field :name, placeholder: "Enter name", class: "form-control" %>
+      </div>
+      <div id="team_members">
+        <%= form.fields_for :team_members do |team_member| %>
+          <%= render 'team_member_fields', f: team_member %>
+        <% end %>
+      </div>
+      <div class="links">
+        <%= link_to_add_association 'add member', form, :team_members %>
+      </div>
+    </li>
+  </ul>
+  <div class="card-footer">
+    <%= link_to "Cancel", team, class: 'btn btn-outline-secondary float-left' if team.persisted? %>
+    <%= link_to "Cancel", teams_path, class: 'btn btn-outline-secondary float-left' if !team.persisted? %>
+    <%= form.submit "Save", class: "btn btn-primary float-right" if team.persisted? %>
+    <%= form.submit "Create", class: "btn btn-primary float-right" if !team.persisted? %>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,11 @@
+<div class="nested-fields">
+  <div class="form-group">
+    <div class="field">
+      <%= f.label :user, class: "font-weight-bold" %>
+      <br/>
+      <%= f.hidden_field :id %>
+      <%= f.select :user_id, User.all.collect { |p| [ p.email, p.id ] }, include_blank: true %>
+      <%= link_to_remove_association "remove", f %>
+    </div>
+  </div>
+</div>

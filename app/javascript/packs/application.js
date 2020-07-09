@@ -16,6 +16,8 @@ import 'controllers';
 import 'bootstrap/dist/js/bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
+import 'cocoon-js';
+
 require('@rails/ujs').start();
 require('turbolinks').start();
 require('@rails/activestorage').start();

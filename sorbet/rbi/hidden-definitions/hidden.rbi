@@ -732,6 +732,7 @@ class ActionView::Base
   include ::ERB::Util
   include ::ActionCable::Helpers::ActionCableHelper
   include ::Webpacker::Helper
+  include ::Cocoon::ViewHelpers
   include ::Formtastic::Helpers::FormHelper
   include ::Devise::Controllers::UrlHelpers
   include ::Sprockets::Rails::Helper
@@ -1292,6 +1293,10 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
 
   def edit_admin_user_url(*args); end
 
+  def edit_team_path(*args); end
+
+  def edit_team_url(*args); end
+
   def edit_user_password_path(*args); end
 
   def edit_user_password_url(*args); end
@@ -1315,6 +1320,10 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
   def new_admin_user_session_url(*args); end
 
   def new_admin_user_url(*args); end
+
+  def new_team_path(*args); end
+
+  def new_team_url(*args); end
 
   def new_user_password_path(*args); end
 
@@ -1355,6 +1364,14 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
   def sidekiq_web_path(*args); end
 
   def sidekiq_web_url(*args); end
+
+  def team_path(*args); end
+
+  def team_url(*args); end
+
+  def teams_path(*args); end
+
+  def teams_url(*args); end
 
   def user_password_path(*args); end
 
@@ -6761,6 +6778,33 @@ class Class
   def json_creatable?(); end
 end
 
+module Cocoon
+end
+
+class Cocoon::Engine
+end
+
+class Cocoon::Engine
+end
+
+module Cocoon::ViewHelpers
+  def create_object(f, association, force_non_association_create=T.unsafe(nil)); end
+
+  def get_partial_path(partial, association); end
+
+  def link_to_add_association(*args, &block); end
+
+  def link_to_remove_association(*args, &block); end
+
+  def render_association(association, f, new_object, form_name, render_options=T.unsafe(nil), custom_partial=T.unsafe(nil)); end
+end
+
+module Cocoon::ViewHelpers
+end
+
+module Cocoon
+end
+
 module CodeAnalyzer
   VERSION = ::T.let(nil, ::T.untyped)
 end
@@ -7331,6 +7375,19 @@ module Devise
   URL_HELPERS = ::T.let(nil, ::T.untyped)
 end
 
+module Devise::Bootstrapped
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+class Devise::Bootstrapped::Engine
+end
+
+class Devise::Bootstrapped::Engine
+end
+
+module Devise::Bootstrapped
+end
+
 module Devise::Controllers::Helpers
   def admin_user_session(); end
 
@@ -7670,6 +7727,19 @@ class Devise::TimeInflector
   def self.instance(); end
 
   def self.time_ago_in_words(*args, &block); end
+end
+
+module Devise::Views
+end
+
+class Devise::Views::BootstrappedGenerator
+  def copy_views(); end
+end
+
+class Devise::Views::BootstrappedGenerator
+end
+
+module Devise::Views
 end
 
 class DidYouMean::ClassNameChecker
@@ -14911,6 +14981,50 @@ end
 class PG::ZeroLengthCharacterString
 end
 
+module Paint
+  ANSI_COLORS = ::T.let(nil, ::T.untyped)
+  ANSI_COLORS_BACKGROUND = ::T.let(nil, ::T.untyped)
+  ANSI_COLORS_FOREGROUND = ::T.let(nil, ::T.untyped)
+  ANSI_EFFECTS = ::T.let(nil, ::T.untyped)
+  NOTHING = ::T.let(nil, ::T.untyped)
+  RGB_COLORS = ::T.let(nil, ::T.untyped)
+  RGB_COLORS_ANSI = ::T.let(nil, ::T.untyped)
+  RGB_COLORS_ANSI_BRIGHT = ::T.let(nil, ::T.untyped)
+  RGB_COLORS_INDEX_FILENAME = ::T.let(nil, ::T.untyped)
+  TRUE_COLOR = ::T.let(nil, ::T.untyped)
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+module Paint
+  def self.%(paint_arguments, clear_color=T.unsafe(nil)); end
+
+  def self.[](string, *options); end
+
+  def self.color(*options); end
+
+  def self.detect_mode(); end
+
+  def self.effect(effect_name); end
+
+  def self.mode(); end
+
+  def self.mode=(val); end
+
+  def self.random(background=T.unsafe(nil)); end
+
+  def self.rgb(red, green, blue, background=T.unsafe(nil)); end
+
+  def self.rgb_hex(string, background=T.unsafe(nil)); end
+
+  def self.rgb_name(color_name, background=T.unsafe(nil)); end
+
+  def self.simple(color_name, background=T.unsafe(nil)); end
+
+  def self.unpaint(string); end
+
+  def self.wrap(*ansi_codes); end
+end
+
 module Parallel
   Stop = ::T.let(nil, ::T.untyped)
   VERSION = ::T.let(nil, ::T.untyped)
@@ -15357,40 +15471,40 @@ module Polyfill
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
-module Polyfill::Module::M70313789828500
+module Polyfill::Module::M70128021947040
 end
 
-module Polyfill::Module::M70313789828500
+module Polyfill::Module::M70128021947040
 end
 
-module Polyfill::Module::M70313818901860
+module Polyfill::Module::M70128022243720
 end
 
-module Polyfill::Module::M70313818901860
+module Polyfill::Module::M70128022243720
 end
 
-module Polyfill::Module::M70313846629620
+module Polyfill::Module::M70128022589740
 end
 
-module Polyfill::Module::M70313846629620
+module Polyfill::Module::M70128022589740
 end
 
-module Polyfill::Module::M70313847009900
+module Polyfill::Module::M70128023329220
 end
 
-module Polyfill::Module::M70313847009900
+module Polyfill::Module::M70128023329220
 end
 
-module Polyfill::Module::M70313854376220
+module Polyfill::Module::M70128026021560
 end
 
-module Polyfill::Module::M70313854376220
+module Polyfill::Module::M70128026021560
 end
 
-module Polyfill::Module::M70313857603320
+module Polyfill::Module::M70128041938340
 end
 
-module Polyfill::Module::M70313857603320
+module Polyfill::Module::M70128041938340
 end
 
 class Proc
@@ -16325,19 +16439,6 @@ module Rails::Generators::Actions
   def vendor(filename, data=T.unsafe(nil)); end
 end
 
-class Rails::Generators::Actions::CreateMigration
-  def existing_migration(); end
-
-  def migration_dir(); end
-
-  def migration_file_name(); end
-
-  def relative_existing_migration(); end
-end
-
-class Rails::Generators::Actions::CreateMigration
-end
-
 module Rails::Generators::Actions
 end
 
@@ -16420,6 +16521,12 @@ module Rails::Generators::Database
 end
 
 module Rails::Generators::Database
+end
+
+class Rails::Generators::Error
+end
+
+class Rails::Generators::Error
 end
 
 module Rails::Generators::Migration
@@ -20696,6 +20803,128 @@ module StrongMigrations
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
+module StrongVersions
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+class StrongVersions::Config
+  def exceptions(); end
+
+  def initialize(path); end
+
+  def on_failure(); end
+end
+
+class StrongVersions::Config
+end
+
+class StrongVersions::Dependencies
+  def initialize(dependencies); end
+
+  def validate(options=T.unsafe(nil)); end
+
+  def validate!(options=T.unsafe(nil)); end
+end
+
+class StrongVersions::Dependencies
+end
+
+class StrongVersions::Dependency
+  def definition(); end
+
+  def errors(); end
+
+  def gemfile(); end
+
+  def gemspec(); end
+
+  def initialize(dependency, lockfile=T.unsafe(nil)); end
+
+  def name(); end
+
+  def suggested_definition(subject=T.unsafe(nil)); end
+
+  def suggested_version(); end
+
+  def updatable?(); end
+
+  def valid?(); end
+end
+
+class StrongVersions::Dependency
+end
+
+class StrongVersions::DependencyFinder
+  def dependencies(); end
+
+  def gemspec_dependencies(); end
+end
+
+class StrongVersions::DependencyFinder
+end
+
+class StrongVersions::Error
+end
+
+class StrongVersions::Error
+end
+
+class StrongVersions::GemVersion
+  def <(other); end
+
+  def <=(other); end
+
+  def >(other); end
+
+  def >=(other); end
+
+  def initialize(version); end
+
+  def missing?(); end
+
+  def numeric(); end
+
+  def suggestion(); end
+
+  def valid?(); end
+
+  def version_string(); end
+
+  def zero?(); end
+end
+
+class StrongVersions::GemVersion
+end
+
+class StrongVersions::Terminal
+  def gem_update(path, gem, subject); end
+
+  def initialize(file=T.unsafe(nil)); end
+
+  def output_errors(gem); end
+
+  def puts(string=T.unsafe(nil)); end
+
+  def summary(count, failed); end
+
+  def update_summary(updated); end
+
+  def warn(string); end
+end
+
+class StrongVersions::Terminal
+end
+
+class StrongVersions::UnsafeAutoCorrectError
+end
+
+class StrongVersions::UnsafeAutoCorrectError
+end
+
+module StrongVersions
+  def self.root(); end
+end
+
 class Struct
   def filter(*_); end
 end
@@ -20722,6 +20951,229 @@ end
 class TZInfo::ZoneinfoTimezoneInfo
   MAX_TIMESTAMP = ::T.let(nil, ::T.untyped)
   MIN_TIMESTAMP = ::T.let(nil, ::T.untyped)
+end
+
+class Team
+  def after_add_for_team_members(); end
+
+  def after_add_for_team_members=(val); end
+
+  def after_add_for_team_members?(); end
+
+  def after_add_for_users(); end
+
+  def after_add_for_users=(val); end
+
+  def after_add_for_users?(); end
+
+  def after_remove_for_team_members(); end
+
+  def after_remove_for_team_members=(val); end
+
+  def after_remove_for_team_members?(); end
+
+  def after_remove_for_users(); end
+
+  def after_remove_for_users=(val); end
+
+  def after_remove_for_users?(); end
+
+  def autosave_associated_records_for_team_members(*args); end
+
+  def autosave_associated_records_for_users(*args); end
+
+  def before_add_for_team_members(); end
+
+  def before_add_for_team_members=(val); end
+
+  def before_add_for_team_members?(); end
+
+  def before_add_for_users(); end
+
+  def before_add_for_users=(val); end
+
+  def before_add_for_users?(); end
+
+  def before_remove_for_team_members(); end
+
+  def before_remove_for_team_members=(val); end
+
+  def before_remove_for_team_members?(); end
+
+  def before_remove_for_users(); end
+
+  def before_remove_for_users=(val); end
+
+  def before_remove_for_users?(); end
+
+  def validate_associated_records_for_team_members(*args); end
+
+  def validate_associated_records_for_users(*args); end
+end
+
+class Team::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Team::GeneratedRelationMethods
+end
+
+class Team::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Team::GeneratedRelationMethods
+end
+
+class Team::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Team::GeneratedRelationMethods
+end
+
+module Team::GeneratedAssociationMethods
+  def team_member_ids=(ids); end
+
+  def team_members_attributes=(attributes); end
+
+  def user_ids=(ids); end
+end
+
+module Team::GeneratedAttributeMethods
+  extend ::Mutex_m
+end
+
+module Team::GeneratedRelationMethods
+end
+
+module Team::GeneratedRelationMethods
+  extend ::Mutex_m
+end
+
+class Team
+  def self.after_add_for_team_members(); end
+
+  def self.after_add_for_team_members=(val); end
+
+  def self.after_add_for_team_members?(); end
+
+  def self.after_add_for_users(); end
+
+  def self.after_add_for_users=(val); end
+
+  def self.after_add_for_users?(); end
+
+  def self.after_remove_for_team_members(); end
+
+  def self.after_remove_for_team_members=(val); end
+
+  def self.after_remove_for_team_members?(); end
+
+  def self.after_remove_for_users(); end
+
+  def self.after_remove_for_users=(val); end
+
+  def self.after_remove_for_users?(); end
+
+  def self.before_add_for_team_members(); end
+
+  def self.before_add_for_team_members=(val); end
+
+  def self.before_add_for_team_members?(); end
+
+  def self.before_add_for_users(); end
+
+  def self.before_add_for_users=(val); end
+
+  def self.before_add_for_users?(); end
+
+  def self.before_remove_for_team_members(); end
+
+  def self.before_remove_for_team_members=(val); end
+
+  def self.before_remove_for_team_members?(); end
+
+  def self.before_remove_for_users(); end
+
+  def self.before_remove_for_users=(val); end
+
+  def self.before_remove_for_users?(); end
+end
+
+class TeamMember
+  def autosave_associated_records_for_team(*args); end
+
+  def autosave_associated_records_for_user(*args); end
+end
+
+class TeamMember::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::TeamMember::GeneratedRelationMethods
+end
+
+class TeamMember::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::TeamMember::GeneratedRelationMethods
+end
+
+class TeamMember::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::TeamMember::GeneratedRelationMethods
+end
+
+module TeamMember::GeneratedAssociationMethods
+  def build_team(*args, &block); end
+
+  def build_user(*args, &block); end
+
+  def create_team(*args, &block); end
+
+  def create_team!(*args, &block); end
+
+  def create_user(*args, &block); end
+
+  def create_user!(*args, &block); end
+
+  def reload_team(); end
+
+  def reload_user(); end
+end
+
+module TeamMember::GeneratedAttributeMethods
+  extend ::Mutex_m
+end
+
+module TeamMember::GeneratedRelationMethods
+end
+
+module TeamMember::GeneratedRelationMethods
+  extend ::Mutex_m
+end
+
+class TeamMember
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class TeamsController
+  def _collection_params(*given_args); end
+
+  def _edit_resource_params(*given_args); end
+
+  def _new_resource_params(*given_args); end
+
+  def _resource_params(*given_args); end
+
+  def collection_path(*given_args); end
+
+  def collection_url(*given_args); end
+
+  def edit_resource_path(*given_args); end
+
+  def edit_resource_url(*given_args); end
+
+  def new_resource_path(*given_args); end
+
+  def new_resource_url(*given_args); end
+
+  def resource_path(*given_args); end
+
+  def resource_url(*given_args); end
 end
 
 class Tempfile
@@ -21384,7 +21836,6 @@ class UniformNotifier::Slack
 end
 
 class User
-  include ::User::GeneratedAssociationMethods
   include ::Devise::Models::Authenticatable
   include ::Devise::Models::DatabaseAuthenticatable
   include ::Devise::Models::Rememberable
@@ -21392,6 +21843,58 @@ class User
   include ::Devise::Models::Registerable
   include ::Devise::Models::Validatable
   include ::Devise::Models::PwnedPassword
+  def after_add_for_team_members(); end
+
+  def after_add_for_team_members=(val); end
+
+  def after_add_for_team_members?(); end
+
+  def after_add_for_teams(); end
+
+  def after_add_for_teams=(val); end
+
+  def after_add_for_teams?(); end
+
+  def after_remove_for_team_members(); end
+
+  def after_remove_for_team_members=(val); end
+
+  def after_remove_for_team_members?(); end
+
+  def after_remove_for_teams(); end
+
+  def after_remove_for_teams=(val); end
+
+  def after_remove_for_teams?(); end
+
+  def autosave_associated_records_for_team_members(*args); end
+
+  def autosave_associated_records_for_teams(*args); end
+
+  def before_add_for_team_members(); end
+
+  def before_add_for_team_members=(val); end
+
+  def before_add_for_team_members?(); end
+
+  def before_add_for_teams(); end
+
+  def before_add_for_teams=(val); end
+
+  def before_add_for_teams?(); end
+
+  def before_remove_for_team_members(); end
+
+  def before_remove_for_team_members=(val); end
+
+  def before_remove_for_team_members?(); end
+
+  def before_remove_for_teams(); end
+
+  def before_remove_for_teams=(val); end
+
+  def before_remove_for_teams?(); end
+
   def current_password(); end
 
   def devise_modules(); end
@@ -21403,6 +21906,10 @@ class User
   def password_confirmation(); end
 
   def password_confirmation=(password_confirmation); end
+
+  def validate_associated_records_for_team_members(*args); end
+
+  def validate_associated_records_for_teams(*args); end
 end
 
 class User::ActiveRecord_AssociationRelation
@@ -21421,9 +21928,9 @@ class User::ActiveRecord_Relation
 end
 
 module User::GeneratedAssociationMethods
-end
+  def team_ids=(ids); end
 
-module User::GeneratedAssociationMethods
+  def team_member_ids=(ids); end
 end
 
 module User::GeneratedAttributeMethods
@@ -21439,6 +21946,54 @@ end
 
 class User
   extend ::Devise::Models::Registerable::ClassMethods
+  def self.after_add_for_team_members(); end
+
+  def self.after_add_for_team_members=(val); end
+
+  def self.after_add_for_team_members?(); end
+
+  def self.after_add_for_teams(); end
+
+  def self.after_add_for_teams=(val); end
+
+  def self.after_add_for_teams?(); end
+
+  def self.after_remove_for_team_members(); end
+
+  def self.after_remove_for_team_members=(val); end
+
+  def self.after_remove_for_team_members?(); end
+
+  def self.after_remove_for_teams(); end
+
+  def self.after_remove_for_teams=(val); end
+
+  def self.after_remove_for_teams?(); end
+
+  def self.before_add_for_team_members(); end
+
+  def self.before_add_for_team_members=(val); end
+
+  def self.before_add_for_team_members?(); end
+
+  def self.before_add_for_teams(); end
+
+  def self.before_add_for_teams=(val); end
+
+  def self.before_add_for_teams?(); end
+
+  def self.before_remove_for_team_members(); end
+
+  def self.before_remove_for_team_members=(val); end
+
+  def self.before_remove_for_team_members?(); end
+
+  def self.before_remove_for_teams(); end
+
+  def self.before_remove_for_teams=(val); end
+
+  def self.before_remove_for_teams?(); end
+
   def self.devise_modules(); end
 
   def self.devise_modules=(val); end

@@ -1,0 +1,19 @@
+# == Schema Information
+#
+# Table name: teams
+#
+#  id         :uuid             not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_teams_on_name  (name) UNIQUE
+#
+
+one:
+  name: TeamOne
+
+two:
+  name: TeamTwo

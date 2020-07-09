@@ -1,0 +1,26 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><%= link_to "Teams", teams_path %></li>
+  <li class="breadcrumb-item active mr-auto"><%= @team.name %></li>
+</ol>
+<div class="card">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <p class="font-weight-bold">Name</p>
+      <p class="font-weight-normal"><%= @team.name %></p>
+    </li>
+    <li class="list-group-item">
+      <p class="font-weight-bold">Members</p>
+      <p class="font-weight-normal">
+      <ul>
+        <% @team.team_members.each do |tm| %>
+          <li><%= tm.user.email %></li>
+        <% end %>
+      </ul>
+    </li>
+  </ul>
+  <div class="card-footer">
+    <%= link_to "Cancel", teams_path, class: 'btn btn-outline-secondary float-left' %>
+    <%= link_to "Edit", edit_team_path(@team), class: "btn btn-primary float-right" %>
+    <%= link_to "Delete", team_path(@team), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger float-right mr-2" %>
+  </div>
+</div>

@@ -8,10 +8,10 @@ module ActiveAdmin::Comment::ActiveRelation_WhereNot
 end
 
 module ActiveAdmin::Comment::GeneratedAttributeMethods
-  sig { returns(T.nilable(Integer)) }
+  sig { returns(T.nilable(T.untyped)) }
   def author_id; end
 
-  sig { params(value: T.nilable(T.any(Numeric, ActiveSupport::Duration))).void }
+  sig { params(value: T.nilable(T.untyped)).void }
   def author_id=(value); end
 
   sig { returns(T::Boolean) }
@@ -44,10 +44,10 @@ module ActiveAdmin::Comment::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def created_at?; end
 
-  sig { returns(Integer) }
+  sig { returns(T.untyped) }
   def id; end
 
-  sig { params(value: T.any(Numeric, ActiveSupport::Duration)).void }
+  sig { params(value: T.untyped).void }
   def id=(value); end
 
   sig { returns(T::Boolean) }
@@ -62,10 +62,10 @@ module ActiveAdmin::Comment::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def namespace?; end
 
-  sig { returns(T.nilable(Integer)) }
+  sig { returns(T.nilable(T.untyped)) }
   def resource_id; end
 
-  sig { params(value: T.nilable(T.any(Numeric, ActiveSupport::Duration))).void }
+  sig { params(value: T.nilable(T.untyped)).void }
   def resource_id=(value); end
 
   sig { returns(T::Boolean) }

@@ -1,0 +1,14 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item active mr-auto">Teams</li>
+</ol>
+<div class="card-columns">
+  <% @teams.each do |team| %>
+    <div class="card card mb-4">
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to team.name, team %></h5>
+        <p class="card-text"><%= render "member_list", team_members: team.team_members %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= link_to "New team", new_team_path, class: "btn btn-primary" %>
