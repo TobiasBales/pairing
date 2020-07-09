@@ -1,2 +1,5 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
+<h1>Welcome</h1>
+
+<% if @user.teams.empty? %>
+  <%= render "onboarding_teams" %>
+<% end %>
