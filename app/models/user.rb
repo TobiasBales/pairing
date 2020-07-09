@@ -8,6 +8,7 @@
 #  id                     :uuid             not null, primary key
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  name                   :string           default(""), not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
@@ -17,10 +18,13 @@
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_name                  (name) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
+
 class User < ApplicationRecord
-  validates :email, presence: true
+  validates :email, uniqueness: true, presence: true
+  validates :name, uniqueness: true, presence: true
 
   has_many :team_members, dependent: :destroy
   has_many :teams, through: :team_members

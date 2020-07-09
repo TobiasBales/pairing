@@ -29,9 +29,4 @@ class TeamMember < ApplicationRecord
 
   validates :user, presence: true
   validates :team, presence: true
-
-  sig { returns(String) }
-  def name
-    user.email
-  end
 end

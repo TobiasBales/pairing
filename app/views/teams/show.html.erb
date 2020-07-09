@@ -13,7 +13,7 @@
       <p class="font-weight-normal">
       <ul>
         <% @team.team_members.each do |tm| %>
-          <li><%= tm.user.email %></li>
+          <li><%= tm.user.name %></li>
         <% end %>
       </ul>
     </li>

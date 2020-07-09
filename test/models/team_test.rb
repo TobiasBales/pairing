@@ -1,11 +1,13 @@
 # typed: strict
 
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: teams
 #
 #  id         :uuid             not null, primary key
-#  name       :string
+#  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -13,7 +15,6 @@
 #
 #  index_teams_on_name  (name) UNIQUE
 #
-# frozen_string_literal: true
 
 require 'test_helper'
 
