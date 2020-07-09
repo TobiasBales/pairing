@@ -4,7 +4,7 @@
 DeviseCreateAdminUsersParent = ActiveRecord::Migration[6.0]
 class DeviseCreateAdminUsers < DeviseCreateAdminUsersParent
   def change
-    create_table :admin_users do |t|
+    create_table :admin_users, id: :uuid do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ''
       t.string :encrypted_password, null: false, default: ''
