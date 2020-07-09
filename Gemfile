@@ -55,7 +55,7 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', '~> 1.2', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'tzinfo-data', '~> 1.2', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'activeadmin', '~> 2.7'
 gem 'bcrypt', '~> 3.1'

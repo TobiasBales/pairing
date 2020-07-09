@@ -77,3 +77,9 @@ Style/RedundantRegexpEscape:
   Enabled: true
 Style/SlicingWithRange:
   Enabled: true
+Style/SymbolArray:
+  Enabled: true
+  EnforcedStyle: brackets
+Style/WordArray:
+  Enabled: true
+  EnforcedStyle: brackets

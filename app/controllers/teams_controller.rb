@@ -45,6 +45,6 @@ class TeamsController < InheritedResources::Base
   private
 
   def team_params
-    params.require(:team).permit(:name, team_members_attributes: %i[id user_id _destroy])
+    params.require(:team).permit(:name, team_members_attributes: [:id, :user_id, :_destroy])
   end
 end
