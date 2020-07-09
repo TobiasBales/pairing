@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'cocoon', '~> 1.2'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -53,11 +55,12 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', '~> 1.2', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'tzinfo-data', '~> 1.2', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'activeadmin', '~> 2.7'
 gem 'bcrypt', '~> 3.1'
 gem 'devise', '~> 4.7'
+gem 'devise-bootstrapped', github: 'king601/devise-bootstrapped', branch: 'bootstrap4'
 gem 'devise-pwned_password', '~> 0.1.8'
 gem 'gravatar_image_tag', '~> 1.2'
 gem 'hiredis', '~> 0.6.3'

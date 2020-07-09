@@ -14,6 +14,34 @@ class ActionMailer::Base
 end
 
 module GeneratedUrlHelpers
+  # Sigs for route /teams(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def teams_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def teams_url(*args, **kwargs); end
+
+  # Sigs for route /teams/new(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_team_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def new_team_url(*args, **kwargs); end
+
+  # Sigs for route /teams/:id/edit(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def edit_team_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def edit_team_url(*args, **kwargs); end
+
+  # Sigs for route /teams/:id(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def team_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def team_url(*args, **kwargs); end
+
   # Sigs for route /pghero
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def pg_hero_path(*args, **kwargs); end

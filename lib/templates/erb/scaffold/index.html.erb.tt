@@ -11,3 +11,4 @@
     </div>
   <%% end %>
 </div>
+<%%= link_to "New <%= singular_table_name %>", new_<%= model_resource_name %>_path, class: "btn btn-primary" %>

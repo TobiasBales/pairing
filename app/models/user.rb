@@ -5,7 +5,7 @@
 #
 # Table name: users
 #
-#  id                     :bigint           not null, primary key
+#  id                     :uuid             not null, primary key
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  remember_created_at    :datetime
@@ -21,6 +21,9 @@
 #
 class User < ApplicationRecord
   validates :email, presence: true
+
+  has_many :team_members, dependent: :destroy
+  has_many :teams, through: :team_members
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

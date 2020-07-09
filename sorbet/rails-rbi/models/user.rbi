@@ -35,10 +35,10 @@ module User::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def encrypted_password?; end
 
-  sig { returns(Integer) }
+  sig { returns(T.untyped) }
   def id; end
 
-  sig { params(value: T.any(Numeric, ActiveSupport::Duration)).void }
+  sig { params(value: T.untyped).void }
   def id=(value); end
 
   sig { returns(T::Boolean) }
@@ -81,6 +81,26 @@ module User::GeneratedAttributeMethods
   def updated_at?; end
 end
 
+module User::GeneratedAssociationMethods
+  sig { returns(::TeamMember::ActiveRecord_Associations_CollectionProxy) }
+  def team_members; end
+
+  sig { returns(T::Array[Integer]) }
+  def team_member_ids; end
+
+  sig { params(value: T::Enumerable[::TeamMember]).void }
+  def team_members=(value); end
+
+  sig { returns(::Team::ActiveRecord_Associations_CollectionProxy) }
+  def teams; end
+
+  sig { returns(T::Array[Integer]) }
+  def team_ids; end
+
+  sig { params(value: T::Enumerable[::Team]).void }
+  def teams=(value); end
+end
+
 module User::CustomFinderMethods
   sig { params(limit: Integer).returns(T::Array[User]) }
   def first_n(limit); end
@@ -100,6 +120,7 @@ end
 
 class User < ApplicationRecord
   include User::GeneratedAttributeMethods
+  include User::GeneratedAssociationMethods
   extend User::CustomFinderMethods
   extend User::QueryMethodsReturningRelation
   RelationType = T.type_alias { T.any(User::ActiveRecord_Relation, User::ActiveRecord_Associations_CollectionProxy, User::ActiveRecord_AssociationRelation) }

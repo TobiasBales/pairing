@@ -2,7 +2,7 @@
 APP_ROOT = File.expand_path('..', __dir__)
 Dir.chdir(APP_ROOT) do
   begin
-    exec 'rails_best_practices --config rails_best_practices.yml'
+    exec 'rails_best_practices'
   rescue Errno::ENOENT
     $stderr.puts "rails_best_practices executable was not detected in the system."
     exit 1

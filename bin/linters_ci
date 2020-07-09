@@ -12,7 +12,7 @@ bundle exec annotate --frozen
 
 
 echo "Running rails_best_practices"
-bundle exec rails_best_practices --config rails_best_practices.yml --silent
+bundle exec rails_best_practices --silent
 
 
 echo "Running database_consistency"
@@ -33,6 +33,3 @@ npx eslint app
 
 echo "Running stylelint"
 npx stylelint "app/**/*.?(s)css"
-
-echo "Running sorbet"
-bundle exec srb tc
