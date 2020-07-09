@@ -1,5 +1,9 @@
 <h1>Welcome</h1>
 
-<% if @user.teams.empty? %>
+<% if @teams.empty? %>
   <%= render "onboarding_teams" %>
+<% end %>
+
+<% @teams.each do |team| %>
+  <%= render "matrix", team: team %>
 <% end %>

@@ -18,7 +18,7 @@
 class Team < ApplicationRecord
   validates :name, uniqueness: true, presence: true
 
-  has_many :team_members, dependent: :destroy
+  has_many :team_members, -> { includes(:user).order('users.email') }, inverse_of: :team, dependent: :destroy
   has_many :users, through: :team_members
 
   accepts_nested_attributes_for :team_members, reject_if: :all_blank, allow_destroy: true
