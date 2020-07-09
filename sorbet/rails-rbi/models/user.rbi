@@ -82,6 +82,24 @@ module User::GeneratedAttributeMethods
 end
 
 module User::GeneratedAssociationMethods
+  sig { returns(::Participation::ActiveRecord_Associations_CollectionProxy) }
+  def participations; end
+
+  sig { returns(T::Array[Integer]) }
+  def participation_ids; end
+
+  sig { params(value: T::Enumerable[::Participation]).void }
+  def participations=(value); end
+
+  sig { returns(::Session::ActiveRecord_Associations_CollectionProxy) }
+  def sessions; end
+
+  sig { returns(T::Array[Integer]) }
+  def session_ids; end
+
+  sig { params(value: T::Enumerable[::Session]).void }
+  def sessions=(value); end
+
   sig { returns(::TeamMember::ActiveRecord_Associations_CollectionProxy) }
   def team_members; end
 

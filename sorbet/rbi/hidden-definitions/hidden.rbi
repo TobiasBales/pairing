@@ -15122,6 +15122,56 @@ class Parser::StaticEnvironment
   FORWARD_ARGS = ::T.let(nil, ::T.untyped)
 end
 
+class Participation
+  def autosave_associated_records_for_session(*args); end
+
+  def autosave_associated_records_for_user(*args); end
+end
+
+class Participation::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Participation::GeneratedRelationMethods
+end
+
+class Participation::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Participation::GeneratedRelationMethods
+end
+
+class Participation::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Participation::GeneratedRelationMethods
+end
+
+module Participation::GeneratedAssociationMethods
+  def build_session(*args, &block); end
+
+  def build_user(*args, &block); end
+
+  def create_session(*args, &block); end
+
+  def create_session!(*args, &block); end
+
+  def create_user(*args, &block); end
+
+  def create_user!(*args, &block); end
+
+  def reload_session(); end
+
+  def reload_user(); end
+end
+
+module Participation::GeneratedAttributeMethods
+  extend ::Mutex_m
+end
+
+module Participation::GeneratedRelationMethods
+end
+
+module Participation::GeneratedRelationMethods
+  extend ::Mutex_m
+end
+
 class Pathname
   def fnmatch?(*_); end
 
@@ -15471,40 +15521,40 @@ module Polyfill
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
-module Polyfill::Module::M70128021947040
+module Polyfill::Module::M70186646971440
 end
 
-module Polyfill::Module::M70128021947040
+module Polyfill::Module::M70186646971440
 end
 
-module Polyfill::Module::M70128022243720
+module Polyfill::Module::M70186648098140
 end
 
-module Polyfill::Module::M70128022243720
+module Polyfill::Module::M70186648098140
 end
 
-module Polyfill::Module::M70128022589740
+module Polyfill::Module::M70186701384540
 end
 
-module Polyfill::Module::M70128022589740
+module Polyfill::Module::M70186701384540
 end
 
-module Polyfill::Module::M70128023329220
+module Polyfill::Module::M70186720140080
 end
 
-module Polyfill::Module::M70128023329220
+module Polyfill::Module::M70186720140080
 end
 
-module Polyfill::Module::M70128026021560
+module Polyfill::Module::M70186733803460
 end
 
-module Polyfill::Module::M70128026021560
+module Polyfill::Module::M70186733803460
 end
 
-module Polyfill::Module::M70128041938340
+module Polyfill::Module::M70186734388080
 end
 
-module Polyfill::Module::M70128041938340
+module Polyfill::Module::M70186734388080
 end
 
 class Proc
@@ -20214,6 +20264,102 @@ module Selenium::WebDriver::Zipper
   EXTENSIONS = ::T.let(nil, ::T.untyped)
 end
 
+class Session
+  def after_add_for_participants(); end
+
+  def after_add_for_participants=(val); end
+
+  def after_add_for_participants?(); end
+
+  def after_remove_for_participants(); end
+
+  def after_remove_for_participants=(val); end
+
+  def after_remove_for_participants?(); end
+
+  def autosave_associated_records_for_participants(*args); end
+
+  def autosave_associated_records_for_team(*args); end
+
+  def before_add_for_participants(); end
+
+  def before_add_for_participants=(val); end
+
+  def before_add_for_participants?(); end
+
+  def before_remove_for_participants(); end
+
+  def before_remove_for_participants=(val); end
+
+  def before_remove_for_participants?(); end
+
+  def validate_associated_records_for_participants(*args); end
+end
+
+class Session::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Session::GeneratedRelationMethods
+end
+
+class Session::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Session::GeneratedRelationMethods
+end
+
+class Session::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::Session::GeneratedRelationMethods
+end
+
+module Session::GeneratedAssociationMethods
+  def build_team(*args, &block); end
+
+  def create_team(*args, &block); end
+
+  def create_team!(*args, &block); end
+
+  def participant_ids=(ids); end
+
+  def reload_team(); end
+end
+
+module Session::GeneratedAttributeMethods
+  extend ::Mutex_m
+end
+
+module Session::GeneratedRelationMethods
+end
+
+module Session::GeneratedRelationMethods
+  extend ::Mutex_m
+end
+
+class Session
+  def self.after_add_for_participants(); end
+
+  def self.after_add_for_participants=(val); end
+
+  def self.after_add_for_participants?(); end
+
+  def self.after_remove_for_participants(); end
+
+  def self.after_remove_for_participants=(val); end
+
+  def self.after_remove_for_participants?(); end
+
+  def self.before_add_for_participants(); end
+
+  def self.before_add_for_participants=(val); end
+
+  def self.before_add_for_participants?(); end
+
+  def self.before_remove_for_participants(); end
+
+  def self.before_remove_for_participants=(val); end
+
+  def self.before_remove_for_participants?(); end
+end
+
 class Set
   def ==(other); end
 
@@ -21843,6 +21989,18 @@ class User
   include ::Devise::Models::Registerable
   include ::Devise::Models::Validatable
   include ::Devise::Models::PwnedPassword
+  def after_add_for_participations(); end
+
+  def after_add_for_participations=(val); end
+
+  def after_add_for_participations?(); end
+
+  def after_add_for_sessions(); end
+
+  def after_add_for_sessions=(val); end
+
+  def after_add_for_sessions?(); end
+
   def after_add_for_team_members(); end
 
   def after_add_for_team_members=(val); end
@@ -21854,6 +22012,18 @@ class User
   def after_add_for_teams=(val); end
 
   def after_add_for_teams?(); end
+
+  def after_remove_for_participations(); end
+
+  def after_remove_for_participations=(val); end
+
+  def after_remove_for_participations?(); end
+
+  def after_remove_for_sessions(); end
+
+  def after_remove_for_sessions=(val); end
+
+  def after_remove_for_sessions?(); end
 
   def after_remove_for_team_members(); end
 
@@ -21867,9 +22037,25 @@ class User
 
   def after_remove_for_teams?(); end
 
+  def autosave_associated_records_for_participations(*args); end
+
+  def autosave_associated_records_for_sessions(*args); end
+
   def autosave_associated_records_for_team_members(*args); end
 
   def autosave_associated_records_for_teams(*args); end
+
+  def before_add_for_participations(); end
+
+  def before_add_for_participations=(val); end
+
+  def before_add_for_participations?(); end
+
+  def before_add_for_sessions(); end
+
+  def before_add_for_sessions=(val); end
+
+  def before_add_for_sessions?(); end
 
   def before_add_for_team_members(); end
 
@@ -21882,6 +22068,18 @@ class User
   def before_add_for_teams=(val); end
 
   def before_add_for_teams?(); end
+
+  def before_remove_for_participations(); end
+
+  def before_remove_for_participations=(val); end
+
+  def before_remove_for_participations?(); end
+
+  def before_remove_for_sessions(); end
+
+  def before_remove_for_sessions=(val); end
+
+  def before_remove_for_sessions?(); end
 
   def before_remove_for_team_members(); end
 
@@ -21907,6 +22105,10 @@ class User
 
   def password_confirmation=(password_confirmation); end
 
+  def validate_associated_records_for_participations(*args); end
+
+  def validate_associated_records_for_sessions(*args); end
+
   def validate_associated_records_for_team_members(*args); end
 
   def validate_associated_records_for_teams(*args); end
@@ -21928,6 +22130,10 @@ class User::ActiveRecord_Relation
 end
 
 module User::GeneratedAssociationMethods
+  def participation_ids=(ids); end
+
+  def session_ids=(ids); end
+
   def team_ids=(ids); end
 
   def team_member_ids=(ids); end
@@ -21946,6 +22152,18 @@ end
 
 class User
   extend ::Devise::Models::Registerable::ClassMethods
+  def self.after_add_for_participations(); end
+
+  def self.after_add_for_participations=(val); end
+
+  def self.after_add_for_participations?(); end
+
+  def self.after_add_for_sessions(); end
+
+  def self.after_add_for_sessions=(val); end
+
+  def self.after_add_for_sessions?(); end
+
   def self.after_add_for_team_members(); end
 
   def self.after_add_for_team_members=(val); end
@@ -21957,6 +22175,18 @@ class User
   def self.after_add_for_teams=(val); end
 
   def self.after_add_for_teams?(); end
+
+  def self.after_remove_for_participations(); end
+
+  def self.after_remove_for_participations=(val); end
+
+  def self.after_remove_for_participations?(); end
+
+  def self.after_remove_for_sessions(); end
+
+  def self.after_remove_for_sessions=(val); end
+
+  def self.after_remove_for_sessions?(); end
 
   def self.after_remove_for_team_members(); end
 
@@ -21970,6 +22200,18 @@ class User
 
   def self.after_remove_for_teams?(); end
 
+  def self.before_add_for_participations(); end
+
+  def self.before_add_for_participations=(val); end
+
+  def self.before_add_for_participations?(); end
+
+  def self.before_add_for_sessions(); end
+
+  def self.before_add_for_sessions=(val); end
+
+  def self.before_add_for_sessions?(); end
+
   def self.before_add_for_team_members(); end
 
   def self.before_add_for_team_members=(val); end
@@ -21981,6 +22223,18 @@ class User
   def self.before_add_for_teams=(val); end
 
   def self.before_add_for_teams?(); end
+
+  def self.before_remove_for_participations(); end
+
+  def self.before_remove_for_participations=(val); end
+
+  def self.before_remove_for_participations?(); end
+
+  def self.before_remove_for_sessions(); end
+
+  def self.before_remove_for_sessions=(val); end
+
+  def self.before_remove_for_sessions?(); end
 
   def self.before_remove_for_team_members(); end
 
