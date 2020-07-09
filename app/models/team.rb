@@ -29,7 +29,25 @@ class Team < ApplicationRecord
   sig { params(users: User).returns(Numeric) }
   def number_of_sessions_for(*users)
     sessions.current.filter do |session|
-      users.all? { |participant| session.participations.include(participant) }
+      users.all? { |participant| session.participations.map(&:user).include?(participant) }
     end.length
+  end
+
+  sig { params(users: User).returns(T::Boolean) }
+  def paired_today?(*users)
+    sessions.includes(participations: :user).current(1).any? do |session|
+      users.all? do |participant|
+        session.participations.map(&:user).include?(participant)
+      end
+    end
+  end
+
+  sig { params(users: User).returns(Session) }
+  def build_session(*users)
+    session = sessions.build(date: Time.zone.today)
+    users.each do |user|
+      session.participations.build(user: user)
+    end
+    session
   end
 end

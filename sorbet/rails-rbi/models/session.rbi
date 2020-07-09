@@ -55,14 +55,23 @@ module Session::GeneratedAttributeMethods
 end
 
 module Session::GeneratedAssociationMethods
-  sig { returns(::Participation::ActiveRecord_Associations_CollectionProxy) }
+  sig { returns(::User::ActiveRecord_Associations_CollectionProxy) }
   def participants; end
 
   sig { returns(T::Array[Integer]) }
   def participant_ids; end
 
-  sig { params(value: T::Enumerable[::Participation]).void }
+  sig { params(value: T::Enumerable[::User]).void }
   def participants=(value); end
+
+  sig { returns(::Participation::ActiveRecord_Associations_CollectionProxy) }
+  def participations; end
+
+  sig { returns(T::Array[Integer]) }
+  def participation_ids; end
+
+  sig { params(value: T::Enumerable[::Participation]).void }
+  def participations=(value); end
 
   sig { returns(::Team) }
   def team; end
@@ -94,6 +103,50 @@ class Session < ApplicationRecord
   extend Session::CustomFinderMethods
   extend Session::QueryMethodsReturningRelation
   RelationType = T.type_alias { T.any(Session::ActiveRecord_Relation, Session::ActiveRecord_Associations_CollectionProxy, Session::ActiveRecord_AssociationRelation) }
+
+  sig { params(args: T.untyped).returns(Session::ActiveRecord_Relation) }
+  def self.current(*args); end
+end
+
+class Session::ActiveRecord_Relation < ActiveRecord::Relation
+  include Session::ActiveRelation_WhereNot
+  include Session::CustomFinderMethods
+  include Session::QueryMethodsReturningRelation
+  Elem = type_member(fixed: Session)
+
+  sig { params(args: T.untyped).returns(Session::ActiveRecord_Relation) }
+  def current(*args); end
+end
+
+class Session::ActiveRecord_AssociationRelation < ActiveRecord::AssociationRelation
+  include Session::ActiveRelation_WhereNot
+  include Session::CustomFinderMethods
+  include Session::QueryMethodsReturningAssociationRelation
+  Elem = type_member(fixed: Session)
+
+  sig { params(args: T.untyped).returns(Session::ActiveRecord_AssociationRelation) }
+  def current(*args); end
+end
+
+class Session::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
+  include Session::CustomFinderMethods
+  include Session::QueryMethodsReturningAssociationRelation
+  Elem = type_member(fixed: Session)
+
+  sig { params(args: T.untyped).returns(Session::ActiveRecord_AssociationRelation) }
+  def current(*args); end
+
+  sig { params(records: T.any(Session, T::Array[Session])).returns(T.self_type) }
+  def <<(*records); end
+
+  sig { params(records: T.any(Session, T::Array[Session])).returns(T.self_type) }
+  def append(*records); end
+
+  sig { params(records: T.any(Session, T::Array[Session])).returns(T.self_type) }
+  def push(*records); end
+
+  sig { params(records: T.any(Session, T::Array[Session])).returns(T.self_type) }
+  def concat(*records); end
 end
 
 module Session::QueryMethodsReturningRelation
@@ -320,36 +373,4 @@ module Session::QueryMethodsReturningAssociationRelation
     ).returns(ActiveRecord::Batches::BatchEnumerator)
   end
   def in_batches(of: 1000, start: nil, finish: nil, load: false, error_on_ignore: nil, &block); end
-end
-
-class Session::ActiveRecord_Relation < ActiveRecord::Relation
-  include Session::ActiveRelation_WhereNot
-  include Session::CustomFinderMethods
-  include Session::QueryMethodsReturningRelation
-  Elem = type_member(fixed: Session)
-end
-
-class Session::ActiveRecord_AssociationRelation < ActiveRecord::AssociationRelation
-  include Session::ActiveRelation_WhereNot
-  include Session::CustomFinderMethods
-  include Session::QueryMethodsReturningAssociationRelation
-  Elem = type_member(fixed: Session)
-end
-
-class Session::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
-  include Session::CustomFinderMethods
-  include Session::QueryMethodsReturningAssociationRelation
-  Elem = type_member(fixed: Session)
-
-  sig { params(records: T.any(Session, T::Array[Session])).returns(T.self_type) }
-  def <<(*records); end
-
-  sig { params(records: T.any(Session, T::Array[Session])).returns(T.self_type) }
-  def append(*records); end
-
-  sig { params(records: T.any(Session, T::Array[Session])).returns(T.self_type) }
-  def push(*records); end
-
-  sig { params(records: T.any(Session, T::Array[Session])).returns(T.self_type) }
-  def concat(*records); end
 end

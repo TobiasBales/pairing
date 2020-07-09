@@ -5,6 +5,7 @@ class DashboardController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @teams = current_user.teams.includes(memberships: :user)
+    @user = current_user
+    @teams = @user.teams.includes(memberships: :user)
   end
 end

@@ -3,5 +3,12 @@
 <% end %>
 
 <% @teams.each do |team| %>
-  <%= render "matrix", team: team %>
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title"><%= team.name %></h3>
+      <%= render "add_session", team: team, user: @user %>
+      <hr />
+      <%= render "matrix", team: team %>
+    </div>
+  </div>
 <% end %>

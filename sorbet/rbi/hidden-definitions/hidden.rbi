@@ -1361,6 +1361,10 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
 
   def root_url(*args); end
 
+  def sessions_path(*args); end
+
+  def sessions_url(*args); end
+
   def sidekiq_web_path(*args); end
 
   def sidekiq_web_url(*args); end
@@ -15576,40 +15580,40 @@ module Polyfill
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
-module Polyfill::Module::M70277219797280
+module Polyfill::Module::M70306688727560
 end
 
-module Polyfill::Module::M70277219797280
+module Polyfill::Module::M70306688727560
 end
 
-module Polyfill::Module::M70277223365820
+module Polyfill::Module::M70306688918960
 end
 
-module Polyfill::Module::M70277223365820
+module Polyfill::Module::M70306688918960
 end
 
-module Polyfill::Module::M70277261223520
+module Polyfill::Module::M70306729334060
 end
 
-module Polyfill::Module::M70277261223520
+module Polyfill::Module::M70306729334060
 end
 
-module Polyfill::Module::M70277261678420
+module Polyfill::Module::M70306733020040
 end
 
-module Polyfill::Module::M70277261678420
+module Polyfill::Module::M70306733020040
 end
 
-module Polyfill::Module::M70277261777800
+module Polyfill::Module::M70306733849800
 end
 
-module Polyfill::Module::M70277261777800
+module Polyfill::Module::M70306733849800
 end
 
-module Polyfill::Module::M70277287951660
+module Polyfill::Module::M70306734963020
 end
 
-module Polyfill::Module::M70277287951660
+module Polyfill::Module::M70306734963020
 end
 
 class Proc
@@ -20326,13 +20330,27 @@ class Session
 
   def after_add_for_participants?(); end
 
+  def after_add_for_participations(); end
+
+  def after_add_for_participations=(val); end
+
+  def after_add_for_participations?(); end
+
   def after_remove_for_participants(); end
 
   def after_remove_for_participants=(val); end
 
   def after_remove_for_participants?(); end
 
+  def after_remove_for_participations(); end
+
+  def after_remove_for_participations=(val); end
+
+  def after_remove_for_participations?(); end
+
   def autosave_associated_records_for_participants(*args); end
+
+  def autosave_associated_records_for_participations(*args); end
 
   def autosave_associated_records_for_team(*args); end
 
@@ -20342,13 +20360,27 @@ class Session
 
   def before_add_for_participants?(); end
 
+  def before_add_for_participations(); end
+
+  def before_add_for_participations=(val); end
+
+  def before_add_for_participations?(); end
+
   def before_remove_for_participants(); end
 
   def before_remove_for_participants=(val); end
 
   def before_remove_for_participants?(); end
 
+  def before_remove_for_participations(); end
+
+  def before_remove_for_participations=(val); end
+
+  def before_remove_for_participations?(); end
+
   def validate_associated_records_for_participants(*args); end
+
+  def validate_associated_records_for_participations(*args); end
 end
 
 class Session::ActiveRecord_AssociationRelation
@@ -20375,6 +20407,10 @@ module Session::GeneratedAssociationMethods
 
   def participant_ids=(ids); end
 
+  def participants_attributes=(attributes); end
+
+  def participation_ids=(ids); end
+
   def reload_team(); end
 end
 
@@ -20383,6 +20419,7 @@ module Session::GeneratedAttributeMethods
 end
 
 module Session::GeneratedRelationMethods
+  def current(*args, &block); end
 end
 
 module Session::GeneratedRelationMethods
@@ -20396,11 +20433,23 @@ class Session
 
   def self.after_add_for_participants?(); end
 
+  def self.after_add_for_participations(); end
+
+  def self.after_add_for_participations=(val); end
+
+  def self.after_add_for_participations?(); end
+
   def self.after_remove_for_participants(); end
 
   def self.after_remove_for_participants=(val); end
 
   def self.after_remove_for_participants?(); end
+
+  def self.after_remove_for_participations(); end
+
+  def self.after_remove_for_participations=(val); end
+
+  def self.after_remove_for_participations?(); end
 
   def self.before_add_for_participants(); end
 
@@ -20408,11 +20457,23 @@ class Session
 
   def self.before_add_for_participants?(); end
 
+  def self.before_add_for_participations(); end
+
+  def self.before_add_for_participations=(val); end
+
+  def self.before_add_for_participations?(); end
+
   def self.before_remove_for_participants(); end
 
   def self.before_remove_for_participants=(val); end
 
   def self.before_remove_for_participants?(); end
+
+  def self.before_remove_for_participations(); end
+
+  def self.before_remove_for_participations=(val); end
+
+  def self.before_remove_for_participations?(); end
 end
 
 class Set
@@ -21277,6 +21338,8 @@ module Team::GeneratedRelationMethods
 end
 
 class Team
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
   def self.after_add_for_members(); end
 
   def self.after_add_for_members=(val); end

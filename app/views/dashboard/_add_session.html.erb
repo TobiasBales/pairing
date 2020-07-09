@@ -1,0 +1,15 @@
+<h5>Add pairing session</h5>
+<% team.members.each do |member| %>
+  <% if member != user %>
+    <%= form_for(team.build_session(user, member), html: { class: 'd-inline' }) do |f| %>
+      <%= f.hidden_field :team_id %>
+      <%= f.hidden_field :date %>
+      <%= f.fields_for :participations do |p| %>
+        <%= p.hidden_field :id %>
+        <%= p.hidden_field :user_id %>
+        <%= p.hidden_field :session_id %>
+      <% end %>
+      <%= f.submit member.name, class: "btn btn-primary", disabled: team.paired_today?(user, member) %>
+    <% end %>
+  <% end %>
+<% end %>
