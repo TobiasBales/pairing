@@ -46,23 +46,32 @@ module Team::GeneratedAttributeMethods
 end
 
 module Team::GeneratedAssociationMethods
-  sig { returns(::TeamMember::ActiveRecord_Associations_CollectionProxy) }
-  def team_members; end
-
-  sig { returns(T::Array[Integer]) }
-  def team_member_ids; end
-
-  sig { params(value: T::Enumerable[::TeamMember]).void }
-  def team_members=(value); end
-
   sig { returns(::User::ActiveRecord_Associations_CollectionProxy) }
-  def users; end
+  def members; end
 
   sig { returns(T::Array[Integer]) }
-  def user_ids; end
+  def member_ids; end
 
   sig { params(value: T::Enumerable[::User]).void }
-  def users=(value); end
+  def members=(value); end
+
+  sig { returns(::Membership::ActiveRecord_Associations_CollectionProxy) }
+  def memberships; end
+
+  sig { returns(T::Array[Integer]) }
+  def membership_ids; end
+
+  sig { params(value: T::Enumerable[::Membership]).void }
+  def memberships=(value); end
+
+  sig { returns(::Session::ActiveRecord_Associations_CollectionProxy) }
+  def sessions; end
+
+  sig { returns(T::Array[Integer]) }
+  def session_ids; end
+
+  sig { params(value: T::Enumerable[::Session]).void }
+  def sessions=(value); end
 end
 
 module Team::CustomFinderMethods

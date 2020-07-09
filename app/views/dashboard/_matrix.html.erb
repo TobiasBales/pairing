@@ -7,19 +7,18 @@
       <table class="table">
         <thead>
           <th></th>
-          <% team.members.reverse.each do |tm| %>
-            <th scope="col"><%= tm.name %></th>
-         <% end %>
-        </thead>
+          <% team.members.each do |member| %>
+            <th scope="col" class="text-center"><%= member.name %></th>
+         <% end %> </thead>
         <tbody>
-          <% team.members.each do |tm| %>
+          <% team.members.each do |member| %>
             <tr>
-              <th scope="row"><%= tm.name %></th>
-              <% team.members.reverse.each do |partner| %>
-                <% if tm != partner %>
-                  <td>x</td>
+              <th scope="row"><%= member.name %></th>
+              <% team.members.each do |partner| %>
+                <% if member == partner %>
+                  <td class="bg-light"></td>
                 <% else %>
-                  <td></td>
+                  <td class="text-center">x</td>
                 <% end %>
               <% end %>
             </tr>

@@ -13,13 +13,13 @@
         <%= form.label :name, class: "font-weight-bold" %>
         <%= form.text_field :name, placeholder: "Enter name", class: "form-control" %>
       </div>
-      <div id="team_members">
-        <%= form.fields_for :team_members do |team_member| %>
-          <%= render 'team_member_fields', f: team_member %>
+      <div id="memberships">
+        <%= form.fields_for :memberships do |membership| %>
+          <%= render 'membership_fields', f: membership %>
         <% end %>
       </div>
       <div class="links">
-        <%= link_to_add_association 'add member', form, :team_members %>
+        <%= link_to_add_association 'add member', form, :memberships %>
       </div>
     </li>
   </ul>

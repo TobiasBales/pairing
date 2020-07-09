@@ -6,16 +6,16 @@ class TeamsController < InheritedResources::Base
   before_action :authenticate_user!
 
   def index
-    @teams = current_user.teams.includes(team_members: :user)
+    @teams = current_user.teams.includes(memberships: :user)
   end
 
   def show
-    @team = current_user.teams.includes(team_members: :user).find(params[:id])
+    @team = current_user.teams.includes(memberships: :user).find(params[:id])
   end
 
   def new
     @team = current_user.teams.build
-    @team.team_members.build(user_id: current_user.id)
+    @team.memberships.build(user_id: current_user.id)
   end
 
   def create
@@ -30,7 +30,7 @@ class TeamsController < InheritedResources::Base
 
   def edit
     @team = current_user.teams.find(params[:id])
-    @team.team_members.build
+    @team.memberships.build
   end
 
   def update
@@ -45,6 +45,6 @@ class TeamsController < InheritedResources::Base
   private
 
   def team_params
-    params.require(:team).permit(:name, team_members_attributes: [:id, :user_id, :_destroy])
+    params.require(:team).permit(:name, memberships_attributes: [:id, :user_id, :_destroy])
   end
 end

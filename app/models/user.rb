@@ -26,8 +26,8 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, presence: true
   validates :name, uniqueness: true, presence: true
 
-  has_many :team_members, dependent: :destroy
-  has_many :teams, through: :team_members
+  has_many :memberships, dependent: :destroy
+  has_many :teams, through: :memberships
   has_many :participations, dependent: :destroy
   has_many :sessions, through: :participations
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_09_115939) do
+ActiveRecord::Schema.define(version: 2020_07_09_123256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -42,6 +42,15 @@ ActiveRecord::Schema.define(version: 2020_07_09_115939) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "memberships", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.uuid "team_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["team_id"], name: "index_memberships_on_team_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
   create_table "participations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
     t.uuid "session_id", null: false
@@ -57,15 +66,6 @@ ActiveRecord::Schema.define(version: 2020_07_09_115939) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["team_id"], name: "index_sessions_on_team_id"
-  end
-
-  create_table "team_members", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "user_id", null: false
-    t.uuid "team_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["team_id"], name: "index_team_members_on_team_id"
-    t.index ["user_id"], name: "index_team_members_on_user_id"
   end
 
   create_table "teams", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -89,9 +89,9 @@ ActiveRecord::Schema.define(version: 2020_07_09_115939) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "memberships", "teams"
+  add_foreign_key "memberships", "users"
   add_foreign_key "participations", "sessions"
   add_foreign_key "participations", "users"
   add_foreign_key "sessions", "teams"
-  add_foreign_key "team_members", "teams"
-  add_foreign_key "team_members", "users"
 end

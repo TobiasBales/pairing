@@ -1,8 +1,10 @@
 # typed: strict
 
+# frozen_string_literal: true
+
 # == Schema Information
 #
-# Table name: team_members
+# Table name: memberships
 #
 #  id         :uuid             not null, primary key
 #  created_at :datetime         not null
@@ -12,20 +14,20 @@
 #
 # Indexes
 #
-#  index_team_members_on_team_id  (team_id)
-#  index_team_members_on_user_id  (user_id)
+#  index_memberships_on_team_id  (team_id)
+#  index_memberships_on_user_id  (user_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (team_id => teams.id)
 #  fk_rails_...  (user_id => users.id)
 #
-# frozen_string_literal: true
 
-require 'test_helper'
+class Membership < ApplicationRecord
+  extend T::Sig
+  belongs_to :user
+  belongs_to :team
 
-class TeamMemberTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  validates :user, presence: true
+  validates :team, presence: true
 end
