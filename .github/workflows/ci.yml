@@ -155,3 +155,27 @@ jobs:
 
       - name: Run tests
         run: bundle exec rails test
+
+  deploy:
+    name: Deploy to dokku
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    needs: [linters, tests]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Deploy to dokku
+        uses: idoberko2/dokku-deploy-github-action@v1
+        with:
+            ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+            dokku-host: 'prettyrandom.net'
+            app-name: 'pairing'
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.17.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: major
+          WITH_V: true
