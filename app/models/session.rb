@@ -21,6 +21,8 @@
 # frozen_string_literal: true
 
 class Session < ApplicationRecord
+  extend T::Sig
+
   belongs_to :team
 
   has_many :participations, dependent: :destroy
@@ -32,5 +34,13 @@ class Session < ApplicationRecord
 
   accepts_nested_attributes_for :participations
 
-  scope :current, ->(days = 14) { where('date >= ?', days.days.ago.beginning_of_day) }
+  scope :current, ->(days = 14) { where('date >= ?', (days - 1).days.ago.beginning_of_day) }
+
+  sig { params(users: T::Array[User]).returns(T::Boolean) }
+  def matching_participants(users)
+    # when using the :participants relation directly bullet goes off for some reason
+    participants = participations.map(&:user)
+
+    users.all? { |participant| participants.include?(participant) }
+  end
 end

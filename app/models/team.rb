@@ -26,28 +26,17 @@ class Team < ApplicationRecord
 
   accepts_nested_attributes_for :memberships, reject_if: :all_blank, allow_destroy: true
 
-  sig { params(users: User).returns(Numeric) }
-  def number_of_sessions_for(*users)
-    sessions.current.filter do |session|
-      users.all? { |participant| session.participations.map(&:user).include?(participant) }
-    end.length
-  end
-
-  sig { params(users: User).returns(T::Boolean) }
-  def paired_today?(*users)
-    sessions.includes(participations: :user).current(1).any? do |session|
-      users.all? do |participant|
-        session.participations.map(&:user).include?(participant)
-      end
-    end
-  end
-
-  sig { params(users: User).returns(Session) }
-  def build_session(*users)
-    session = sessions.build(date: Time.zone.today)
+  sig { params(users: T::Array[User], date: Date).returns(Session) }
+  def build_session(users, date = Time.zone.today)
+    session = sessions.build(date: date)
     users.each do |user|
       session.participations.build(user: user)
     end
     session
+  end
+
+  sig { params(days: Integer).returns(PairingStatistics) }
+  def pairing_statistics(days)
+    PairingStatistics.new(self, days)
   end
 end

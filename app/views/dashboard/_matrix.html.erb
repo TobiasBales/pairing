@@ -16,7 +16,7 @@
             <td class="bg-light"></td>
           <% else %>
             <td class="text-center">
-              <%= team.number_of_sessions_for(member, partner) %>
+              <%= statistics.number_of_sessions_for([member, partner]) %>
             </td>
           <% end %>
         <% end %>
