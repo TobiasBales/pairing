@@ -6,11 +6,11 @@ class TeamsController < InheritedResources::Base
   before_action :authenticate_user!
 
   def index
-    @teams = current_user.teams.includes(memberships: :user)
+    @teams = current_user.teams.includes(:members)
   end
 
   def show
-    @team = current_user.teams.includes(memberships: :user).find(params[:id])
+    @team = current_user.teams.includes(:members).find(params[:id])
   end
 
   def new
