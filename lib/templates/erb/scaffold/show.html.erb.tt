@@ -12,7 +12,7 @@
 <% end -%>
   </ul>
   <div class="card-footer">
-    <%%= link_to "Cancel", <%= index_helper %>_path, class: 'btn btn-outline-secondary float-left' %>
+    <%%= link_to "Back", <%= index_helper %>_path, class: 'btn btn-outline-secondary float-left' %>
     <%%= link_to "Edit", edit_<%= index_helper %>_path(@<%= singular_table_name %>), class: "btn btn-primary float-right" %>
     <%%= link_to "Delete", <%= index_helper %>_path(@<%= singular_table_name %>), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger float-right mr-2" %>
   </div>
