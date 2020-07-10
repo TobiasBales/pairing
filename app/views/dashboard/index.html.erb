@@ -6,9 +6,9 @@
   <div class="card">
     <div class="card-body">
       <h3 class="card-title"><%= team.name %></h3>
-      <%= render "add_session", team: team, user: @user %>
+      <%= render "add_session", team: team, statistics: team.pairing_statistics(1), user: @user %>
       <hr />
-      <%= render "matrix", team: team %>
+      <%= render "matrix", team: team, statistics: team.pairing_statistics(14) %>
     </div>
   </div>
 <% end %>
