@@ -1,24 +1,20 @@
-# README
+# Pairing
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Pairing is a tool to track pairing constellations within teams to ensure
+that not the same two people pair all the time (and thus build knowledge silos)
 
-Things you may want to cover:
+## Trying it
 
-* Ruby version
+There is a deployed version at https://pairing.prettyrandom.net
+If you find bugs, have ideas for features or want to talk about it feel free to create an issue/pr!
 
-* System dependencies
+## Development
 
-* Configuration
+You need to have docker, docker-compose and overmind installed.
+Once you do you can run the dev setup using
+```sh
+overmind start
+```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This runs the rails app, webpack dev server, postgres,
+two redis instances (cache and sidekiq) and guard for testing
