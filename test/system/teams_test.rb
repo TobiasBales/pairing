@@ -29,6 +29,19 @@ class TeamsTest < ApplicationSystemTestCase
     click_on 'Back'
   end
 
+  test 'adding team members to a Team' do
+    visit teams_url
+    click_on 'TeamOne', match: :first
+    click_on 'Edit', match: :first
+
+    all('select').last.find(:option, text: 'someoneelse').select_option
+    click_on 'Save'
+
+    assert_text 'Saved TeamOne'
+    assert_text 'someoneelse'
+    click_on 'Back'
+  end
+
   test 'updating a Team' do
     visit teams_url
     click_on 'TeamOne', match: :first
