@@ -14,8 +14,9 @@
 #
 # Indexes
 #
-#  index_memberships_on_team_id  (team_id)
-#  index_memberships_on_user_id  (user_id)
+#  index_memberships_on_team_id              (team_id)
+#  index_memberships_on_user_id              (user_id)
+#  index_memberships_on_user_id_and_team_id  (user_id,team_id) UNIQUE
 #
 # Foreign Keys
 #
@@ -28,6 +29,7 @@ class Membership < ApplicationRecord
   belongs_to :user
   belongs_to :team
 
+  validates :user_id, uniqueness: { scope: :team_id }
   validates :user, presence: true
   validates :team, presence: true
 end
