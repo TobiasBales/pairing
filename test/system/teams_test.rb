@@ -1,67 +1,61 @@
 # typed: false
-
 # frozen_string_literal: true
 
 require 'application_system_test_case'
+require 'system/pages/teams_page'
 
 class TeamsTest < ApplicationSystemTestCase
   include Warden::Test::Helpers
 
   setup do
     @team = teams(:one)
+    @page = TeamsPage.new
+
     login_as(users(:one), scope: :user)
   end
 
   test 'visiting the index' do
     visit teams_url
-    assert_selector '.breadcrumb-item.active', text: 'Teams'
+
+    assert @page.on_index?
   end
 
   test 'creating a Team' do
     visit teams_url
-    click_on 'New team'
-    name = "new #{@team.name}"
 
-    fill_in 'Name', with: name
-    click_on 'Create'
+    @page.new_team
+    @page.fill_name('New test team')
+    @page.save
 
-    assert_text "Saved #{name}"
-    click_on 'Back'
+    assert_text 'Saved New test team'
   end
 
   test 'adding team members to a Team' do
     visit teams_url
-    click_on 'TeamOne', match: :first
-    click_on 'Edit', match: :first
 
-    all('select').last.find(:option, text: 'someoneelse').select_option
-    click_on 'Save'
+    @page.edit_team teams(:one)
+    @page.select_last_member(users(:three))
+    @page.save
 
     assert_text 'Saved TeamOne'
     assert_text 'someoneelse'
-    click_on 'Back'
   end
 
   test 'updating a Team' do
     visit teams_url
-    click_on 'TeamOne', match: :first
-    click_on 'Edit', match: :first
 
-    new_name = "#{@team.name} - updated"
-    fill_in 'Name', with: new_name
-    click_on 'Save'
+    @page.edit_team teams(:one)
+    @page.fill_name 'TeamOne - updated'
+    @page.save
 
-    assert_text "Saved #{new_name}"
-    click_on 'Back'
+    assert_text 'Saved TeamOne - updated'
   end
 
   test 'destroying a Team' do
     visit teams_url
-    click_on 'TeamOne', match: :first
 
-    page.accept_confirm do
-      click_on 'Delete', match: :first
-    end
+    @page.goto_team teams(:one)
+    @page.delete
 
     assert_text 'Team was successfully destroyed'
   end

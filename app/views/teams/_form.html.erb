@@ -26,8 +26,7 @@
   <div class="card-footer">
     <%= link_to "Cancel", team, class: 'btn btn-outline-secondary float-left' if team.persisted? %>
     <%= link_to "Cancel", teams_path, class: 'btn btn-outline-secondary float-left' if !team.persisted? %>
-    <%= form.submit "Save", class: "btn btn-primary float-right" if team.persisted? %>
-    <%= form.submit "Create", class: "btn btn-primary float-right" if !team.persisted? %>
+    <%= form.submit "Save", class: "btn btn-primary float-right" %>
   </div>
 </div>
 <% end %>
