@@ -4,8 +4,11 @@
 require 'test_helper'
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
+  extend T::Sig
+
+  sig { returns(Symbol) }
   def self.driver
-    ENV['SELENIUM_DRIVER'].to_sym if ENV['SELENIUM_DRIVER'].present?
+    T.must(ENV['SELENIUM_DRIVER']).to_sym if ENV['SELENIUM_DRIVER'].present?
 
     :headless_chrome
   end
