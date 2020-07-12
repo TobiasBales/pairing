@@ -7,7 +7,6 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   def setup
     @team = teams(:one)
-    @team.memberships.build(user: users(:one))
     @team.memberships.build(user: users(:two))
     @team.memberships.build(user: users(:three))
     @team.save!
