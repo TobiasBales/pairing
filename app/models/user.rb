@@ -31,6 +31,8 @@ class User < ApplicationRecord
   has_many :participations, dependent: :destroy
   has_many :sessions, through: :participations
 
+  scope :sorted, -> { order(:name) }
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

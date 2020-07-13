@@ -1,5 +1,5 @@
 <h5>Add pairing session</h5>
-<% team.members.each do |member| %>
+<% team.members.sorted.each do |member| %>
   <% if member != user %>
     <%= form_for(team.build_session([user, member]), html: { class: 'd-inline' }) do |f| %>
       <%= f.hidden_field :team_id %>
