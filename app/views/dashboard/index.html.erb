@@ -5,7 +5,7 @@
 <% @teams.each do |team| %>
   <div class="card mb-3">
     <div class="card-body">
-      <h3 class="card-title"><%= team.name %></h3>
+      <h3 class="card-title"><%= link_to team.name, team_path(team) %></h3>
       <%= render "add_session", team: team, statistics: team.pairing_statistics(1), user: @user %>
       <hr />
       <%= render "matrix", team: team, statistics: team.pairing_statistics(14) %>
