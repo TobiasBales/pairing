@@ -8,6 +8,8 @@ that not the same two people pair all the time (and thus build knowledge silos)
 There is a deployed version at https://pairing.prettyrandom.net
 If you find bugs, have ideas for features or want to talk about it feel free to create an issue/pr!
 
+![Screenshot](./docs/screenshot.png)
+
 ## Development
 
 You need to have docker, docker-compose and overmind installed.
