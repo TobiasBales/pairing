@@ -10,9 +10,6 @@ class DashboardTest < ApplicationSystemTestCase
 
   setup do
     @team = teams(:one)
-    @team.memberships.build(user: users(:two))
-    @team.memberships.build(user: users(:three))
-    @team.save!
 
     login_as(users(:one), scope: :user)
 

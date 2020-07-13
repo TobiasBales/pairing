@@ -4,6 +4,7 @@
 <table class="table">
   <thead>
     <th></th>
+    <% maximum_sessions = statistics.maximum_sessions %>
     <% team.members.sorted.each do |member| %>
       <th scope="col" class="text-center"><%= member.name %></th>
     <% end %> </thead>
@@ -15,8 +16,9 @@
           <% if member == partner %>
             <td class="bg-light"></td>
           <% else %>
-            <td class="text-center">
-              <%= statistics.number_of_sessions_for([member, partner]) %>
+            <% sessions = statistics.number_of_sessions_for([member, partner]) %>
+            <td class="text-center" style="background-color: <%= heatmap_color(sessions / maximum_sessions.to_f) %>">
+              <%=  sessions %>
             </td>
           <% end %>
         <% end %>

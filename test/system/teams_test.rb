@@ -34,11 +34,11 @@ class TeamsTest < ApplicationSystemTestCase
     visit teams_url
 
     @page.edit_team teams(:one)
-    @page.select_last_member(users(:three))
+    @page.select_last_member(users(:four))
     @page.save
 
-    assert_text 'Saved TeamOne'
-    assert_text 'someoneelse'
+    assert_text "Saved #{teams(:one).name}"
+    assert_text users(:four).name
   end
 
   test 'updating a Team' do
