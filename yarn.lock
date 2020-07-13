@@ -1291,6 +1291,11 @@ aproba@^1.0.3, aproba@^1.1.1:
   resolved "https://registry.yarnpkg.com/aproba/-/aproba-1.2.0.tgz#6802e6264efd18c790a1b0d517f0f2627bf2c94a"
   integrity sha512-Y9J6ZjXtoYh8RnXVCMOU/ttDmk1aBjunq9vO0ta5x85WDQiQfUF9sIPBITdbiiIVcBo03Hi3jMxigBtsddlXRw==
 
+arctic_admin@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/arctic_admin/-/arctic_admin-3.2.0.tgz#e3278d9b1897e96f9a1ba0032cde8fa56ea76915"
+  integrity sha512-OpleIwJOMueKcajnqAE33ET1jz1Iqo+8ybpYnTYkX+hOMJxLaHRmzXX040ZhtaZmPKDQaEhDrSNSU8azMlbojw==
+
 are-we-there-yet@~1.1.2:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/are-we-there-yet/-/are-we-there-yet-1.1.5.tgz#4b35c2944f062a8bfcda66410760350fe9ddfc21"
