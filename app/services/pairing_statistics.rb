@@ -22,10 +22,20 @@ class PairingStatistics
     sessions.filter { |session| session.matching_participants(users) }.length
   end
 
+  sig { returns(Integer) }
+  def maximum_sessions
+    sessions_by_users.values.map(&:length).max || 0
+  end
+
   private
 
   sig { returns(T::Array[Session]) }
   def sessions
     @sessions ||= @team.sessions.includes(participations: :user).current(@days).to_a
+  end
+
+  sig { returns(T::Hash[T::Array[String], T::Array[Session]]) }
+  def sessions_by_users
+    sessions.group_by { |s| s.participations.map(&:user_id).sort }
   end
 end
