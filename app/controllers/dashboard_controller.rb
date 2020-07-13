@@ -6,6 +6,6 @@ class DashboardController < ApplicationController
 
   def index
     @user = current_user
-    @teams = @user.teams.includes(memberships: :user).includes(:members)
+    @teams = @user.teams
   end
 end
