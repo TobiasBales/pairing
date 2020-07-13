@@ -3,3 +3,4 @@
 import '../stylesheets/active_admin.scss';
 
 import '@activeadmin/activeadmin';
+import 'arctic_admin';
