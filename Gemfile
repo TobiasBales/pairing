@@ -35,6 +35,7 @@ gem 'webpacker', '~> 4.0'
 group :development, :test do
   gem 'bullet', '~> 6.1'
   gem 'byebug', '~> 11.1'
+  gem 'dotenv-rails', '~> 2.7'
   gem 'fasterer', '~> 0.8.3'
   gem 'guard', '~> 2.16'
   gem 'guard-minitest', '~> 2.4'
