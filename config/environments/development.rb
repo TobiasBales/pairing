@@ -49,6 +49,9 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: "localhost:#{ENV['PORT']}" }
 
+  config.hosts << 'localhost'
+  config.hosts << /.*\.ngrok\.io/
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
