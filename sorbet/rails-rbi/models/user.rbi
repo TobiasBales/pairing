@@ -118,6 +118,15 @@ module User::GeneratedAssociationMethods
   sig { params(value: T::Enumerable[::Session]).void }
   def sessions=(value); end
 
+  sig { returns(::SlackAccount::ActiveRecord_Associations_CollectionProxy) }
+  def slack_accounts; end
+
+  sig { returns(T::Array[Integer]) }
+  def slack_account_ids; end
+
+  sig { params(value: T::Enumerable[::SlackAccount]).void }
+  def slack_accounts=(value); end
+
   sig { returns(::Team::ActiveRecord_Associations_CollectionProxy) }
   def teams; end
 
@@ -151,6 +160,50 @@ class User < ApplicationRecord
   extend User::CustomFinderMethods
   extend User::QueryMethodsReturningRelation
   RelationType = T.type_alias { T.any(User::ActiveRecord_Relation, User::ActiveRecord_Associations_CollectionProxy, User::ActiveRecord_AssociationRelation) }
+
+  sig { params(args: T.untyped).returns(User::ActiveRecord_Relation) }
+  def self.sorted(*args); end
+end
+
+class User::ActiveRecord_Relation < ActiveRecord::Relation
+  include User::ActiveRelation_WhereNot
+  include User::CustomFinderMethods
+  include User::QueryMethodsReturningRelation
+  Elem = type_member(fixed: User)
+
+  sig { params(args: T.untyped).returns(User::ActiveRecord_Relation) }
+  def sorted(*args); end
+end
+
+class User::ActiveRecord_AssociationRelation < ActiveRecord::AssociationRelation
+  include User::ActiveRelation_WhereNot
+  include User::CustomFinderMethods
+  include User::QueryMethodsReturningAssociationRelation
+  Elem = type_member(fixed: User)
+
+  sig { params(args: T.untyped).returns(User::ActiveRecord_AssociationRelation) }
+  def sorted(*args); end
+end
+
+class User::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
+  include User::CustomFinderMethods
+  include User::QueryMethodsReturningAssociationRelation
+  Elem = type_member(fixed: User)
+
+  sig { params(args: T.untyped).returns(User::ActiveRecord_AssociationRelation) }
+  def sorted(*args); end
+
+  sig { params(records: T.any(User, T::Array[User])).returns(T.self_type) }
+  def <<(*records); end
+
+  sig { params(records: T.any(User, T::Array[User])).returns(T.self_type) }
+  def append(*records); end
+
+  sig { params(records: T.any(User, T::Array[User])).returns(T.self_type) }
+  def push(*records); end
+
+  sig { params(records: T.any(User, T::Array[User])).returns(T.self_type) }
+  def concat(*records); end
 end
 
 module User::QueryMethodsReturningRelation
@@ -377,36 +430,4 @@ module User::QueryMethodsReturningAssociationRelation
     ).returns(ActiveRecord::Batches::BatchEnumerator)
   end
   def in_batches(of: 1000, start: nil, finish: nil, load: false, error_on_ignore: nil, &block); end
-end
-
-class User::ActiveRecord_Relation < ActiveRecord::Relation
-  include User::ActiveRelation_WhereNot
-  include User::CustomFinderMethods
-  include User::QueryMethodsReturningRelation
-  Elem = type_member(fixed: User)
-end
-
-class User::ActiveRecord_AssociationRelation < ActiveRecord::AssociationRelation
-  include User::ActiveRelation_WhereNot
-  include User::CustomFinderMethods
-  include User::QueryMethodsReturningAssociationRelation
-  Elem = type_member(fixed: User)
-end
-
-class User::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
-  include User::CustomFinderMethods
-  include User::QueryMethodsReturningAssociationRelation
-  Elem = type_member(fixed: User)
-
-  sig { params(records: T.any(User, T::Array[User])).returns(T.self_type) }
-  def <<(*records); end
-
-  sig { params(records: T.any(User, T::Array[User])).returns(T.self_type) }
-  def append(*records); end
-
-  sig { params(records: T.any(User, T::Array[User])).returns(T.self_type) }
-  def push(*records); end
-
-  sig { params(records: T.any(User, T::Array[User])).returns(T.self_type) }
-  def concat(*records); end
 end

@@ -47,10 +47,12 @@ module ActionCable::VERSION
 end
 
 class ActionController::API
+  include ::Devise::OmniAuth::UrlHelpers
   MODULES = ::T.let(nil, ::T.untyped)
 end
 
 class ActionController::Base
+  include ::Devise::OmniAuth::UrlHelpers
   MODULES = ::T.let(nil, ::T.untyped)
   PROTECTED_IVARS = ::T.let(nil, ::T.untyped)
 end
@@ -731,10 +733,11 @@ class ActionView::Base
   include ::ActionView::Context
   include ::ERB::Util
   include ::ActionCable::Helpers::ActionCableHelper
-  include ::Webpacker::Helper
-  include ::Cocoon::ViewHelpers
   include ::Formtastic::Helpers::FormHelper
+  include ::Cocoon::ViewHelpers
   include ::Devise::Controllers::UrlHelpers
+  include ::Devise::OmniAuth::UrlHelpers
+  include ::Webpacker::Helper
   include ::Sprockets::Rails::Helper
   include ::Sprockets::Rails::Utils
   def assets_environment(); end
@@ -1388,6 +1391,22 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
   def user_session_path(*args); end
 
   def user_session_url(*args); end
+
+  def user_sign_in_with_slack_omniauth_authorize_path(*args); end
+
+  def user_sign_in_with_slack_omniauth_authorize_url(*args); end
+
+  def user_sign_in_with_slack_omniauth_callback_path(*args); end
+
+  def user_sign_in_with_slack_omniauth_callback_url(*args); end
+
+  def user_slack_omniauth_authorize_path(*args); end
+
+  def user_slack_omniauth_authorize_url(*args); end
+
+  def user_slack_omniauth_callback_path(*args); end
+
+  def user_slack_omniauth_callback_url(*args); end
 end
 
 class ActiveAdmin::Inputs::DatepickerInput
@@ -7623,6 +7642,26 @@ module Devise::Models::Lockable
   def self.required_fields(klass); end
 end
 
+module Devise::Models::Omniauthable
+end
+
+module Devise::Models::Omniauthable::ClassMethods
+  def omniauth_providers(); end
+
+  def omniauth_providers=(value); end
+end
+
+module Devise::Models::Omniauthable::ClassMethods
+  def self.available_configs(); end
+
+  def self.available_configs=(available_configs); end
+end
+
+module Devise::Models::Omniauthable
+  extend ::ActiveSupport::Concern
+  def self.required_fields(klass); end
+end
+
 module Devise::Models::Timeoutable
   def timedout?(last_access); end
 
@@ -7660,6 +7699,57 @@ end
 
 module Devise::Models::Validatable
   VALIDATIONS = ::T.let(nil, ::T.untyped)
+end
+
+module Devise::OmniAuth
+end
+
+class Devise::OmniAuth::Config
+  def args(); end
+
+  def autoload_strategy(); end
+
+  def find_strategy(); end
+
+  def initialize(provider, args); end
+
+  def options(); end
+
+  def provider(); end
+
+  def strategy(); end
+
+  def strategy=(strategy); end
+
+  def strategy_class(); end
+
+  def strategy_name(); end
+end
+
+class Devise::OmniAuth::Config
+end
+
+class Devise::OmniAuth::StrategyNotFound
+  def initialize(strategy); end
+end
+
+class Devise::OmniAuth::StrategyNotFound
+end
+
+module Devise::OmniAuth::UrlHelpers
+  def omniauth_authorize_path(resource_or_scope, provider, *args); end
+
+  def omniauth_authorize_url(resource_or_scope, provider, *args); end
+
+  def omniauth_callback_path(resource_or_scope, provider, *args); end
+
+  def omniauth_callback_url(resource_or_scope, provider, *args); end
+end
+
+module Devise::OmniAuth::UrlHelpers
+end
+
+module Devise::OmniAuth
 end
 
 class Devise::ParameterFilter
@@ -7861,6 +7951,114 @@ end
 class Dir
   def self.exists?(_); end
 
+end
+
+module Dotenv
+end
+
+class Dotenv::Environment
+  def apply(); end
+
+  def apply!(); end
+
+  def filename(); end
+
+  def initialize(filename, is_load=T.unsafe(nil)); end
+
+  def load(is_load=T.unsafe(nil)); end
+
+  def read(); end
+end
+
+class Dotenv::Environment
+end
+
+class Dotenv::Error
+end
+
+class Dotenv::Error
+end
+
+class Dotenv::FormatError
+end
+
+class Dotenv::FormatError
+end
+
+class Dotenv::MissingKeys
+  def initialize(keys); end
+end
+
+class Dotenv::MissingKeys
+end
+
+class Dotenv::Parser
+  def call(); end
+
+  def initialize(string, is_load=T.unsafe(nil)); end
+  LINE = ::T.let(nil, ::T.untyped)
+end
+
+class Dotenv::Parser
+  def self.call(string, is_load=T.unsafe(nil)); end
+
+  def self.substitutions(); end
+end
+
+class Dotenv::Railtie
+  def load(); end
+
+  def overload(); end
+
+  def root(); end
+end
+
+class Dotenv::Railtie
+  def self.load(); end
+end
+
+module Dotenv::Substitutions
+end
+
+module Dotenv::Substitutions::Command
+end
+
+module Dotenv::Substitutions::Command
+  def self.call(value, _env, _is_load); end
+end
+
+module Dotenv::Substitutions::Variable
+end
+
+module Dotenv::Substitutions::Variable
+  def self.call(value, env, is_load); end
+end
+
+module Dotenv::Substitutions
+end
+
+module Dotenv
+  def self.ignoring_nonexistent_files(); end
+
+  def self.instrument(name, payload=T.unsafe(nil), &block); end
+
+  def self.instrumenter(); end
+
+  def self.instrumenter=(instrumenter); end
+
+  def self.load(*filenames); end
+
+  def self.load!(*filenames); end
+
+  def self.overload(*filenames); end
+
+  def self.overload!(*filenames); end
+
+  def self.parse(*filenames); end
+
+  def self.require_keys(*keys); end
+
+  def self.with(*filenames); end
 end
 
 class ERB
@@ -10437,6 +10635,753 @@ end
 
 HashWithIndifferentAccess = ActiveSupport::HashWithIndifferentAccess
 
+module Hashie
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+class Hashie::Array
+  include ::Hashie::Extensions::Array::PrettyInspect
+  include ::Hashie::Extensions::RubyVersionCheck
+  def array_inspect(); end
+
+  def dig(*indexes); end
+end
+
+class Hashie::Array
+end
+
+class Hashie::Clash
+  def _end!(); end
+
+  def _parent(); end
+
+  def id(*args); end
+
+  def initialize(other_hash=T.unsafe(nil), parent=T.unsafe(nil)); end
+
+  def merge_store(key, *args); end
+
+  def method_missing(name, *args); end
+end
+
+class Hashie::Clash::ChainError
+end
+
+class Hashie::Clash::ChainError
+end
+
+class Hashie::Clash
+end
+
+class Hashie::Dash
+  def [](property); end
+
+  def []=(property, value); end
+
+  def initialize(attributes=T.unsafe(nil), &block); end
+
+  def merge(other_hash); end
+
+  def merge!(other_hash); end
+
+  def replace(other_hash); end
+
+  def update_attributes!(attributes); end
+end
+
+class Hashie::Dash
+  def self.defaults(); end
+
+  def self.getters(); end
+
+  def self.inherited(klass); end
+
+  def self.properties(); end
+
+  def self.property(property_name, options=T.unsafe(nil)); end
+
+  def self.property?(name); end
+
+  def self.required?(name); end
+
+  def self.required_properties(); end
+end
+
+module Hashie::Extensions
+end
+
+module Hashie::Extensions::ActiveSupport
+end
+
+module Hashie::Extensions::ActiveSupport::CoreExt
+end
+
+module Hashie::Extensions::ActiveSupport::CoreExt::Hash
+  def except(*keys); end
+end
+
+module Hashie::Extensions::ActiveSupport::CoreExt::Hash
+end
+
+module Hashie::Extensions::ActiveSupport::CoreExt
+end
+
+module Hashie::Extensions::ActiveSupport
+end
+
+module Hashie::Extensions::Array
+end
+
+module Hashie::Extensions::Array::PrettyInspect
+  def hashie_inspect(); end
+end
+
+module Hashie::Extensions::Array::PrettyInspect
+  def self.included(base); end
+end
+
+module Hashie::Extensions::Array
+end
+
+module Hashie::Extensions::Coercion
+  ABSTRACT_CORE_TYPES = ::T.let(nil, ::T.untyped)
+  CORE_TYPES = ::T.let(nil, ::T.untyped)
+end
+
+module Hashie::Extensions::Coercion::ClassMethods
+  def build_coercion(type); end
+
+  def build_container_coercion(type, value_type); end
+
+  def build_core_type_coercion(type); end
+
+  def build_hash_coercion(type, key_type, value_type); end
+
+  def coerce_key(*attrs); end
+
+  def coerce_keys(*attrs); end
+
+  def coerce_value(from, into, options=T.unsafe(nil)); end
+
+  def coercion_cache(); end
+
+  def fetch_coercion(type); end
+
+  def inherited(klass); end
+
+  def key_coercion(key); end
+
+  def key_coercions(); end
+
+  def key_coercions=(key_coercions); end
+
+  def lenient_value_coercions(); end
+
+  def strict_value_coercions(); end
+
+  def value_coercion(value); end
+end
+
+module Hashie::Extensions::Coercion::ClassMethods
+end
+
+module Hashie::Extensions::Coercion::InstanceMethods
+  def custom_writer(key, value, _convert=T.unsafe(nil)); end
+
+  def replace(other_hash); end
+
+  def set_value_with_coercion(key, value); end
+end
+
+module Hashie::Extensions::Coercion::InstanceMethods
+end
+
+module Hashie::Extensions::Coercion
+  def self.included(base); end
+end
+
+module Hashie::Extensions::Dash
+end
+
+module Hashie::Extensions::Dash::Coercion
+end
+
+module Hashie::Extensions::Dash::Coercion::ClassMethods
+  def property(property_name, options=T.unsafe(nil)); end
+end
+
+module Hashie::Extensions::Dash::Coercion::ClassMethods
+end
+
+module Hashie::Extensions::Dash::Coercion
+  def self.included(base); end
+end
+
+module Hashie::Extensions::Dash::IndifferentAccess
+end
+
+module Hashie::Extensions::Dash::IndifferentAccess::ClassMethods
+  def property?(name); end
+
+  def transformation_exists?(name); end
+
+  def transformed_property(property_name, value); end
+
+  def translation_exists?(name); end
+end
+
+module Hashie::Extensions::Dash::IndifferentAccess::ClassMethods
+end
+
+module Hashie::Extensions::Dash::IndifferentAccess
+  def self.included(base); end
+
+  def self.maybe_extend(base); end
+end
+
+module Hashie::Extensions::Dash::PropertyTranslation
+end
+
+module Hashie::Extensions::Dash::PropertyTranslation::ClassMethods
+  def inherited(klass); end
+
+  def inverse_translations(); end
+
+  def permitted_input_keys(); end
+
+  def property(property_name, options=T.unsafe(nil)); end
+
+  def transformation_exists?(name); end
+
+  def transformed_property(property_name, value); end
+
+  def transforms(); end
+
+  def translation_exists?(name); end
+
+  def translations(); end
+
+  def translations_hash(); end
+end
+
+module Hashie::Extensions::Dash::PropertyTranslation::ClassMethods
+end
+
+module Hashie::Extensions::Dash::PropertyTranslation::InstanceMethods
+  def []=(property, value); end
+
+  def initialize_attributes(attributes); end
+
+  def property_exists?(property); end
+end
+
+module Hashie::Extensions::Dash::PropertyTranslation::InstanceMethods
+end
+
+module Hashie::Extensions::Dash::PropertyTranslation
+  def self.included(base); end
+end
+
+module Hashie::Extensions::Dash
+end
+
+module Hashie::Extensions::DeepFetch
+  def deep_fetch(*args, &block); end
+end
+
+class Hashie::Extensions::DeepFetch::UndefinedPathError
+end
+
+class Hashie::Extensions::DeepFetch::UndefinedPathError
+end
+
+module Hashie::Extensions::DeepFetch
+end
+
+module Hashie::Extensions::DeepFind
+  def deep_detect(key); end
+
+  def deep_find(key); end
+
+  def deep_find_all(key); end
+
+  def deep_select(key); end
+end
+
+module Hashie::Extensions::DeepFind
+end
+
+module Hashie::Extensions::DeepLocate
+  def deep_locate(comparator); end
+end
+
+module Hashie::Extensions::DeepLocate
+  def self.deep_locate(comparator, object); end
+end
+
+module Hashie::Extensions::DeepMerge
+  def deep_merge(other_hash, &block); end
+
+  def deep_merge!(other_hash, &block); end
+end
+
+module Hashie::Extensions::DeepMerge
+end
+
+module Hashie::Extensions::IgnoreUndeclared
+  def initialize_attributes(attributes); end
+
+  def property_exists?(property); end
+end
+
+module Hashie::Extensions::IgnoreUndeclared
+end
+
+module Hashie::Extensions::IndifferentAccess
+  def convert!(); end
+
+  def convert_key(key); end
+
+  def hash_lacking_indifference?(other); end
+
+  def hash_with_indifference?(other); end
+
+  def indifferent_access?(); end
+
+  def indifferent_default(key=T.unsafe(nil)); end
+
+  def indifferent_delete(key); end
+
+  def indifferent_fetch(key, *args, &block); end
+
+  def indifferent_key?(key); end
+
+  def indifferent_replace(other_hash); end
+
+  def indifferent_update(other_hash); end
+
+  def indifferent_value(value); end
+
+  def indifferent_values_at(*indices); end
+
+  def indifferent_writer(key, value); end
+
+  def merge(*args); end
+
+  def merge!(*_); end
+end
+
+module Hashie::Extensions::IndifferentAccess
+  def self.included(base); end
+
+  def self.inject(hash); end
+
+  def self.inject!(hash); end
+end
+
+module Hashie::Extensions::KeyConflictWarning
+  def disable_warnings(*method_keys); end
+
+  def disable_warnings?(method_key=T.unsafe(nil)); end
+
+  def disabled_warnings(); end
+
+  def inherited(subclass); end
+end
+
+class Hashie::Extensions::KeyConflictWarning::CannotDisableMashWarnings
+  def initialize(); end
+end
+
+class Hashie::Extensions::KeyConflictWarning::CannotDisableMashWarnings
+end
+
+module Hashie::Extensions::KeyConflictWarning
+end
+
+module Hashie::Extensions::KeyConversion
+end
+
+module Hashie::Extensions::KeyConversion
+  def self.included(base); end
+end
+
+module Hashie::Extensions::Mash
+end
+
+module Hashie::Extensions::Mash::DefineAccessors
+end
+
+class Hashie::Extensions::Mash::DefineAccessors::Ext
+  def define_initializing_reader(key, method_name); end
+
+  def define_predicate(key, method_name); end
+
+  def define_reader(key, method_name); end
+
+  def define_underbang_reader(key, method_name); end
+
+  def define_writer(key, method_name); end
+end
+
+class Hashie::Extensions::Mash::DefineAccessors::Ext
+end
+
+module Hashie::Extensions::Mash::DefineAccessors
+  def self.extended(obj); end
+
+  def self.included(klass); end
+end
+
+module Hashie::Extensions::Mash::KeepOriginalKeys
+end
+
+module Hashie::Extensions::Mash::KeepOriginalKeys
+  def self.included(descendant); end
+end
+
+module Hashie::Extensions::Mash::PermissiveRespondTo
+end
+
+module Hashie::Extensions::Mash::PermissiveRespondTo
+  def self.included(base); end
+end
+
+module Hashie::Extensions::Mash::SafeAssignment
+  def []=(*args); end
+
+  def custom_writer(key, *args); end
+end
+
+module Hashie::Extensions::Mash::SafeAssignment
+end
+
+module Hashie::Extensions::Mash::SymbolizeKeys
+end
+
+module Hashie::Extensions::Mash::SymbolizeKeys
+  def self.included(base); end
+end
+
+module Hashie::Extensions::Mash
+end
+
+module Hashie::Extensions::MergeInitializer
+  def initialize(hash=T.unsafe(nil), default=T.unsafe(nil), &block); end
+end
+
+module Hashie::Extensions::MergeInitializer
+end
+
+module Hashie::Extensions::MethodAccess
+end
+
+module Hashie::Extensions::MethodAccess
+  def self.included(base); end
+end
+
+module Hashie::Extensions::MethodAccessWithOverride
+end
+
+module Hashie::Extensions::MethodAccessWithOverride
+  def self.included(base); end
+end
+
+module Hashie::Extensions::MethodQuery
+  def method_missing(name, *args); end
+end
+
+module Hashie::Extensions::MethodQuery
+end
+
+module Hashie::Extensions::MethodReader
+  def method_missing(name, *args); end
+end
+
+module Hashie::Extensions::MethodReader
+end
+
+module Hashie::Extensions::MethodWriter
+  def convert_key(key); end
+
+  def method_missing(name, *args); end
+end
+
+module Hashie::Extensions::MethodWriter
+end
+
+module Hashie::Extensions::Parsers
+end
+
+class Hashie::Extensions::Parsers::YamlErbParser
+  def initialize(file_path, options=T.unsafe(nil)); end
+
+  def perform(); end
+end
+
+class Hashie::Extensions::Parsers::YamlErbParser
+  def self.perform(file_path, options=T.unsafe(nil)); end
+end
+
+module Hashie::Extensions::Parsers
+end
+
+module Hashie::Extensions::PrettyInspect
+  def hashie_inspect(); end
+end
+
+module Hashie::Extensions::PrettyInspect
+  def self.included(base); end
+end
+
+class Hashie::Extensions::RubyVersion
+  include ::Comparable
+  def initialize(version); end
+
+  def segments(); end
+
+  def segments=(segments); end
+end
+
+class Hashie::Extensions::RubyVersion
+end
+
+module Hashie::Extensions::RubyVersionCheck
+end
+
+module Hashie::Extensions::RubyVersionCheck
+  def self.included(base); end
+end
+
+module Hashie::Extensions::StrictKeyAccess
+  def [](key); end
+
+  def default(_=T.unsafe(nil)); end
+
+  def default=(_); end
+
+  def default_proc(); end
+
+  def default_proc=(_); end
+
+  def key(value); end
+end
+
+class Hashie::Extensions::StrictKeyAccess::DefaultError
+  def initialize(); end
+end
+
+class Hashie::Extensions::StrictKeyAccess::DefaultError
+end
+
+module Hashie::Extensions::StrictKeyAccess
+end
+
+module Hashie::Extensions::StringifyKeys
+  def stringify_keys(); end
+
+  def stringify_keys!(); end
+end
+
+module Hashie::Extensions::StringifyKeys
+end
+
+module Hashie::Extensions::SymbolizeKeys
+  def symbolize_keys(); end
+
+  def symbolize_keys!(); end
+end
+
+module Hashie::Extensions::SymbolizeKeys::ClassMethods
+  def symbolize_keys(hash); end
+
+  def symbolize_keys!(hash); end
+
+  def symbolize_keys_recursively!(object); end
+end
+
+module Hashie::Extensions::SymbolizeKeys::ClassMethods
+end
+
+module Hashie::Extensions::SymbolizeKeys
+  extend ::Hashie::Extensions::SymbolizeKeys::ClassMethods
+end
+
+module Hashie::Extensions
+end
+
+class Hashie::Hash
+  include ::Hashie::Extensions::PrettyInspect
+  include ::Hashie::Extensions::StringifyKeys
+  def hash_inspect(); end
+
+  def to_hash(options=T.unsafe(nil)); end
+
+  def to_json(*args); end
+
+  def to_mash(); end
+end
+
+class Hashie::Hash
+end
+
+class Hashie::Mash
+  include ::Hashie::Extensions::RubyVersionCheck
+  include ::Hashie::Extensions::ActiveSupport::CoreExt::Hash
+  def [](key); end
+
+  def []=(key, value, convert=T.unsafe(nil)); end
+
+  def assign_property(name, value); end
+
+  def convert_key(key); end
+
+  def convert_value(val, duping=T.unsafe(nil)); end
+
+  def custom_reader(key); end
+
+  def custom_writer(key, value, convert=T.unsafe(nil)); end
+
+  def deep_merge(*other_hashes, &blk); end
+
+  def deep_merge!(*other_hashes, &blk); end
+
+  def deep_update(*other_hashes, &blk); end
+
+  def delete(key); end
+
+  def dig(*keys); end
+
+  def fetch(key, *args); end
+
+  def has_key?(key); end
+
+  def include?(key); end
+
+  def initialize(source_hash=T.unsafe(nil), default=T.unsafe(nil), &blk); end
+
+  def initializing_reader(key); end
+
+  def key?(key); end
+
+  def member?(key); end
+
+  def merge(*other_hashes, &blk); end
+
+  def merge!(*other_hashes, &blk); end
+
+  def method_missing(method_name, *args, &blk); end
+
+  def method_name_and_suffix(method_name); end
+
+  def method_suffix(method_name); end
+
+  def prefix_method?(method_name); end
+
+  def regular_dup(); end
+
+  def regular_key?(_); end
+
+  def regular_reader(_); end
+
+  def regular_writer(_, _1); end
+
+  def reject(&blk); end
+
+  def replace(other_hash); end
+
+  def select(&blk); end
+
+  def shallow_merge(other_hash); end
+
+  def shallow_update(other_hash); end
+
+  def slice(*keys); end
+
+  def to_module(mash_method_name=T.unsafe(nil)); end
+
+  def transform_keys(&blk); end
+
+  def transform_values(&blk); end
+
+  def underbang_reader(key); end
+
+  def update(*other_hashes, &blk); end
+
+  def values_at(*keys); end
+
+  def with_accessors!(); end
+  ALLOWED_SUFFIXES = ::T.let(nil, ::T.untyped)
+end
+
+class Hashie::Mash
+  extend ::Hashie::Extensions::KeyConflictWarning
+  def self.load(path, options=T.unsafe(nil)); end
+
+  def self.quiet(*method_keys); end
+end
+
+class Hashie::Railtie
+end
+
+class Hashie::Railtie
+end
+
+class Hashie::Rash
+  def [](key); end
+
+  def []=(key, value); end
+
+  def all(query); end
+
+  def fetch(*args); end
+
+  def initialize(initial=T.unsafe(nil)); end
+
+  def method_missing(*args, &block); end
+
+  def optimize_every(); end
+
+  def optimize_every=(optimize_every); end
+
+  def update(other); end
+end
+
+class Hashie::Rash
+end
+
+class Hashie::Trash
+  include ::Hashie::Extensions::Dash::PropertyTranslation
+  include ::Hashie::Extensions::Dash::PropertyTranslation::InstanceMethods
+end
+
+class Hashie::Trash
+  extend ::Hashie::Extensions::Dash::PropertyTranslation::ClassMethods
+end
+
+module Hashie::Utils
+end
+
+module Hashie::Utils
+  def self.integer_classes(); end
+
+  def self.method_information(bound_method); end
+
+  def self.safe_dup(value); end
+end
+
+module Hashie
+  extend ::Hashie::Extensions::SymbolizeKeys::ClassMethods
+  def self.logger(); end
+
+  def self.logger=(logger); end
+end
+
+module HeatmapHelper
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
 module Hiredis
   VERSION = ::T.let(nil, ::T.untyped)
 end
@@ -10894,6 +11839,375 @@ JSON::State = JSON::Ext::Generator::State
 
 JSON::UnparserError = JSON::GeneratorError
 
+module JWT
+  include ::JWT::DefaultOptions
+end
+
+module JWT::Algos
+end
+
+module JWT::Algos::Ecdsa
+  NAMED_CURVES = ::T.let(nil, ::T.untyped)
+  SUPPORTED = ::T.let(nil, ::T.untyped)
+end
+
+module JWT::Algos::Ecdsa
+  def self.sign(to_sign); end
+
+  def self.verify(to_verify); end
+end
+
+module JWT::Algos::Eddsa
+  SUPPORTED = ::T.let(nil, ::T.untyped)
+end
+
+module JWT::Algos::Eddsa
+  def self.sign(to_sign); end
+
+  def self.verify(to_verify); end
+end
+
+module JWT::Algos::Hmac
+  SUPPORTED = ::T.let(nil, ::T.untyped)
+end
+
+module JWT::Algos::Hmac
+  def self.sign(to_sign); end
+
+  def self.verify(to_verify); end
+end
+
+module JWT::Algos::Ps
+  SUPPORTED = ::T.let(nil, ::T.untyped)
+end
+
+module JWT::Algos::Ps
+  def self.require_openssl!(); end
+
+  def self.sign(to_sign); end
+
+  def self.verify(to_verify); end
+end
+
+module JWT::Algos::Rsa
+  SUPPORTED = ::T.let(nil, ::T.untyped)
+end
+
+module JWT::Algos::Rsa
+  def self.sign(to_sign); end
+
+  def self.verify(to_verify); end
+end
+
+module JWT::Algos::Unsupported
+  SUPPORTED = ::T.let(nil, ::T.untyped)
+end
+
+module JWT::Algos::Unsupported
+  def self.sign(*_); end
+
+  def self.verify(*_); end
+end
+
+module JWT::Algos
+end
+
+class JWT::Base64
+end
+
+class JWT::Base64
+  def self.url_decode(str); end
+
+  def self.url_encode(str); end
+end
+
+class JWT::ClaimsValidator
+  def initialize(payload); end
+
+  def validate!(); end
+  INTEGER_CLAIMS = ::T.let(nil, ::T.untyped)
+end
+
+class JWT::ClaimsValidator
+end
+
+class JWT::Decode
+  def decode_segments(); end
+
+  def initialize(jwt, key, verify, options, &keyfinder); end
+end
+
+class JWT::Decode
+end
+
+class JWT::DecodeError
+end
+
+class JWT::DecodeError
+end
+
+module JWT::DefaultOptions
+  DEFAULT_OPTIONS = ::T.let(nil, ::T.untyped)
+end
+
+module JWT::DefaultOptions
+end
+
+class JWT::Encode
+  def initialize(options); end
+
+  def segments(); end
+  ALG_KEY = ::T.let(nil, ::T.untyped)
+  ALG_NONE = ::T.let(nil, ::T.untyped)
+end
+
+class JWT::Encode
+end
+
+class JWT::EncodeError
+end
+
+class JWT::EncodeError
+end
+
+class JWT::ExpiredSignature
+end
+
+class JWT::ExpiredSignature
+end
+
+class JWT::ImmatureSignature
+end
+
+class JWT::ImmatureSignature
+end
+
+class JWT::IncorrectAlgorithm
+end
+
+class JWT::IncorrectAlgorithm
+end
+
+class JWT::InvalidAudError
+end
+
+class JWT::InvalidAudError
+end
+
+class JWT::InvalidIatError
+end
+
+class JWT::InvalidIatError
+end
+
+class JWT::InvalidIssuerError
+end
+
+class JWT::InvalidIssuerError
+end
+
+class JWT::InvalidJtiError
+end
+
+class JWT::InvalidJtiError
+end
+
+class JWT::InvalidPayload
+end
+
+class JWT::InvalidPayload
+end
+
+class JWT::InvalidSubError
+end
+
+class JWT::InvalidSubError
+end
+
+class JWT::JSON
+end
+
+class JWT::JSON
+  def self.generate(data); end
+
+  def self.parse(data); end
+end
+
+module JWT::JWK
+  MAPPINGS = ::T.let(nil, ::T.untyped)
+end
+
+class JWT::JWK::KeyFinder
+  def initialize(options); end
+
+  def key_for(kid); end
+end
+
+class JWT::JWK::KeyFinder
+end
+
+class JWT::JWK::RSA
+  def export(); end
+
+  def initialize(keypair); end
+
+  def keypair(); end
+
+  def kid(); end
+
+  def private?(*args, &block); end
+
+  def public_key(*args, &block); end
+  BINARY = ::T.let(nil, ::T.untyped)
+  KTY = ::T.let(nil, ::T.untyped)
+end
+
+class JWT::JWK::RSA
+  extend ::Forwardable
+  def self.import(jwk_data); end
+end
+
+module JWT::JWK
+  def self.create_from(keypair); end
+
+  def self.import(jwk_data); end
+
+  def self.new(keypair); end
+end
+
+class JWT::JWKError
+end
+
+class JWT::JWKError
+end
+
+class JWT::RequiredDependencyError
+end
+
+class JWT::RequiredDependencyError
+end
+
+module JWT::SecurityUtils
+end
+
+module JWT::SecurityUtils
+  def self.asn1_to_raw(signature, public_key); end
+
+  def self.raw_to_asn1(signature, private_key); end
+
+  def self.rbnacl_fixup(algorithm, key); end
+
+  def self.secure_compare(left, right); end
+
+  def self.verify_ps(algorithm, public_key, signing_input, signature); end
+
+  def self.verify_rsa(algorithm, public_key, signing_input, signature); end
+end
+
+module JWT::Signature
+  def sign(algorithm, msg, key); end
+
+  def verify(algorithm, key, signing_input, signature); end
+  ALGOS = ::T.let(nil, ::T.untyped)
+end
+
+class JWT::Signature::ToSign
+  def algorithm(); end
+
+  def algorithm=(_); end
+
+  def key(); end
+
+  def key=(_); end
+
+  def msg(); end
+
+  def msg=(_); end
+end
+
+class JWT::Signature::ToSign
+  def self.[](*_); end
+
+  def self.members(); end
+end
+
+class JWT::Signature::ToVerify
+  def algorithm(); end
+
+  def algorithm=(_); end
+
+  def public_key(); end
+
+  def public_key=(_); end
+
+  def signature(); end
+
+  def signature=(_); end
+
+  def signing_input(); end
+
+  def signing_input=(_); end
+end
+
+class JWT::Signature::ToVerify
+  def self.[](*_); end
+
+  def self.members(); end
+end
+
+module JWT::Signature
+  extend ::JWT::Signature
+end
+
+class JWT::VerificationError
+end
+
+class JWT::VerificationError
+end
+
+class JWT::Verify
+  def initialize(payload, options); end
+
+  def verify_aud(); end
+
+  def verify_expiration(); end
+
+  def verify_iat(); end
+
+  def verify_iss(); end
+
+  def verify_jti(); end
+
+  def verify_not_before(); end
+
+  def verify_sub(); end
+  DEFAULTS = ::T.let(nil, ::T.untyped)
+end
+
+class JWT::Verify
+  def self.verify_aud(payload, options); end
+
+  def self.verify_claims(payload, options); end
+
+  def self.verify_expiration(payload, options); end
+
+  def self.verify_iat(payload, options); end
+
+  def self.verify_iss(payload, options); end
+
+  def self.verify_jti(payload, options); end
+
+  def self.verify_not_before(payload, options); end
+
+  def self.verify_sub(payload, options); end
+end
+
+module JWT
+  def self.decode(jwt, key=T.unsafe(nil), verify=T.unsafe(nil), options=T.unsafe(nil), &keyfinder); end
+
+  def self.encode(payload, key, algorithm=T.unsafe(nil), header_fields=T.unsafe(nil)); end
+end
+
 class Jbuilder
   BLANK = ::T.let(nil, ::T.untyped)
   NON_ENUMERABLES = ::T.let(nil, ::T.untyped)
@@ -11024,6 +12338,10 @@ end
 
 module Logger::Period
   SiD = ::T.let(nil, ::T.untyped)
+end
+
+module Logger::Severity
+  TRACE = ::T.let(nil, ::T.untyped)
 end
 
 module Loofah
@@ -12108,6 +13426,112 @@ class MonitorMixin::ConditionVariable
   def initialize(monitor); end
 end
 
+module MultiJson
+  include ::MultiJson::Options
+  def adapter(); end
+
+  def adapter=(new_adapter); end
+
+  def cached_options(*_); end
+
+  def current_adapter(options=T.unsafe(nil)); end
+
+  def decode(string, options=T.unsafe(nil)); end
+
+  def default_adapter(); end
+
+  def default_engine(); end
+
+  def default_options(); end
+
+  def default_options=(value); end
+
+  def dump(object, options=T.unsafe(nil)); end
+
+  def encode(object, options=T.unsafe(nil)); end
+
+  def engine(); end
+
+  def engine=(new_adapter); end
+
+  def load(string, options=T.unsafe(nil)); end
+
+  def load_adapter(new_adapter); end
+
+  def reset_cached_options!(*_); end
+
+  def use(new_adapter); end
+
+  def with_adapter(new_adapter); end
+
+  def with_engine(new_adapter); end
+  ALIASES = ::T.let(nil, ::T.untyped)
+  REQUIREMENT_MAP = ::T.let(nil, ::T.untyped)
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+class MultiJson::AdapterError
+end
+
+class MultiJson::AdapterError
+  def self.build(original_exception); end
+end
+
+MultiJson::DecodeError = MultiJson::ParseError
+
+MultiJson::LoadError = MultiJson::ParseError
+
+module MultiJson::Options
+  def default_dump_options(); end
+
+  def default_load_options(); end
+
+  def dump_options(*args); end
+
+  def dump_options=(options); end
+
+  def load_options(*args); end
+
+  def load_options=(options); end
+end
+
+module MultiJson::Options
+end
+
+module MultiJson::OptionsCache
+  def fetch(type, key, &block); end
+
+  def reset(); end
+  MAX_CACHE_SIZE = ::T.let(nil, ::T.untyped)
+end
+
+module MultiJson::OptionsCache
+  extend ::MultiJson::OptionsCache
+end
+
+class MultiJson::ParseError
+  def data(); end
+end
+
+class MultiJson::ParseError
+  def self.build(original_exception, data); end
+end
+
+class MultiJson::Version
+  MAJOR = ::T.let(nil, ::T.untyped)
+  MINOR = ::T.let(nil, ::T.untyped)
+  PATCH = ::T.let(nil, ::T.untyped)
+  PRE = ::T.let(nil, ::T.untyped)
+end
+
+class MultiJson::Version
+end
+
+module MultiJson
+  extend ::MultiJson
+  extend ::MultiJson::Options
+end
+
 module MultiXml
   CONTENT_ROOT = ::T.let(nil, ::T.untyped)
   DEFAULT_OPTIONS = ::T.let(nil, ::T.untyped)
@@ -12196,8 +13620,6 @@ end
 class Net::HTTPAlreadyReported
 end
 
-Net::HTTPClientError::EXCEPTION_TYPE = Net::HTTPServerException
-
 Net::HTTPClientErrorCode = Net::HTTPClientError
 
 Net::HTTPClientException = Net::HTTPServerException
@@ -12218,7 +13640,13 @@ end
 class Net::HTTPGatewayTimeout
 end
 
-Net::HTTPInformationCode = Net::HTTPInformation
+class Net::HTTPInformation
+end
+
+Net::HTTPInformationCode::EXCEPTION_TYPE = Net::HTTPError
+
+class Net::HTTPInformation
+end
 
 class Net::HTTPLoopDetected
   HAS_BODY = ::T.let(nil, ::T.untyped)
@@ -12266,8 +13694,6 @@ end
 class Net::HTTPRangeNotSatisfiable
 end
 
-Net::HTTPRedirection::EXCEPTION_TYPE = Net::HTTPRetriableError
-
 Net::HTTPRedirectionCode = Net::HTTPRedirection
 
 class Net::HTTPRequestTimeout
@@ -12283,15 +13709,17 @@ Net::HTTPResponceReceiver = Net::HTTPResponse
 
 Net::HTTPRetriableCode = Net::HTTPRedirection
 
-Net::HTTPServerError::EXCEPTION_TYPE = Net::HTTPFatalError
-
 Net::HTTPServerErrorCode = Net::HTTPServerError
 
 Net::HTTPSession = Net::HTTP
 
-Net::HTTPSuccess::EXCEPTION_TYPE = Net::HTTPError
+class Net::HTTPSuccess
+end
 
-Net::HTTPSuccessCode = Net::HTTPSuccess
+Net::HTTPSuccessCode::EXCEPTION_TYPE = Net::HTTPError
+
+class Net::HTTPSuccess
+end
 
 class Net::HTTPURITooLong
   HAS_BODY = ::T.let(nil, ::T.untyped)
@@ -12870,6 +14298,252 @@ class Notiffany::Notifier::Tmux::Client
   CLIENT = ::T.let(nil, ::T.untyped)
 end
 
+module OAuth2
+end
+
+class OAuth2::AccessToken
+  def [](key); end
+
+  def client(); end
+
+  def delete(path, opts=T.unsafe(nil), &block); end
+
+  def expired?(); end
+
+  def expires?(); end
+
+  def expires_at(); end
+
+  def expires_in(); end
+
+  def get(path, opts=T.unsafe(nil), &block); end
+
+  def headers(); end
+
+  def initialize(client, token, opts=T.unsafe(nil)); end
+
+  def options(); end
+
+  def options=(options); end
+
+  def params(); end
+
+  def patch(path, opts=T.unsafe(nil), &block); end
+
+  def post(path, opts=T.unsafe(nil), &block); end
+
+  def put(path, opts=T.unsafe(nil), &block); end
+
+  def refresh!(params=T.unsafe(nil)); end
+
+  def refresh_token(); end
+
+  def refresh_token=(refresh_token); end
+
+  def request(verb, path, opts=T.unsafe(nil), &block); end
+
+  def to_hash(); end
+
+  def token(); end
+end
+
+class OAuth2::AccessToken
+  def self.from_hash(client, hash); end
+
+  def self.from_kvform(client, kvform); end
+end
+
+class OAuth2::Authenticator
+  def apply(params); end
+
+  def id(); end
+
+  def initialize(id, secret, mode); end
+
+  def mode(); end
+
+  def secret(); end
+end
+
+class OAuth2::Authenticator
+  def self.encode_basic_auth(user, password); end
+end
+
+class OAuth2::Client
+  def assertion(); end
+
+  def auth_code(); end
+
+  def authorize_url(params=T.unsafe(nil)); end
+
+  def client_credentials(); end
+
+  def connection(); end
+
+  def connection=(connection); end
+
+  def get_token(params, access_token_opts=T.unsafe(nil), access_token_class=T.unsafe(nil)); end
+
+  def id(); end
+
+  def implicit(); end
+
+  def initialize(client_id, client_secret, options=T.unsafe(nil), &block); end
+
+  def options(); end
+
+  def options=(options); end
+
+  def password(); end
+
+  def redirection_params(); end
+
+  def request(verb, url, opts=T.unsafe(nil)); end
+
+  def secret(); end
+
+  def site(); end
+
+  def site=(value); end
+
+  def token_url(params=T.unsafe(nil)); end
+end
+
+class OAuth2::Client
+end
+
+class OAuth2::Error
+  def code(); end
+
+  def description(); end
+
+  def error_message(response_body, opts=T.unsafe(nil)); end
+
+  def initialize(response); end
+
+  def response(); end
+end
+
+class OAuth2::Error
+end
+
+class OAuth2::MACToken
+  def algorithm(); end
+
+  def algorithm=(alg); end
+
+  def header(verb, url); end
+
+  def initialize(client, token, secret, opts=T.unsafe(nil)); end
+
+  def secret(); end
+
+  def signature(timestamp, nonce, verb, uri); end
+end
+
+class OAuth2::MACToken
+  def self.from_access_token(token, secret, options=T.unsafe(nil)); end
+end
+
+class OAuth2::Response
+  def body(); end
+
+  def content_type(); end
+
+  def error(); end
+
+  def error=(error); end
+
+  def headers(); end
+
+  def initialize(response, opts=T.unsafe(nil)); end
+
+  def options(); end
+
+  def options=(options); end
+
+  def parsed(); end
+
+  def parser(); end
+
+  def response(); end
+
+  def status(); end
+end
+
+class OAuth2::Response
+  def self.register_parser(key, mime_types, &block); end
+end
+
+module OAuth2::Strategy
+end
+
+class OAuth2::Strategy::Assertion
+  def authorize_url(); end
+
+  def build_assertion(params); end
+
+  def build_request(params); end
+
+  def get_token(params=T.unsafe(nil), opts=T.unsafe(nil)); end
+end
+
+class OAuth2::Strategy::Assertion
+end
+
+class OAuth2::Strategy::AuthCode
+  def authorize_params(params=T.unsafe(nil)); end
+
+  def authorize_url(params=T.unsafe(nil)); end
+
+  def get_token(code, params=T.unsafe(nil), opts=T.unsafe(nil)); end
+end
+
+class OAuth2::Strategy::AuthCode
+end
+
+class OAuth2::Strategy::Base
+  def initialize(client); end
+end
+
+class OAuth2::Strategy::Base
+end
+
+class OAuth2::Strategy::ClientCredentials
+  def authorize_url(); end
+
+  def get_token(params=T.unsafe(nil), opts=T.unsafe(nil)); end
+end
+
+class OAuth2::Strategy::ClientCredentials
+end
+
+class OAuth2::Strategy::Implicit
+  def authorize_params(params=T.unsafe(nil)); end
+
+  def authorize_url(params=T.unsafe(nil)); end
+
+  def get_token(*_); end
+end
+
+class OAuth2::Strategy::Implicit
+end
+
+class OAuth2::Strategy::Password
+  def authorize_url(); end
+
+  def get_token(username, password, params=T.unsafe(nil), opts=T.unsafe(nil)); end
+end
+
+class OAuth2::Strategy::Password
+end
+
+module OAuth2::Strategy
+end
+
+module OAuth2
+end
+
 class Object
   include ::JSON::Ext::Generator::GeneratorMethods::Object
   include ::PP::ObjectMixin
@@ -13013,6 +14687,666 @@ class Oj::CStack
 end
 
 class Oj::CStack
+end
+
+module OmniAuth
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+class OmniAuth::AuthHash
+  def regular_writer(key, value); end
+
+  def valid?(); end
+end
+
+class OmniAuth::AuthHash::InfoHash
+  def name(); end
+
+  def name?(); end
+
+  def to_hash(); end
+
+  def valid?(); end
+end
+
+class OmniAuth::AuthHash::InfoHash
+  def self.subkey_class(); end
+end
+
+class OmniAuth::AuthHash
+  def self.subkey_class(); end
+end
+
+class OmniAuth::Builder
+  def before_callback_phase(&block); end
+
+  def before_options_phase(&block); end
+
+  def before_request_phase(&block); end
+
+  def configure(&block); end
+
+  def on_failure(&block); end
+
+  def options(options=T.unsafe(nil)); end
+
+  def provider(klass, *args, &block); end
+end
+
+class OmniAuth::Builder
+end
+
+class OmniAuth::Configuration
+  include ::Singleton
+  def add_camelization(name, camelized); end
+
+  def add_mock(provider, original=T.unsafe(nil)); end
+
+  def allowed_request_methods(); end
+
+  def allowed_request_methods=(allowed_request_methods); end
+
+  def before_callback_phase(&block); end
+
+  def before_callback_phase=(before_callback_phase); end
+
+  def before_options_phase(&block); end
+
+  def before_options_phase=(before_options_phase); end
+
+  def before_request_phase(&block); end
+
+  def before_request_phase=(before_request_phase); end
+
+  def camelizations(); end
+
+  def camelizations=(camelizations); end
+
+  def failure_raise_out_environments(); end
+
+  def failure_raise_out_environments=(failure_raise_out_environments); end
+
+  def form_css(); end
+
+  def form_css=(form_css); end
+
+  def full_host(); end
+
+  def full_host=(full_host); end
+
+  def logger(); end
+
+  def logger=(logger); end
+
+  def mock_auth(); end
+
+  def mock_auth=(mock_auth); end
+
+  def on_failure(&block); end
+
+  def on_failure=(on_failure); end
+
+  def path_prefix(); end
+
+  def path_prefix=(path_prefix); end
+
+  def test_mode(); end
+
+  def test_mode=(test_mode); end
+end
+
+class OmniAuth::Configuration
+  extend ::Singleton::SingletonClassMethods
+  def self.default_logger(); end
+
+  def self.defaults(); end
+
+  def self.instance(); end
+end
+
+class OmniAuth::Error
+end
+
+class OmniAuth::Error
+end
+
+class OmniAuth::FailureEndpoint
+  def call(); end
+
+  def env(); end
+
+  def initialize(env); end
+
+  def origin_query_param(); end
+
+  def raise_out!(); end
+
+  def redirect_to_failure(); end
+
+  def strategy_name_query_param(); end
+end
+
+class OmniAuth::FailureEndpoint
+  def self.call(env); end
+end
+
+class OmniAuth::Form
+  def button(text); end
+
+  def css(); end
+
+  def fieldset(legend, options=T.unsafe(nil), &block); end
+
+  def footer(); end
+
+  def header(title, header_info); end
+
+  def html(html); end
+
+  def initialize(options=T.unsafe(nil)); end
+
+  def input_field(type, name); end
+
+  def label_field(text, target); end
+
+  def options(); end
+
+  def options=(options); end
+
+  def password_field(label, name); end
+
+  def text_field(label, name); end
+
+  def to_html(); end
+
+  def to_response(); end
+  DEFAULT_CSS = ::T.let(nil, ::T.untyped)
+end
+
+class OmniAuth::Form
+  def self.build(options=T.unsafe(nil), &block); end
+end
+
+class OmniAuth::KeyStore
+end
+
+class OmniAuth::KeyStore
+  def self.override_logging(); end
+end
+
+class OmniAuth::NoSessionError
+end
+
+class OmniAuth::NoSessionError
+end
+
+module OmniAuth::OAuth2
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+module OmniAuth::OAuth2
+end
+
+module OmniAuth::Slack
+  VERSION = ::T.let(nil, ::T.untyped)
+end
+
+module OmniAuth::Slack::ArrayRefinements
+end
+
+module OmniAuth::Slack::ArrayRefinements
+end
+
+class OmniAuth::Slack::AuthHash
+  include ::Hashie::Extensions::DeepFind
+end
+
+class OmniAuth::Slack::AuthHash
+end
+
+module OmniAuth::Slack::CallerMethodName
+  def caller_method_name(); end
+end
+
+module OmniAuth::Slack::CallerMethodName
+  def self.included(other); end
+end
+
+module OmniAuth::Slack::Debug
+  include ::OmniAuth::Slack::CallerMethodName
+  def debug(method_name=T.unsafe(nil), klass=T.unsafe(nil), &block); end
+  LOG_ALL = ::T.let(nil, ::T.untyped)
+  LOG_NONE = ::T.let(nil, ::T.untyped)
+end
+
+module OmniAuth::Slack::Debug::Extensions
+  def debug(method_name=T.unsafe(nil), klass=T.unsafe(nil), &block); end
+end
+
+module OmniAuth::Slack::Debug::Extensions
+end
+
+module OmniAuth::Slack::Debug
+  extend ::OmniAuth::Slack::CallerMethodName
+  def self.included(other); end
+end
+
+module OmniAuth::Slack::OAuth2
+end
+
+class OmniAuth::Slack::OAuth2::AccessToken
+  include ::OmniAuth::Slack::Debug
+  include ::OmniAuth::Slack::CallerMethodName
+  def all_scopes(); end
+
+  def app_id(); end
+
+  def app_user_id(); end
+
+  def authed_user(); end
+
+  def authorizing_user(); end
+
+  def bot_user_id(); end
+
+  def enterprise(); end
+
+  def has_scope?(*freeform_array, query: T.unsafe(nil), logic: T.unsafe(nil), user: T.unsafe(nil), base: T.unsafe(nil), **freeform_hash); end
+
+  def installer_user(); end
+
+  def ok?(); end
+
+  def scope(); end
+
+  def scopes(); end
+
+  def team(); end
+
+  def team_domain(); end
+
+  def team_id(); end
+
+  def team_name(); end
+
+  def to_auth_hash(); end
+
+  def token_type(); end
+
+  def token_type?(*_type); end
+
+  def uid(); end
+
+  def user(); end
+
+  def user_id(); end
+
+  def user_name(); end
+
+  def user_token(); end
+end
+
+class OmniAuth::Slack::OAuth2::AccessToken
+  extend ::OmniAuth::Slack::CallerMethodName
+  extend ::OmniAuth::Slack::Debug::Extensions
+  def self.define_getters(ary_of_words); end
+
+  def self.has_scope?(scope_query: T.unsafe(nil), scope_base: T.unsafe(nil), logic: T.unsafe(nil)); end
+end
+
+class OmniAuth::Slack::OAuth2::Client
+  include ::OmniAuth::Slack::Debug
+  include ::OmniAuth::Slack::CallerMethodName
+  def history(); end
+
+  def history=(history); end
+
+  def initialize(*args, **options); end
+
+  def logger(); end
+
+  def logger=(logger); end
+
+  def request(*args); end
+
+  def site(*args); end
+
+  def subdomain(); end
+
+  def subdomain=(subdomain); end
+  HISTORY_DEFAULT = ::T.let(nil, ::T.untyped)
+  SUBDOMAIN_DEFAULT = ::T.let(nil, ::T.untyped)
+end
+
+class OmniAuth::Slack::OAuth2::Client
+  extend ::OmniAuth::Slack::CallerMethodName
+  extend ::OmniAuth::Slack::Debug::Extensions
+end
+
+module OmniAuth::Slack::OAuth2
+end
+
+module OmniAuth::Slack::OAuth2Refinements
+end
+
+module OmniAuth::Slack::OAuth2Refinements
+end
+
+module OmniAuth::Slack::StringRefinements
+end
+
+module OmniAuth::Slack::StringRefinements
+end
+
+class OmniAuth::Slack::VerifySlackSignature
+  include ::OmniAuth::Slack::Debug
+  include ::OmniAuth::Slack::CallerMethodName
+  def app_id(); end
+
+  def app_id=(app_id); end
+
+  def call(env); end
+
+  def initialize(app); end
+
+  def pass(result=T.unsafe(nil)); end
+
+  def signing_secret(); end
+
+  def signing_secret=(signing_secret); end
+end
+
+class OmniAuth::Slack::VerifySlackSignature
+  extend ::OmniAuth::Slack::CallerMethodName
+  extend ::OmniAuth::Slack::Debug::Extensions
+end
+
+module OmniAuth::Slack
+  def self.build_access_token(client_id, client_key, token_string_or_hash); end
+end
+
+module OmniAuth::Strategies
+end
+
+class OmniAuth::Strategies::Developer
+  include ::OmniAuth::Strategy
+end
+
+class OmniAuth::Strategies::Developer
+  extend ::OmniAuth::Strategy::ClassMethods
+end
+
+class OmniAuth::Strategies::OAuth2
+  include ::OmniAuth::Strategy
+  def access_token(); end
+
+  def access_token=(access_token); end
+
+  def authorize_params(); end
+
+  def build_access_token(); end
+
+  def client(); end
+
+  def deep_symbolize(options); end
+
+  def options_for(option); end
+
+  def token_params(); end
+end
+
+class OmniAuth::Strategies::OAuth2::CallbackError
+  def error(); end
+
+  def error=(error); end
+
+  def error_reason(); end
+
+  def error_reason=(error_reason); end
+
+  def error_uri(); end
+
+  def error_uri=(error_uri); end
+
+  def initialize(error, error_reason=T.unsafe(nil), error_uri=T.unsafe(nil)); end
+end
+
+class OmniAuth::Strategies::OAuth2::CallbackError
+end
+
+class OmniAuth::Strategies::OAuth2
+  extend ::OmniAuth::Strategy::ClassMethods
+  def self.inherited(subclass); end
+end
+
+class OmniAuth::Strategies::Slack
+  include ::OmniAuth::Slack::Debug
+  include ::OmniAuth::Slack::CallerMethodName
+  def access_or_user_token(); end
+
+  def pass_through_params(); end
+
+  def raw_info(); end
+
+  def scopes_requested(); end
+
+  def user_token(); end
+  AUTH_OPTIONS = ::T.let(nil, ::T.untyped)
+end
+
+class OmniAuth::Strategies::Slack
+  extend ::OmniAuth::Slack::CallerMethodName
+  extend ::OmniAuth::Slack::Debug::Extensions
+end
+
+module OmniAuth::Strategies
+end
+
+module OmniAuth::Strategy
+  def app(); end
+
+  def auth_hash(); end
+
+  def call(env); end
+
+  def call!(env); end
+
+  def call_app!(env=T.unsafe(nil)); end
+
+  def callback_call(); end
+
+  def callback_path(); end
+
+  def callback_phase(); end
+
+  def callback_url(); end
+
+  def credentials(); end
+
+  def current_path(); end
+
+  def custom_path(kind); end
+
+  def dup(); end
+
+  def env(); end
+
+  def extra(); end
+
+  def fail!(message_key, exception=T.unsafe(nil)); end
+
+  def full_host(); end
+
+  def info(); end
+
+  def initialize(app, *args, &block); end
+
+  def inspect(); end
+
+  def log(level, message); end
+
+  def merge_stack(stack); end
+
+  def mock_call!(*_); end
+
+  def mock_callback_call(); end
+
+  def mock_request_call(); end
+
+  def name(); end
+
+  def on_auth_path?(); end
+
+  def on_callback_path?(); end
+
+  def on_path?(path); end
+
+  def on_request_path?(); end
+
+  def options(); end
+
+  def options_call(); end
+
+  def options_request?(); end
+
+  def path_prefix(); end
+
+  def query_string(); end
+
+  def redirect(uri); end
+
+  def request(); end
+
+  def request_call(); end
+
+  def request_path(); end
+
+  def request_phase(); end
+
+  def response(); end
+
+  def script_name(); end
+
+  def session(); end
+
+  def setup_path(); end
+
+  def setup_phase(); end
+
+  def skip_info?(); end
+
+  def ssl?(); end
+
+  def uid(); end
+
+  def user_info(); end
+  CURRENT_PATH_REGEX = ::T.let(nil, ::T.untyped)
+  EMPTY_STRING = ::T.let(nil, ::T.untyped)
+end
+
+module OmniAuth::Strategy::ClassMethods
+  def args(args=T.unsafe(nil)); end
+
+  def compile_stack(ancestors, method, context); end
+
+  def configure(options=T.unsafe(nil)); end
+
+  def credentials(&block); end
+
+  def credentials_stack(context); end
+
+  def default_options(); end
+
+  def extra(&block); end
+
+  def extra_stack(context); end
+
+  def info(&block); end
+
+  def info_stack(context); end
+
+  def option(name, value=T.unsafe(nil)); end
+
+  def uid(&block); end
+
+  def uid_stack(context); end
+end
+
+module OmniAuth::Strategy::ClassMethods
+end
+
+class OmniAuth::Strategy::Options
+end
+
+class OmniAuth::Strategy::Options
+end
+
+module OmniAuth::Strategy
+  def self.included(base); end
+end
+
+module OmniAuth::Test
+end
+
+class OmniAuth::Test::PhonySession
+  def call(env); end
+
+  def initialize(app); end
+end
+
+class OmniAuth::Test::PhonySession
+end
+
+module OmniAuth::Test::StrategyMacros
+  def sets_an_auth_hash(); end
+
+  def sets_provider_to(provider); end
+
+  def sets_uid_to(uid); end
+
+  def sets_user_info_to(user_info); end
+end
+
+module OmniAuth::Test::StrategyMacros
+end
+
+module OmniAuth::Test::StrategyTestCase
+  def app(); end
+
+  def app_response(); end
+
+  def session(); end
+
+  def strategy(); end
+end
+
+module OmniAuth::Test::StrategyTestCase
+end
+
+module OmniAuth::Test
+end
+
+module OmniAuth::Utils
+end
+
+module OmniAuth::Utils
+  def self.camelize(word, first_letter_in_uppercase=T.unsafe(nil)); end
+
+  def self.deep_merge(hash, other_hash); end
+
+  def self.form_css(); end
+end
+
+module OmniAuth
+  def self.config(); end
+
+  def self.configure(); end
+
+  def self.logger(); end
+
+  def self.mock_auth_for(provider); end
+
+  def self.strategies(); end
 end
 
 class OpenSSL::ASN1::ASN1Data
@@ -15084,6 +17418,11 @@ module Paint
   def self.wrap(*ansi_codes); end
 end
 
+class PairingStatistics
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
 module Parallel
   Stop = ::T.let(nil, ::T.untyped)
   VERSION = ::T.let(nil, ::T.untyped)
@@ -15580,40 +17919,40 @@ module Polyfill
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
-module Polyfill::Module::M70306688727560
+module Polyfill::Module::M70264824091860
 end
 
-module Polyfill::Module::M70306688727560
+module Polyfill::Module::M70264824091860
 end
 
-module Polyfill::Module::M70306688918960
+module Polyfill::Module::M70264824205460
 end
 
-module Polyfill::Module::M70306688918960
+module Polyfill::Module::M70264824205460
 end
 
-module Polyfill::Module::M70306729334060
+module Polyfill::Module::M70264827262000
 end
 
-module Polyfill::Module::M70306729334060
+module Polyfill::Module::M70264827262000
 end
 
-module Polyfill::Module::M70306733020040
+module Polyfill::Module::M70264828261160
 end
 
-module Polyfill::Module::M70306733020040
+module Polyfill::Module::M70264828261160
 end
 
-module Polyfill::Module::M70306733849800
+module Polyfill::Module::M70264828350940
 end
 
-module Polyfill::Module::M70306733849800
+module Polyfill::Module::M70264828350940
 end
 
-module Polyfill::Module::M70306734963020
+module Polyfill::Module::M70264831113240
 end
 
-module Polyfill::Module::M70306734963020
+module Polyfill::Module::M70264831113240
 end
 
 class Proc
@@ -20407,9 +22746,9 @@ module Session::GeneratedAssociationMethods
 
   def participant_ids=(ids); end
 
-  def participants_attributes=(attributes); end
-
   def participation_ids=(ids); end
+
+  def participations_attributes=(attributes); end
 
   def reload_team(); end
 end
@@ -20427,6 +22766,8 @@ module Session::GeneratedRelationMethods
 end
 
 class Session
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
   def self.after_add_for_participants(); end
 
   def self.after_add_for_participants=(val); end
@@ -20613,6 +22954,46 @@ end
 
 module Skiptrace
   VERSION = ::T.let(nil, ::T.untyped)
+end
+
+class SlackAccount
+  def autosave_associated_records_for_user(*args); end
+end
+
+class SlackAccount::ActiveRecord_AssociationRelation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::SlackAccount::GeneratedRelationMethods
+end
+
+class SlackAccount::ActiveRecord_Associations_CollectionProxy
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::SlackAccount::GeneratedRelationMethods
+end
+
+class SlackAccount::ActiveRecord_Relation
+  include ::ActiveRecord::Delegation::ClassSpecificRelation
+  include ::SlackAccount::GeneratedRelationMethods
+end
+
+module SlackAccount::GeneratedAssociationMethods
+  def build_user(*args, &block); end
+
+  def create_user(*args, &block); end
+
+  def create_user!(*args, &block); end
+
+  def reload_user(); end
+end
+
+module SlackAccount::GeneratedAttributeMethods
+  extend ::Mutex_m
+end
+
+module SlackAccount::GeneratedRelationMethods
+end
+
+module SlackAccount::GeneratedRelationMethods
+  extend ::Mutex_m
 end
 
 class Socket
@@ -20809,6 +23190,115 @@ end
 
 class SortedSet
   def self.setup(); end
+end
+
+class Spring::CommandWrapper
+  def binstub(); end
+
+  def binstub_name(); end
+
+  def call(); end
+
+  def command(); end
+
+  def description(); end
+
+  def env(args); end
+
+  def exec(); end
+
+  def exec_name(); end
+
+  def gem_name(); end
+
+  def initialize(name, command=T.unsafe(nil)); end
+
+  def name(); end
+
+  def setup(); end
+
+  def setup?(); end
+end
+
+class Spring::CommandWrapper
+end
+
+module Spring::Commands
+end
+
+class Spring::Commands::Rails
+  def call(); end
+
+  def description(); end
+end
+
+class Spring::Commands::Rails
+end
+
+class Spring::Commands::RailsConsole
+  def command_name(); end
+
+  def env(args); end
+end
+
+class Spring::Commands::RailsConsole
+end
+
+class Spring::Commands::RailsDestroy
+  def command_name(); end
+end
+
+class Spring::Commands::RailsDestroy
+end
+
+class Spring::Commands::RailsGenerate
+  def command_name(); end
+end
+
+class Spring::Commands::RailsGenerate
+end
+
+class Spring::Commands::RailsRunner
+  def command_name(); end
+
+  def env(args); end
+
+  def extract_environment(args); end
+end
+
+class Spring::Commands::RailsRunner
+end
+
+class Spring::Commands::RailsTest
+  def command_name(); end
+
+  def env(args); end
+end
+
+class Spring::Commands::RailsTest
+end
+
+class Spring::Commands::Rake
+  def env(args); end
+end
+
+class Spring::Commands::Rake
+  def self.environment_matchers(); end
+
+  def self.environment_matchers=(environment_matchers); end
+end
+
+module Spring::Commands
+end
+
+module Spring
+  def self.command(name); end
+
+  def self.command?(name); end
+
+  def self.commands(); end
+
+  def self.register_command(name, command=T.unsafe(nil)); end
 end
 
 module Sprockets
@@ -22102,6 +24592,7 @@ class User
   include ::Devise::Models::Authenticatable
   include ::Devise::Models::DatabaseAuthenticatable
   include ::Devise::Models::Rememberable
+  include ::Devise::Models::Omniauthable
   include ::Devise::Models::Recoverable
   include ::Devise::Models::Registerable
   include ::Devise::Models::Validatable
@@ -22123,6 +24614,12 @@ class User
   def after_add_for_sessions=(val); end
 
   def after_add_for_sessions?(); end
+
+  def after_add_for_slack_accounts(); end
+
+  def after_add_for_slack_accounts=(val); end
+
+  def after_add_for_slack_accounts?(); end
 
   def after_add_for_teams(); end
 
@@ -22148,6 +24645,12 @@ class User
 
   def after_remove_for_sessions?(); end
 
+  def after_remove_for_slack_accounts(); end
+
+  def after_remove_for_slack_accounts=(val); end
+
+  def after_remove_for_slack_accounts?(); end
+
   def after_remove_for_teams(); end
 
   def after_remove_for_teams=(val); end
@@ -22159,6 +24662,8 @@ class User
   def autosave_associated_records_for_participations(*args); end
 
   def autosave_associated_records_for_sessions(*args); end
+
+  def autosave_associated_records_for_slack_accounts(*args); end
 
   def autosave_associated_records_for_teams(*args); end
 
@@ -22179,6 +24684,12 @@ class User
   def before_add_for_sessions=(val); end
 
   def before_add_for_sessions?(); end
+
+  def before_add_for_slack_accounts(); end
+
+  def before_add_for_slack_accounts=(val); end
+
+  def before_add_for_slack_accounts?(); end
 
   def before_add_for_teams(); end
 
@@ -22204,6 +24715,12 @@ class User
 
   def before_remove_for_sessions?(); end
 
+  def before_remove_for_slack_accounts(); end
+
+  def before_remove_for_slack_accounts=(val); end
+
+  def before_remove_for_slack_accounts?(); end
+
   def before_remove_for_teams(); end
 
   def before_remove_for_teams=(val); end
@@ -22227,6 +24744,8 @@ class User
   def validate_associated_records_for_participations(*args); end
 
   def validate_associated_records_for_sessions(*args); end
+
+  def validate_associated_records_for_slack_accounts(*args); end
 
   def validate_associated_records_for_teams(*args); end
 end
@@ -22253,6 +24772,8 @@ module User::GeneratedAssociationMethods
 
   def session_ids=(ids); end
 
+  def slack_account_ids=(ids); end
+
   def team_ids=(ids); end
 end
 
@@ -22261,6 +24782,7 @@ module User::GeneratedAttributeMethods
 end
 
 module User::GeneratedRelationMethods
+  def sorted(*args, &block); end
 end
 
 module User::GeneratedRelationMethods
@@ -22268,6 +24790,7 @@ module User::GeneratedRelationMethods
 end
 
 class User
+  extend ::Devise::Models::Omniauthable::ClassMethods
   extend ::Devise::Models::Registerable::ClassMethods
   def self.after_add_for_memberships(); end
 
@@ -22286,6 +24809,12 @@ class User
   def self.after_add_for_sessions=(val); end
 
   def self.after_add_for_sessions?(); end
+
+  def self.after_add_for_slack_accounts(); end
+
+  def self.after_add_for_slack_accounts=(val); end
+
+  def self.after_add_for_slack_accounts?(); end
 
   def self.after_add_for_teams(); end
 
@@ -22311,6 +24840,12 @@ class User
 
   def self.after_remove_for_sessions?(); end
 
+  def self.after_remove_for_slack_accounts(); end
+
+  def self.after_remove_for_slack_accounts=(val); end
+
+  def self.after_remove_for_slack_accounts?(); end
+
   def self.after_remove_for_teams(); end
 
   def self.after_remove_for_teams=(val); end
@@ -22335,6 +24870,12 @@ class User
 
   def self.before_add_for_sessions?(); end
 
+  def self.before_add_for_slack_accounts(); end
+
+  def self.before_add_for_slack_accounts=(val); end
+
+  def self.before_add_for_slack_accounts?(); end
+
   def self.before_add_for_teams(); end
 
   def self.before_add_for_teams=(val); end
@@ -22358,6 +24899,12 @@ class User
   def self.before_remove_for_sessions=(val); end
 
   def self.before_remove_for_sessions?(); end
+
+  def self.before_remove_for_slack_accounts(); end
+
+  def self.before_remove_for_slack_accounts=(val); end
+
+  def self.before_remove_for_slack_accounts?(); end
 
   def self.before_remove_for_teams(); end
 
