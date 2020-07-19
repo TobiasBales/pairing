@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_18_130253) do
+ActiveRecord::Schema.define(version: 2020_07_19_120450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -76,7 +76,9 @@ ActiveRecord::Schema.define(version: 2020_07_18_130253) do
     t.string "slack_team", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slack_name", default: "", null: false
     t.index ["slack_id", "slack_team"], name: "index_slack_accounts_on_slack_id_and_slack_team", unique: true
+    t.index ["slack_name"], name: "index_slack_accounts_on_slack_name"
     t.index ["user_id"], name: "index_slack_accounts_on_user_id"
   end
 

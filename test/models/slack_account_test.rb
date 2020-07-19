@@ -6,6 +6,7 @@
 # Table name: slack_accounts
 #
 #  id         :uuid             not null, primary key
+#  slack_name :string           default(""), not null
 #  slack_team :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -15,6 +16,7 @@
 # Indexes
 #
 #  index_slack_accounts_on_slack_id_and_slack_team  (slack_id,slack_team) UNIQUE
+#  index_slack_accounts_on_slack_name               (slack_name)
 #  index_slack_accounts_on_user_id                  (user_id)
 #
 # Foreign Keys
