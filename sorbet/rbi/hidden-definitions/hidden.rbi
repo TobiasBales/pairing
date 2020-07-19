@@ -18248,40 +18248,40 @@ module Polyfill
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
-module Polyfill::Module::M70266175061620
+module Polyfill::Module::M70268264154520
 end
 
-module Polyfill::Module::M70266175061620
+module Polyfill::Module::M70268264154520
 end
 
-module Polyfill::Module::M70266178886820
+module Polyfill::Module::M70268264295740
 end
 
-module Polyfill::Module::M70266178886820
+module Polyfill::Module::M70268264295740
 end
 
-module Polyfill::Module::M70266194858780
+module Polyfill::Module::M70268267775680
 end
 
-module Polyfill::Module::M70266194858780
+module Polyfill::Module::M70268267775680
 end
 
-module Polyfill::Module::M70266196999360
+module Polyfill::Module::M70268272645120
 end
 
-module Polyfill::Module::M70266196999360
+module Polyfill::Module::M70268272645120
 end
 
-module Polyfill::Module::M70266197072800
+module Polyfill::Module::M70268273485840
 end
 
-module Polyfill::Module::M70266197072800
+module Polyfill::Module::M70268273485840
 end
 
-module Polyfill::Module::M70266227202580
+module Polyfill::Module::M70268273568200
 end
 
-module Polyfill::Module::M70266227202580
+module Polyfill::Module::M70268273568200
 end
 
 class Proc
@@ -23338,6 +23338,11 @@ class SlackClient
   extend ::T::Private::Methods::SingletonMethodHooks
 end
 
+class SlackCommand
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
 class Socket
   AF_CCITT = ::T.let(nil, ::T.untyped)
   AF_CHAOS = ::T.let(nil, ::T.untyped)
@@ -24906,6 +24911,24 @@ class TracePoint
   def instruction_sequence(); end
 
   def parameters(); end
+end
+
+class TrackPairingCommand
+  def default_url_options(); end
+
+  def default_url_options=(val); end
+
+  def default_url_options?(); end
+end
+
+class TrackPairingCommand
+  def self._routes(); end
+
+  def self.default_url_options(); end
+
+  def self.default_url_options=(val); end
+
+  def self.default_url_options?(); end
 end
 
 class TrueClass

@@ -4,6 +4,6 @@
 class SlackCommand
   extend T::Sig
 
-  sig { params(slack_id: String, response_url: String).void }
-  def execute(slack_id:, response_url:); end
+  sig { void }
+  def execute; end
 end

@@ -36,6 +36,15 @@ module SlackAccount::GeneratedAttributeMethods
   def slack_id?; end
 
   sig { returns(String) }
+  def slack_name; end
+
+  sig { params(value: T.any(String, Symbol)).void }
+  def slack_name=(value); end
+
+  sig { returns(T::Boolean) }
+  def slack_name?; end
+
+  sig { returns(String) }
   def slack_team; end
 
   sig { params(value: T.any(String, Symbol)).void }
