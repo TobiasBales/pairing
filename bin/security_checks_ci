@@ -11,7 +11,7 @@ bundle exec bundle-audit update
 
 
 echo "Running bundler-audit"
-bundle exec bundle-audit
+bundle exec bundle-audit check --update --ignore=CVE-2015-9284
 
 
 
