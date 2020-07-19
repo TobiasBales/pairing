@@ -30,6 +30,8 @@ Lint/RaiseException:
   Enabled: true
 Lint/StructNewOverride:
   Enabled: true
+Metrics/AbcSize:
+  Enabled: false
 Metrics/BlockLength:
   Enabled: true
   Exclude:
