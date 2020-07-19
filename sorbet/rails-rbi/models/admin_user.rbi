@@ -35,10 +35,10 @@ module AdminUser::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def encrypted_password?; end
 
-  sig { returns(T.untyped) }
+  sig { returns(String) }
   def id; end
 
-  sig { params(value: T.untyped).void }
+  sig { params(value: T.any(String, Symbol)).void }
   def id=(value); end
 
   sig { returns(T::Boolean) }

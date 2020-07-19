@@ -63,6 +63,13 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def dashboard_index_url(*args, **kwargs); end
 
+  # Sigs for route /slack/pairing(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def track_pairing_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def track_pairing_url(*args, **kwargs); end
+
   # Sigs for route /pghero
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def pg_hero_path(*args, **kwargs); end

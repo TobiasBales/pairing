@@ -1,7 +1,6 @@
 # typed: strict
 # frozen_string_literal: true
 
-# rubocop:disable Layout/LineLength
 # == Schema Information
 #
 # Table name: slack_accounts
@@ -22,7 +21,6 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
-# rubocop:enable Layout/LineLength
 
 class SlackAccount < ApplicationRecord
   belongs_to :user

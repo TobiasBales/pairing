@@ -119,10 +119,16 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  default_url_options host: Rails.application.config.domain
+
   resources :teams
   resources :sessions, only: [:create]
   root to: 'dashboard#index'
   get 'dashboard/index'
+
+  scope :slack do
+    post 'pairing', to: 'slack#track_pairing', as: 'track_pairing'
+  end
 
   mount PgHero::Engine, at: 'pghero'
   mount Sidekiq::Web => '/sidekiq'

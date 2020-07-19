@@ -26,19 +26,19 @@ module Session::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def date?; end
 
-  sig { returns(T.untyped) }
+  sig { returns(String) }
   def id; end
 
-  sig { params(value: T.untyped).void }
+  sig { params(value: T.any(String, Symbol)).void }
   def id=(value); end
 
   sig { returns(T::Boolean) }
   def id?; end
 
-  sig { returns(T.untyped) }
+  sig { returns(String) }
   def team_id; end
 
-  sig { params(value: T.untyped).void }
+  sig { params(value: T.any(String, Symbol)).void }
   def team_id=(value); end
 
   sig { returns(T::Boolean) }
@@ -58,7 +58,7 @@ module Session::GeneratedAssociationMethods
   sig { returns(::User::ActiveRecord_Associations_CollectionProxy) }
   def participants; end
 
-  sig { returns(T::Array[Integer]) }
+  sig { returns(T::Array[String]) }
   def participant_ids; end
 
   sig { params(value: T::Enumerable[::User]).void }
@@ -67,7 +67,7 @@ module Session::GeneratedAssociationMethods
   sig { returns(::Participation::ActiveRecord_Associations_CollectionProxy) }
   def participations; end
 
-  sig { returns(T::Array[Integer]) }
+  sig { returns(T::Array[String]) }
   def participation_ids; end
 
   sig { params(value: T::Enumerable[::Participation]).void }
@@ -75,6 +75,15 @@ module Session::GeneratedAssociationMethods
 
   sig { returns(::Team) }
   def team; end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Team).void)).returns(::Team) }
+  def build_team(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Team).void)).returns(::Team) }
+  def create_team(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Team).void)).returns(::Team) }
+  def create_team!(*args, &block); end
 
   sig { params(value: ::Team).void }
   def team=(value); end

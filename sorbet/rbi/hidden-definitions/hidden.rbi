@@ -1380,6 +1380,10 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
 
   def teams_url(*args); end
 
+  def track_pairing_path(*args); end
+
+  def track_pairing_url(*args); end
+
   def user_password_path(*args); end
 
   def user_password_url(*args); end
@@ -6288,8 +6292,6 @@ class CSV::Row
 
   def empty?(*args, &block); end
 
-  def initialize(headers, fields, header_row=T.unsafe(nil)); end
-
   def length(*args, &block); end
 
   def size(*args, &block); end
@@ -6302,8 +6304,6 @@ class CSV::Row
 end
 
 class CSV::Table
-  def dig(index_or_header, *index_or_headers); end
-
   def empty?(*args, &block); end
 
   def initialize(array_of_rows, headers: T.unsafe(nil)); end
@@ -6311,6 +6311,8 @@ class CSV::Table
   def length(*args, &block); end
 
   def size(*args, &block); end
+
+  def table(); end
 end
 
 class CSV::Table
@@ -8967,6 +8969,10 @@ end
 class Faraday::Request::Multipart
 end
 
+Faraday::Request::OAuth = FaradayMiddleware::OAuth
+
+Faraday::Request::OAuth2 = FaradayMiddleware::OAuth2
+
 class Faraday::Request::Retry
   DEFAULT_EXCEPTIONS = ::T.let(nil, ::T.untyped)
   IDEMPOTENT_METHODS = ::T.let(nil, ::T.untyped)
@@ -9001,12 +9007,26 @@ class Faraday::Request::UrlEncoded
   def self.mime_type=(mime_type); end
 end
 
+class Faraday::RequestOptions
+  include ::FaradayMiddleware::OptionsExtension
+end
+
 class Faraday::Response::Logger
   def initialize(app, logger=T.unsafe(nil), options=T.unsafe(nil)); end
 end
 
 class Faraday::Response::Logger
 end
+
+Faraday::Response::Mashify = FaradayMiddleware::Mashify
+
+Faraday::Response::ParseJson = FaradayMiddleware::ParseJson
+
+Faraday::Response::ParseMarshal = FaradayMiddleware::ParseMarshal
+
+Faraday::Response::ParseXml = FaradayMiddleware::ParseXml
+
+Faraday::Response::ParseYaml = FaradayMiddleware::ParseYaml
 
 class Faraday::Response::RaiseError
   def response_values(env); end
@@ -9016,6 +9036,8 @@ end
 
 class Faraday::Response::RaiseError
 end
+
+Faraday::Response::Rashify = FaradayMiddleware::Rashify
 
 Faraday::Timer = Timeout
 
@@ -9028,6 +9050,313 @@ end
 
 class Faraday::Utils::Headers
   KeyMap = ::T.let(nil, ::T.untyped)
+end
+
+module FaradayMiddleware
+end
+
+class FaradayMiddleware::Caching
+  def build_query(*args, &block); end
+
+  def cache(); end
+
+  def cache_key(env); end
+
+  def cache_on_complete(env); end
+
+  def call(env); end
+
+  def finalize_response(response, env); end
+
+  def full_key?(); end
+
+  def initialize(app, cache=T.unsafe(nil), options=T.unsafe(nil)); end
+
+  def params_to_ignore(); end
+
+  def parse_query(*args, &block); end
+
+  def store_response_in_cache(key, response); end
+  CACHEABLE_STATUS_CODES = ::T.let(nil, ::T.untyped)
+end
+
+class FaradayMiddleware::Caching
+  extend ::Forwardable
+end
+
+class FaradayMiddleware::Chunked
+  def chunked_encoding?(headers); end
+  TRANSFER_ENCODING = ::T.let(nil, ::T.untyped)
+end
+
+class FaradayMiddleware::Chunked
+end
+
+class FaradayMiddleware::EncodeJson
+  def call(env); end
+
+  def encode(data); end
+
+  def has_body?(env); end
+
+  def match_content_type(env); end
+
+  def process_request?(env); end
+
+  def request_type(env); end
+  CONTENT_TYPE = ::T.let(nil, ::T.untyped)
+  MIME_TYPE = ::T.let(nil, ::T.untyped)
+  MIME_TYPE_REGEX = ::T.let(nil, ::T.untyped)
+end
+
+class FaradayMiddleware::EncodeJson
+end
+
+class FaradayMiddleware::FollowRedirects
+  def call(env); end
+
+  def initialize(app, options=T.unsafe(nil)); end
+  ALLOWED_METHODS = ::T.let(nil, ::T.untyped)
+  AUTH_HEADER = ::T.let(nil, ::T.untyped)
+  ENV_TO_CLEAR = ::T.let(nil, ::T.untyped)
+  FOLLOW_LIMIT = ::T.let(nil, ::T.untyped)
+  REDIRECT_CODES = ::T.let(nil, ::T.untyped)
+  URI_UNSAFE = ::T.let(nil, ::T.untyped)
+end
+
+class FaradayMiddleware::FollowRedirects
+end
+
+class FaradayMiddleware::Gzip
+  def brotli_inflate(body); end
+
+  def call(env); end
+
+  def inflate(body); end
+
+  def raw_body(body); end
+
+  def reset_body(env); end
+
+  def uncompress_gzip(body); end
+  ACCEPT_ENCODING = ::T.let(nil, ::T.untyped)
+  BROTLI_SUPPORTED = ::T.let(nil, ::T.untyped)
+  CONTENT_ENCODING = ::T.let(nil, ::T.untyped)
+  CONTENT_LENGTH = ::T.let(nil, ::T.untyped)
+  SUPPORTED_ENCODINGS = ::T.let(nil, ::T.untyped)
+end
+
+class FaradayMiddleware::Gzip
+  def self.optional_dependency(lib=T.unsafe(nil)); end
+
+  def self.supported_encodings(); end
+end
+
+class FaradayMiddleware::Instrumentation
+  def call(env); end
+
+  def initialize(app, options=T.unsafe(nil)); end
+end
+
+class FaradayMiddleware::Instrumentation
+end
+
+class FaradayMiddleware::Mashify
+  def initialize(app=T.unsafe(nil), options=T.unsafe(nil)); end
+
+  def mash_class(); end
+
+  def mash_class=(mash_class); end
+
+  def parse(body); end
+end
+
+class FaradayMiddleware::Mashify
+  def self.mash_class(); end
+
+  def self.mash_class=(mash_class); end
+end
+
+class FaradayMiddleware::MethodOverride
+  def call(env); end
+
+  def initialize(app, options=T.unsafe(nil)); end
+
+  def rewrite_request(env, original_method); end
+
+  def rewrite_request?(method); end
+  HEADER = ::T.let(nil, ::T.untyped)
+end
+
+class FaradayMiddleware::MethodOverride
+end
+
+class FaradayMiddleware::OAuth
+  def body_params(env); end
+
+  def call(env); end
+
+  def include_body_params?(env); end
+
+  def initialize(app, options); end
+
+  def oauth_header(env); end
+
+  def oauth_options(env); end
+
+  def parse_nested_query(*args, &block); end
+
+  def sign_request?(env); end
+
+  def signature_params(params); end
+  AUTH_HEADER = ::T.let(nil, ::T.untyped)
+  CONTENT_TYPE = ::T.let(nil, ::T.untyped)
+  TYPE_URLENCODED = ::T.let(nil, ::T.untyped)
+end
+
+class FaradayMiddleware::OAuth
+  extend ::Forwardable
+end
+
+class FaradayMiddleware::OAuth2
+  def build_query(*args, &block); end
+
+  def call(env); end
+
+  def initialize(app, token=T.unsafe(nil), options=T.unsafe(nil)); end
+
+  def param_name(); end
+
+  def parse_query(*args, &block); end
+
+  def query_params(url); end
+
+  def token_type(); end
+  AUTH_HEADER = ::T.let(nil, ::T.untyped)
+  PARAM_NAME = ::T.let(nil, ::T.untyped)
+  TOKEN_TYPE = ::T.let(nil, ::T.untyped)
+end
+
+class FaradayMiddleware::OAuth2
+  extend ::Forwardable
+end
+
+module FaradayMiddleware::OptionsExtension
+  def each(&blk); end
+
+  def fetch(key, *args); end
+
+  def preserve_raw(); end
+
+  def preserve_raw=(preserve_raw); end
+
+  def to_hash(); end
+end
+
+module FaradayMiddleware::OptionsExtension
+end
+
+class FaradayMiddleware::ParseDates
+  def initialize(app, options=T.unsafe(nil)); end
+  ISO_DATE_FORMAT = ::T.let(nil, ::T.untyped)
+end
+
+class FaradayMiddleware::ParseDates
+end
+
+class FaradayMiddleware::ParseJson
+end
+
+class FaradayMiddleware::ParseJson::MimeTypeFix
+  def first_char(body); end
+  BRACKETS = ::T.let(nil, ::T.untyped)
+  MIME_TYPE = ::T.let(nil, ::T.untyped)
+  WHITESPACE = ::T.let(nil, ::T.untyped)
+end
+
+class FaradayMiddleware::ParseJson::MimeTypeFix
+end
+
+class FaradayMiddleware::ParseJson
+end
+
+class FaradayMiddleware::ParseMarshal
+end
+
+class FaradayMiddleware::ParseMarshal
+end
+
+class FaradayMiddleware::ParseXml
+end
+
+class FaradayMiddleware::ParseXml
+end
+
+class FaradayMiddleware::ParseYaml
+end
+
+class FaradayMiddleware::ParseYaml
+end
+
+class FaradayMiddleware::RackCompatible
+  def call(env); end
+
+  def finalize_response(env, rack_response); end
+
+  def headers_to_rack(env); end
+
+  def initialize(app, rack_handler, *args); end
+
+  def prepare_env(faraday_env); end
+
+  def restore_env(rack_env); end
+  NON_PREFIXED_HEADERS = ::T.let(nil, ::T.untyped)
+end
+
+class FaradayMiddleware::RackCompatible
+end
+
+class FaradayMiddleware::Rashify
+end
+
+class FaradayMiddleware::Rashify
+end
+
+class FaradayMiddleware::RedirectLimitReached
+  def initialize(response); end
+end
+
+class FaradayMiddleware::RedirectLimitReached
+end
+
+class FaradayMiddleware::ResponseMiddleware
+  def call(environment); end
+
+  def initialize(app=T.unsafe(nil), options=T.unsafe(nil)); end
+
+  def parse(body); end
+
+  def parse_response?(env); end
+
+  def preserve_raw?(env); end
+
+  def process_response(env); end
+
+  def process_response_type?(type); end
+
+  def response_type(env); end
+  CONTENT_TYPE = ::T.let(nil, ::T.untyped)
+end
+
+class FaradayMiddleware::ResponseMiddleware
+  def self.define_parser(parser=T.unsafe(nil), &block); end
+
+  def self.parser(); end
+
+  def self.parser=(parser); end
+end
+
+module FaradayMiddleware
 end
 
 module Fasterer
@@ -13283,18 +13612,6 @@ class Membership::ActiveRecord_Relation
 end
 
 module Membership::GeneratedAssociationMethods
-  def build_team(*args, &block); end
-
-  def build_user(*args, &block); end
-
-  def create_team(*args, &block); end
-
-  def create_team!(*args, &block); end
-
-  def create_user(*args, &block); end
-
-  def create_user!(*args, &block); end
-
   def reload_team(); end
 
   def reload_user(); end
@@ -13541,6 +13858,16 @@ module MultiXml
   TYPE_NAMES = ::T.let(nil, ::T.untyped)
 end
 
+module Multipartable
+  def boundary(); end
+
+  def initialize(path, params, headers=T.unsafe(nil), boundary=T.unsafe(nil)); end
+end
+
+module Multipartable
+  def self.secure_boundary(); end
+end
+
 module Mutex_m
   VERSION = ::T.let(nil, ::T.untyped)
 end
@@ -13611,6 +13938,20 @@ class Net::HTTP
 
   def write_timeout=(sec); end
   ENVIRONMENT_VARIABLE_IS_MULTIUSER_SAFE = ::T.let(nil, ::T.untyped)
+end
+
+class Net::HTTP::Post::Multipart
+  include ::Multipartable
+end
+
+class Net::HTTP::Post::Multipart
+end
+
+class Net::HTTP::Put::Multipart
+  include ::Multipartable
+end
+
+class Net::HTTP::Put::Multipart
 end
 
 class Net::HTTPAlreadyReported
@@ -17542,18 +17883,6 @@ class Participation::ActiveRecord_Relation
 end
 
 module Participation::GeneratedAssociationMethods
-  def build_session(*args, &block); end
-
-  def build_user(*args, &block); end
-
-  def create_session(*args, &block); end
-
-  def create_session!(*args, &block); end
-
-  def create_user(*args, &block); end
-
-  def create_user!(*args, &block); end
-
   def reload_session(); end
 
   def reload_user(); end
@@ -17919,40 +18248,40 @@ module Polyfill
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
-module Polyfill::Module::M70264824091860
+module Polyfill::Module::M70266175061620
 end
 
-module Polyfill::Module::M70264824091860
+module Polyfill::Module::M70266175061620
 end
 
-module Polyfill::Module::M70264824205460
+module Polyfill::Module::M70266178886820
 end
 
-module Polyfill::Module::M70264824205460
+module Polyfill::Module::M70266178886820
 end
 
-module Polyfill::Module::M70264827262000
+module Polyfill::Module::M70266194858780
 end
 
-module Polyfill::Module::M70264827262000
+module Polyfill::Module::M70266194858780
 end
 
-module Polyfill::Module::M70264828261160
+module Polyfill::Module::M70266196999360
 end
 
-module Polyfill::Module::M70264828261160
+module Polyfill::Module::M70266196999360
 end
 
-module Polyfill::Module::M70264828350940
+module Polyfill::Module::M70266197072800
 end
 
-module Polyfill::Module::M70264828350940
+module Polyfill::Module::M70266197072800
 end
 
-module Polyfill::Module::M70264831113240
+module Polyfill::Module::M70266227202580
 end
 
-module Polyfill::Module::M70264831113240
+module Polyfill::Module::M70266227202580
 end
 
 class Proc
@@ -20689,6 +21018,13 @@ module RuboCop::AST::MethodIdentifierPredicates
 end
 
 class RuboCop::AST::Node
+  def class_definition?(node=T.unsafe(nil)); end
+
+  def global_const?(node=T.unsafe(nil), param1); end
+
+  def module_definition?(node=T.unsafe(nil)); end
+
+  def struct_constructor?(node=T.unsafe(nil)); end
   ARGUMENT_TYPES = ::T.let(nil, ::T.untyped)
   ASSIGNMENTS = ::T.let(nil, ::T.untyped)
   BASIC_CONDITIONALS = ::T.let(nil, ::T.untyped)
@@ -20712,6 +21048,15 @@ class RuboCop::AST::Node
   VARIABLES = ::T.let(nil, ::T.untyped)
 end
 
+class RuboCop::AST::NodePattern::Matcher
+  def ===(compare); end
+
+  def initialize(&block); end
+end
+
+class RuboCop::AST::NodePattern::Matcher
+end
+
 module RuboCop::AST::NumericNode
   SIGN_REGEX = ::T.let(nil, ::T.untyped)
 end
@@ -20731,6 +21076,9 @@ module RuboCop::AST::PredicateOperatorNode
 end
 
 class RuboCop::AST::ProcessedSource
+  def contains_comment?(source_range); end
+
+  def line_with_comment?(line); end
   STRING_SOURCE_NAME = ::T.let(nil, ::T.untyped)
 end
 
@@ -20739,6 +21087,7 @@ class RuboCop::AST::RegexpNode
 end
 
 module RuboCop::AST::Traversal
+  def on_find_pattern(node); end
   MANY_CHILD_NODES = ::T.let(nil, ::T.untyped)
   NO_CHILD_NODES = ::T.let(nil, ::T.untyped)
   ONE_CHILD_NODE = ::T.let(nil, ::T.untyped)
@@ -22738,12 +23087,6 @@ class Session::ActiveRecord_Relation
 end
 
 module Session::GeneratedAssociationMethods
-  def build_team(*args, &block); end
-
-  def create_team(*args, &block); end
-
-  def create_team!(*args, &block); end
-
   def participant_ids=(ids); end
 
   def participation_ids=(ids); end
@@ -22976,12 +23319,6 @@ class SlackAccount::ActiveRecord_Relation
 end
 
 module SlackAccount::GeneratedAssociationMethods
-  def build_user(*args, &block); end
-
-  def create_user(*args, &block); end
-
-  def create_user!(*args, &block); end
-
   def reload_user(); end
 end
 
@@ -22994,6 +23331,11 @@ end
 
 module SlackAccount::GeneratedRelationMethods
   extend ::Mutex_m
+end
+
+class SlackClient
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
 end
 
 class Socket
@@ -23178,7 +23520,160 @@ module Socket::Constants
   TCP_NOPUSH = ::T.let(nil, ::T.untyped)
 end
 
+class SorbetRails::Config
+  def job_generator_class(*args, &blk); end
+
+  def job_generator_class=(job_generator_class); end
+
+  def mailer_generator_class(*args, &blk); end
+
+  def mailer_generator_class=(mailer_generator_class); end
+end
+
+class SorbetRails::JobRbiFormatter
+  def generate_rbi(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def job_class(*args, &blk); end
+
+  def populate_rbi(*args, &blk); end
+
+  def rbi_generator(*args, &blk); end
+end
+
+SorbetRails::JobRbiFormatter::Parameter = Parlour::RbiGenerator::Parameter
+
+class SorbetRails::JobRbiFormatter
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class SorbetRails::MailerRbiFormatter
+  def generate_rbi(*args, &blk); end
+
+  def initialize(*args, &blk); end
+
+  def mailer_class(*args, &blk); end
+
+  def populate_rbi(*args, &blk); end
+
+  def rbi_generator(*args, &blk); end
+end
+
+SorbetRails::MailerRbiFormatter::Parameter = Parlour::RbiGenerator::Parameter
+
+class SorbetRails::MailerRbiFormatter
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+module SorbetRails::ModelColumnUtils
+  def active_record_type_to_sorbet_type(*args, &blk); end
+
+  def attribute_has_unconditional_presence_validation?(*args, &blk); end
+
+  def model_class(*args, &blk); end
+
+  def nilable_column?(*args, &blk); end
+
+  def time_zone_aware_column?(*args, &blk); end
+
+  def type_for_column_def(*args, &blk); end
+end
+
+class SorbetRails::ModelColumnUtils::ColumnType
+  def array_type(); end
+
+  def base_type(); end
+
+  def initialize(hash=T.unsafe(nil)); end
+
+  def nilable(); end
+
+  def to_s(*args, &blk); end
+end
+
+class SorbetRails::ModelColumnUtils::ColumnType
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.inherited(s); end
+end
+
+module SorbetRails::ModelColumnUtils
+  extend ::T::Sig
+  extend ::T::Helpers
+  extend ::T::Private::Abstract::Hooks
+  extend ::T::InterfaceWrapper::Helpers
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+end
+
+class SorbetRails::ModelPlugins::Base
+  include ::SorbetRails::ModelColumnUtils
+end
+
 SorbetRails::ModelPlugins::Base::Parameter = Parlour::RbiGenerator::Parameter
+
+class SorbetRails::ModelRbiFormatter
+  include ::SorbetRails::ModelColumnUtils
+end
+
+module SorbetRails::ModelUtils
+  include ::SorbetRails::ModelColumnUtils
+end
+
+module SorbetRails::SorbetUtils
+  include ::Kernel
+end
+
+class SorbetRails::SorbetUtils::ParsedParamDef
+  def default(); end
+
+  def default=(val); end
+
+  def initialize(hash=T.unsafe(nil)); end
+
+  def kind(); end
+
+  def name(); end
+
+  def prefix(); end
+
+  def prefix=(val); end
+
+  def suffix(); end
+
+  def suffix=(val); end
+
+  def type_str(); end
+end
+
+class SorbetRails::SorbetUtils::ParsedParamDef
+  def self.inherited(s); end
+end
+
+class SorbetRails::SorbetUtils::UnexpectedParam
+end
+
+class SorbetRails::SorbetUtils::UnexpectedParam
+end
+
+module SorbetRails::SorbetUtils
+  extend ::T::Sig
+  extend ::T::Private::Methods::MethodHooks
+  extend ::T::Private::Methods::SingletonMethodHooks
+  def self.extract_default_value_for_params!(*args, &blk); end
+
+  def self.get_ordered_parameters_with_type(*args, &blk); end
+
+  def self.node_to_s(*args, &blk); end
+
+  def self.parameters_from_method_def(*args, &blk); end
+end
 
 module SorbetRails
   extend ::T::Private::Methods::SingletonMethodHooks
@@ -23646,6 +24141,15 @@ class StrongVersions::GemVersion
 end
 
 class StrongVersions::GemVersion
+end
+
+module StrongVersions::Regexes
+end
+
+module StrongVersions::Regexes
+  def self.gemfile(name); end
+
+  def self.gemspec(name); end
 end
 
 class StrongVersions::Terminal

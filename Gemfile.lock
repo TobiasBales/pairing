@@ -141,6 +141,8 @@ GEM
     erubis (2.7.0)
     faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
+    faraday_middleware (1.0.0)
+      faraday (~> 1.0)
     fasterer (0.8.3)
       colorize (~> 0.7)
       ruby_parser (>= 3.14.1)
@@ -518,6 +520,8 @@ DEPENDENCIES
   devise-bootstrapped!
   devise-pwned_password (~> 0.1.8)
   dotenv-rails (~> 2.7)
+  faraday (~> 1.0)
+  faraday_middleware (~> 1.0)
   fasterer (~> 0.8.3)
   ginjo-omniauth-slack (~> 2.5)
   gravatar_image_tag (~> 1.2)
