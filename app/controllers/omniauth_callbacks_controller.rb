@@ -20,12 +20,29 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   private
 
+  def get_slack_name(access_token, slack_id)
+    connection = Faraday.new('https://slack.com') do |conn|
+      conn.response :json, content_type: /\bjson$/
+      conn.adapter Faraday.default_adapter
+    end
+
+    connection.get("/api/users.info?token=#{access_token}&user=#{slack_id}").body['user']['name']
+  end
+
   def build_slack_account
-    @account = current_user.slack_accounts.build(slack_id: slack_id, slack_team: slack_team)
+    @account = current_user.slack_accounts.build(
+      slack_id: slack_id,
+      slack_name: get_slack_name(access_token, slack_id),
+      slack_team: slack_team
+    )
   end
 
   def slack_id
     info['authed_user']['id']
+  end
+
+  def access_token
+    info['access_token']
   end
 
   def slack_team
