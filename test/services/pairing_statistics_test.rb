@@ -35,7 +35,7 @@ class UserTest < ActiveSupport::TestCase
     @team.build_session([users(:one), users(:two)], Time.zone.today).save!
     @team.build_session([users(:one), users(:two)], Time.zone.today - 1.day).save!
     @team.build_session([users(:one), users(:three)], Time.zone.today - 1.day).save!
-    @team.build_session([users(:one), users(:two)], Time.zone.today - 1.day).save!
+    @team.build_session([users(:one), users(:two)], Time.zone.today - 2.days).save!
     subject = PairingStatistics.new(@team, 1)
 
     assert_equal 1, subject.number_of_sessions_for([users(:one), users(:two)])
@@ -47,11 +47,11 @@ class UserTest < ActiveSupport::TestCase
     @team.build_session([users(:one), users(:two)], Time.zone.today).save!
     @team.build_session([users(:one), users(:two)], Time.zone.today - 1.day).save!
     @team.build_session([users(:one), users(:three)], Time.zone.today - 1.day).save!
-    @team.build_session([users(:one), users(:two)], Time.zone.today - 1.day).save!
     @team.build_session([users(:one), users(:two)], Time.zone.today - 2.days).save!
+    @team.build_session([users(:one), users(:two)], Time.zone.today - 3.days).save!
     subject = PairingStatistics.new(@team, 2)
 
-    assert_equal 3, subject.number_of_sessions_for([users(:one), users(:two)])
+    assert_equal 2, subject.number_of_sessions_for([users(:one), users(:two)])
     assert_equal 1, subject.number_of_sessions_for([users(:one), users(:three)])
     assert_equal 0, subject.number_of_sessions_for([users(:two), users(:three)])
   end
@@ -60,8 +60,8 @@ class UserTest < ActiveSupport::TestCase
     @team.build_session([users(:one), users(:two)], Time.zone.today).save!
     @team.build_session([users(:one), users(:two)], Time.zone.today - 1.day).save!
     @team.build_session([users(:one), users(:three)], Time.zone.today - 1.day).save!
-    @team.build_session([users(:one), users(:two)], Time.zone.today - 1.day).save!
     @team.build_session([users(:one), users(:two)], Time.zone.today - 2.days).save!
+    @team.build_session([users(:one), users(:two)], Time.zone.today - 3.days).save!
     subject = PairingStatistics.new(@team, 1)
 
     assert_equal 1, subject.maximum_sessions
@@ -71,10 +71,10 @@ class UserTest < ActiveSupport::TestCase
     @team.build_session([users(:one), users(:two)], Time.zone.today).save!
     @team.build_session([users(:one), users(:two)], Time.zone.today - 1.day).save!
     @team.build_session([users(:one), users(:three)], Time.zone.today - 1.day).save!
-    @team.build_session([users(:one), users(:two)], Time.zone.today - 1.day).save!
     @team.build_session([users(:one), users(:two)], Time.zone.today - 2.days).save!
+    @team.build_session([users(:one), users(:two)], Time.zone.today - 3.days).save!
     subject = PairingStatistics.new(@team, 2)
 
-    assert_equal 3, subject.maximum_sessions
+    assert_equal 2, subject.maximum_sessions
   end
 end
