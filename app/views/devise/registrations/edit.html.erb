@@ -31,8 +31,22 @@
         <p class="form-text text-muted"><small>We need your current password to confirm your changes</small></p>
       </div>
 
+
       <div class="form-group">
         <%= f.submit "Save Changes", class: 'btn btn-lg btn-block btn-primary' %>
+      </div>
+      <hr>
+
+      <div id="form-group">
+        <%= label_tag "Linked slack accounts", nil, class: 'font-weight-bold' %>
+        <%= f.fields_for :slack_accounts do |s| %>
+          <br/>
+          <%= s.object.slack_name %>(<%= s.object.slack_team %>)
+          <%= link_to "remove", users_slack_account_path(s.object), data: { confirm: "Are you sure? You cannot undo this." }, method: :delete, class: 'float-right' %>
+        <% end %>
+        <div class='mt-3 text-right'>
+          <%= link_to "add slack account", user_slack_omniauth_authorize_url, class: 'btn btn-outline-primary' %>
+        </div>
       </div>
     <% end %>
     <hr>
