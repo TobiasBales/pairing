@@ -31,6 +31,7 @@ class Session < ApplicationRecord
   validates :team, presence: true
   validates :participations, presence: true
   validates :date, presence: true
+  validate :one_session_per_pair_per_day
 
   accepts_nested_attributes_for :participations
 
@@ -42,5 +43,23 @@ class Session < ApplicationRecord
     participants = participations.map(&:user)
 
     users.all? { |participant| participants.include?(participant) }
+  end
+
+  private
+
+  sig { void }
+  def one_session_per_pair_per_day
+    existing_limit = new_record? ? 1 : 2
+    errors.add(:base, :duplicate) if identical_sessions.count >= existing_limit
+  end
+
+  sig { returns(T::Array[Session]) }
+  def identical_sessions
+    team.sessions.where(date: date).filter { |s| s.matching_participants(users) }
+  end
+
+  sig { returns(T::Array[User]) }
+  def users
+    participations.map(&:user)
   end
 end

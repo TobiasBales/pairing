@@ -40,4 +40,72 @@ class SessionTest < ActiveSupport::TestCase
     assert_not subject.matching_participants([users(:two), users(:three)])
     assert_not subject.matching_participants([users(:one), users(:two), users(:three)])
   end
+
+  test 'it allows only one session per pair, team and day' do
+    Session.new(team: @team,
+                date: Time.zone.today,
+                participations: [
+                  Participation.new(user: users(:one)),
+                  Participation.new(user: users(:two))
+                ]).save!
+    subject = Session.new(team: @team,
+                          date: Time.zone.today,
+                          participations: [
+                            Participation.new(user: users(:one)),
+                            Participation.new(user: users(:two))
+                          ])
+
+    assert_not subject.valid?
+  end
+
+  test 'it allows one session per day' do
+    Session.new(team: @team,
+                date: Time.zone.today,
+                participations: [
+                  Participation.new(user: users(:one)),
+                  Participation.new(user: users(:two))
+                ]).save!
+    subject = Session.new(team: @team,
+                          date: Time.zone.today - 1.day,
+                          participations: [
+                            Participation.new(user: users(:one)),
+                            Participation.new(user: users(:two))
+                          ])
+
+    assert subject.valid?
+  end
+
+  test 'it allows one session per day, per team' do
+    Session.new(team: @team,
+                date: Time.zone.today,
+                participations: [
+                  Participation.new(user: users(:one)),
+                  Participation.new(user: users(:two))
+                ]).save!
+    subject = Session.new(team: teams(:two),
+                          date: Time.zone.today,
+                          participations: [
+                            Participation.new(user: users(:one)),
+                            Participation.new(user: users(:two))
+                          ])
+
+    assert subject.valid?
+  end
+
+  test 'it allows one session per day, per pair' do
+    Session.new(team: @team,
+                date: Time.zone.today,
+                participations: [
+                  Participation.new(user: users(:one)),
+                  Participation.new(user: users(:two))
+                ]).save!
+    subject = Session.new(team: @team,
+                          date: Time.zone.today,
+                          participations: [
+                            Participation.new(user: users(:one)),
+                            Participation.new(user: users(:three))
+                          ])
+
+    assert subject.valid?
+  end
 end
