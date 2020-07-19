@@ -17,19 +17,19 @@ module Participation::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def created_at?; end
 
-  sig { returns(T.untyped) }
+  sig { returns(String) }
   def id; end
 
-  sig { params(value: T.untyped).void }
+  sig { params(value: T.any(String, Symbol)).void }
   def id=(value); end
 
   sig { returns(T::Boolean) }
   def id?; end
 
-  sig { returns(T.untyped) }
+  sig { returns(String) }
   def session_id; end
 
-  sig { params(value: T.untyped).void }
+  sig { params(value: T.any(String, Symbol)).void }
   def session_id=(value); end
 
   sig { returns(T::Boolean) }
@@ -44,10 +44,10 @@ module Participation::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def updated_at?; end
 
-  sig { returns(T.untyped) }
+  sig { returns(String) }
   def user_id; end
 
-  sig { params(value: T.untyped).void }
+  sig { params(value: T.any(String, Symbol)).void }
   def user_id=(value); end
 
   sig { returns(T::Boolean) }
@@ -58,11 +58,29 @@ module Participation::GeneratedAssociationMethods
   sig { returns(::Session) }
   def session; end
 
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Session).void)).returns(::Session) }
+  def build_session(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Session).void)).returns(::Session) }
+  def create_session(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::Session).void)).returns(::Session) }
+  def create_session!(*args, &block); end
+
   sig { params(value: ::Session).void }
   def session=(value); end
 
   sig { returns(::User) }
   def user; end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::User).void)).returns(::User) }
+  def build_user(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::User).void)).returns(::User) }
+  def create_user(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: ::User).void)).returns(::User) }
+  def create_user!(*args, &block); end
 
   sig { params(value: ::User).void }
   def user=(value); end

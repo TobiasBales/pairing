@@ -17,10 +17,10 @@ module Team::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def created_at?; end
 
-  sig { returns(T.untyped) }
+  sig { returns(String) }
   def id; end
 
-  sig { params(value: T.untyped).void }
+  sig { params(value: T.any(String, Symbol)).void }
   def id=(value); end
 
   sig { returns(T::Boolean) }
@@ -49,7 +49,7 @@ module Team::GeneratedAssociationMethods
   sig { returns(::User::ActiveRecord_Associations_CollectionProxy) }
   def members; end
 
-  sig { returns(T::Array[Integer]) }
+  sig { returns(T::Array[String]) }
   def member_ids; end
 
   sig { params(value: T::Enumerable[::User]).void }
@@ -58,7 +58,7 @@ module Team::GeneratedAssociationMethods
   sig { returns(::Membership::ActiveRecord_Associations_CollectionProxy) }
   def memberships; end
 
-  sig { returns(T::Array[Integer]) }
+  sig { returns(T::Array[String]) }
   def membership_ids; end
 
   sig { params(value: T::Enumerable[::Membership]).void }
@@ -67,7 +67,7 @@ module Team::GeneratedAssociationMethods
   sig { returns(::Session::ActiveRecord_Associations_CollectionProxy) }
   def sessions; end
 
-  sig { returns(T::Array[Integer]) }
+  sig { returns(T::Array[String]) }
   def session_ids; end
 
   sig { params(value: T::Enumerable[::Session]).void }

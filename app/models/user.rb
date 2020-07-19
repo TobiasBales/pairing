@@ -30,11 +30,13 @@ class User < ApplicationRecord
   has_many :teams, through: :memberships
   has_many :participations, dependent: :destroy
   has_many :sessions, through: :participations
+  has_many :slack_accounts, dependent: :destroy
 
   scope :sorted, -> { order(:name) }
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :confirmable, :lockable, :timeoutable and :trackable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :pwned_password
+         :recoverable, :rememberable, :validatable, :pwned_password,
+         :omniauthable, omniauth_providers: [:slack, :sign_in_with_slack]
 end

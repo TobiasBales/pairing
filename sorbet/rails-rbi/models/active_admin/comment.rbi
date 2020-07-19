@@ -8,10 +8,10 @@ module ActiveAdmin::Comment::ActiveRelation_WhereNot
 end
 
 module ActiveAdmin::Comment::GeneratedAttributeMethods
-  sig { returns(T.nilable(T.untyped)) }
+  sig { returns(T.nilable(String)) }
   def author_id; end
 
-  sig { params(value: T.nilable(T.untyped)).void }
+  sig { params(value: T.nilable(T.any(String, Symbol))).void }
   def author_id=(value); end
 
   sig { returns(T::Boolean) }
@@ -44,10 +44,10 @@ module ActiveAdmin::Comment::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def created_at?; end
 
-  sig { returns(T.untyped) }
+  sig { returns(String) }
   def id; end
 
-  sig { params(value: T.untyped).void }
+  sig { params(value: T.any(String, Symbol)).void }
   def id=(value); end
 
   sig { returns(T::Boolean) }
@@ -62,10 +62,10 @@ module ActiveAdmin::Comment::GeneratedAttributeMethods
   sig { returns(T::Boolean) }
   def namespace?; end
 
-  sig { returns(T.nilable(T.untyped)) }
+  sig { returns(T.nilable(String)) }
   def resource_id; end
 
-  sig { params(value: T.nilable(T.untyped)).void }
+  sig { params(value: T.nilable(T.any(String, Symbol))).void }
   def resource_id=(value); end
 
   sig { returns(T::Boolean) }
@@ -94,11 +94,29 @@ module ActiveAdmin::Comment::GeneratedAssociationMethods
   sig { returns(T.untyped) }
   def author; end
 
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: T.untyped).void)).returns(T.untyped) }
+  def build_author(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: T.untyped).void)).returns(T.untyped) }
+  def create_author(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: T.untyped).void)).returns(T.untyped) }
+  def create_author!(*args, &block); end
+
   sig { params(value: T.untyped).void }
   def author=(value); end
 
   sig { returns(T.untyped) }
   def resource; end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: T.untyped).void)).returns(T.untyped) }
+  def build_resource(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: T.untyped).void)).returns(T.untyped) }
+  def create_resource(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: T.untyped).void)).returns(T.untyped) }
+  def create_resource!(*args, &block); end
 
   sig { params(value: T.untyped).void }
   def resource=(value); end

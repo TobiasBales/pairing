@@ -63,6 +63,13 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def dashboard_index_url(*args, **kwargs); end
 
+  # Sigs for route /slack/pairing(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def track_pairing_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def track_pairing_url(*args, **kwargs); end
+
   # Sigs for route /pghero
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def pg_hero_path(*args, **kwargs); end
@@ -237,6 +244,34 @@ module GeneratedUrlHelpers
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def destroy_user_session_url(*args, **kwargs); end
+
+  # Sigs for route /users/auth/slack(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def user_slack_omniauth_authorize_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def user_slack_omniauth_authorize_url(*args, **kwargs); end
+
+  # Sigs for route /users/auth/slack/callback(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def user_slack_omniauth_callback_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def user_slack_omniauth_callback_url(*args, **kwargs); end
+
+  # Sigs for route /users/auth/sign_in_with_slack(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def user_sign_in_with_slack_omniauth_authorize_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def user_sign_in_with_slack_omniauth_authorize_url(*args, **kwargs); end
+
+  # Sigs for route /users/auth/sign_in_with_slack/callback(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def user_sign_in_with_slack_omniauth_callback_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def user_sign_in_with_slack_omniauth_callback_url(*args, **kwargs); end
 
   # Sigs for route /users/password/new(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }

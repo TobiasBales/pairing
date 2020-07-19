@@ -4,8 +4,8 @@
 module HeatmapHelper
   extend T::Sig
 
-  sig { params(value: Numeric).returns(String) }
+  sig { params(value: Float).returns(String) }
   def heatmap_color(value)
-    "hsl(211, 100%, #{100 - 50 * value}%, 0.15)"
+    "hsl(211, 100%, #{100 - 50.0 * value}%, 0.15)"
   end
 end

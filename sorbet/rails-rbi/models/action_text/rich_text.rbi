@@ -305,7 +305,7 @@ module ActionText::RichText::GeneratedAssociationMethods
   sig { returns(::ActiveStorage::Attachment::ActiveRecord_Associations_CollectionProxy) }
   def embeds_attachments; end
 
-  sig { returns(T::Array[Integer]) }
+  sig { returns(T::Array[T.untyped]) }
   def embeds_attachment_ids; end
 
   sig { params(value: T::Enumerable[::ActiveStorage::Attachment]).void }
@@ -314,7 +314,7 @@ module ActionText::RichText::GeneratedAssociationMethods
   sig { returns(::ActiveStorage::Blob::ActiveRecord_Associations_CollectionProxy) }
   def embeds_blobs; end
 
-  sig { returns(T::Array[Integer]) }
+  sig { returns(T::Array[T.untyped]) }
   def embeds_blob_ids; end
 
   sig { params(value: T::Enumerable[::ActiveStorage::Blob]).void }
@@ -322,6 +322,15 @@ module ActionText::RichText::GeneratedAssociationMethods
 
   sig { returns(T.untyped) }
   def record; end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: T.untyped).void)).returns(T.untyped) }
+  def build_record(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: T.untyped).void)).returns(T.untyped) }
+  def create_record(*args, &block); end
+
+  sig { params(args: T.untyped, block: T.nilable(T.proc.params(object: T.untyped).void)).returns(T.untyped) }
+  def create_record!(*args, &block); end
 
   sig { params(value: T.untyped).void }
   def record=(value); end
