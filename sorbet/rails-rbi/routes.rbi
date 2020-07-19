@@ -322,6 +322,13 @@ module GeneratedUrlHelpers
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def user_registration_url(*args, **kwargs); end
 
+  # Sigs for route /users/slack_accounts/:id(.:format)
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def users_slack_account_path(*args, **kwargs); end
+
+  sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
+  def users_slack_account_url(*args, **kwargs); end
+
   # Sigs for route /rails/action_mailbox/postmark/inbound_emails(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
   def rails_postmark_inbound_emails_path(*args, **kwargs); end

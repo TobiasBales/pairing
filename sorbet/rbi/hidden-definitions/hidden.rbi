@@ -1411,6 +1411,10 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
   def user_slack_omniauth_callback_path(*args); end
 
   def user_slack_omniauth_callback_url(*args); end
+
+  def users_slack_account_path(*args); end
+
+  def users_slack_account_url(*args); end
 end
 
 class ActiveAdmin::Inputs::DatepickerInput
@@ -18248,40 +18252,40 @@ module Polyfill
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
-module Polyfill::Module::M70268264154520
+module Polyfill::Module::M70128710361840
 end
 
-module Polyfill::Module::M70268264154520
+module Polyfill::Module::M70128710361840
 end
 
-module Polyfill::Module::M70268264295740
+module Polyfill::Module::M70128711496780
 end
 
-module Polyfill::Module::M70268264295740
+module Polyfill::Module::M70128711496780
 end
 
-module Polyfill::Module::M70268267775680
+module Polyfill::Module::M70128715577580
 end
 
-module Polyfill::Module::M70268267775680
+module Polyfill::Module::M70128715577580
 end
 
-module Polyfill::Module::M70268272645120
+module Polyfill::Module::M70128720000940
 end
 
-module Polyfill::Module::M70268272645120
+module Polyfill::Module::M70128720000940
 end
 
-module Polyfill::Module::M70268273485840
+module Polyfill::Module::M70128723180180
 end
 
-module Polyfill::Module::M70268273485840
+module Polyfill::Module::M70128723180180
 end
 
-module Polyfill::Module::M70268273568200
+module Polyfill::Module::M70128723277400
 end
 
-module Polyfill::Module::M70268273568200
+module Polyfill::Module::M70128723277400
 end
 
 class Proc
@@ -25300,6 +25304,8 @@ module User::GeneratedAssociationMethods
   def session_ids=(ids); end
 
   def slack_account_ids=(ids); end
+
+  def slack_accounts_attributes=(attributes); end
 
   def team_ids=(ids); end
 end

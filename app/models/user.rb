@@ -39,4 +39,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :pwned_password,
          :omniauthable, omniauth_providers: [:slack, :sign_in_with_slack]
+
+  accepts_nested_attributes_for :slack_accounts
 end

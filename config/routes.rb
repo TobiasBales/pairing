@@ -136,6 +136,9 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :users do
+    resources :slack_accounts, only: [:destroy]
+  end
 end
 require 'sidekiq/web'
 if Rails.env.production?
