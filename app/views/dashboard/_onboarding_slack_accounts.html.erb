@@ -1,0 +1,9 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title">
+      You have not connected a slack account yet
+    </h5>
+    <p class="card-text">After connecting to slack you can use /pairing with @<name> to track pairing sessions</p>
+    <%= link_to "Connect to slack", user_slack_omniauth_authorize_url, class: "btn btn-primary" %>
+  </div>
+</div>

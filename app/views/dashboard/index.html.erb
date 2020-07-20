@@ -1,5 +1,7 @@
 <% if @teams.empty? %>
   <%= render "onboarding_teams" %>
+<% elsif @has_no_slack_account %>
+  <%= render "onboarding_slack_accounts" %>
 <% end %>
 
 <% @teams.each do |team| %>
