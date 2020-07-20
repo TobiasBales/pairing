@@ -7,5 +7,6 @@ class DashboardController < ApplicationController
   def index
     @user = current_user
     @teams = @user.teams
+    @has_no_slack_account = current_user.slack_accounts.empty?
   end
 end
