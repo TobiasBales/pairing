@@ -9,7 +9,7 @@ class SlackControllerTest < ActionDispatch::IntegrationTest
     def slack_client.send_message(_url, _text); end
 
     SlackClient.stub :new, slack_client do
-      post track_pairing_url, as: :json, params: {
+      post pairing_url, as: :json, params: {
         user_id: users(:one).slack_accounts.first.slack_id,
         text: "with @#{users(:two).slack_accounts.first.slack_name}",
         response_url: ''

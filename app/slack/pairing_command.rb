@@ -1,7 +1,7 @@
 # typed: strict
 # frozen_string_literal: true
 
-class TrackPairingCommand < SlackCommand
+class PairingCommand < SlackCommand
   extend T::Sig
   include GeneratedUrlHelpers
 

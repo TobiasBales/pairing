@@ -1340,6 +1340,10 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
 
   def new_user_session_url(*args); end
 
+  def pairing_path(*args); end
+
+  def pairing_url(*args); end
+
   def pg_hero_path(*args); end
 
   def pg_hero_url(*args); end
@@ -1379,10 +1383,6 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
   def teams_path(*args); end
 
   def teams_url(*args); end
-
-  def track_pairing_path(*args); end
-
-  def track_pairing_url(*args); end
 
   def user_password_path(*args); end
 
@@ -17763,6 +17763,24 @@ module Paint
   def self.wrap(*ansi_codes); end
 end
 
+class PairingCommand
+  def default_url_options(); end
+
+  def default_url_options=(val); end
+
+  def default_url_options?(); end
+end
+
+class PairingCommand
+  def self._routes(); end
+
+  def self.default_url_options(); end
+
+  def self.default_url_options=(val); end
+
+  def self.default_url_options?(); end
+end
+
 class PairingStatistics
   extend ::T::Private::Methods::MethodHooks
   extend ::T::Private::Methods::SingletonMethodHooks
@@ -18252,40 +18270,40 @@ module Polyfill
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
-module Polyfill::Module::M70128710361840
+module Polyfill::Module::M70279688508020
 end
 
-module Polyfill::Module::M70128710361840
+module Polyfill::Module::M70279688508020
 end
 
-module Polyfill::Module::M70128711496780
+module Polyfill::Module::M70279688549780
 end
 
-module Polyfill::Module::M70128711496780
+module Polyfill::Module::M70279688549780
 end
 
-module Polyfill::Module::M70128715577580
+module Polyfill::Module::M70279688663360
 end
 
-module Polyfill::Module::M70128715577580
+module Polyfill::Module::M70279688663360
 end
 
-module Polyfill::Module::M70128720000940
+module Polyfill::Module::M70279699852900
 end
 
-module Polyfill::Module::M70128720000940
+module Polyfill::Module::M70279699852900
 end
 
-module Polyfill::Module::M70128723180180
+module Polyfill::Module::M70279704444340
 end
 
-module Polyfill::Module::M70128723180180
+module Polyfill::Module::M70279704444340
 end
 
-module Polyfill::Module::M70128723277400
+module Polyfill::Module::M70279705703380
 end
 
-module Polyfill::Module::M70128723277400
+module Polyfill::Module::M70279705703380
 end
 
 class Proc
@@ -24915,24 +24933,6 @@ class TracePoint
   def instruction_sequence(); end
 
   def parameters(); end
-end
-
-class TrackPairingCommand
-  def default_url_options(); end
-
-  def default_url_options=(val); end
-
-  def default_url_options?(); end
-end
-
-class TrackPairingCommand
-  def self._routes(); end
-
-  def self.default_url_options(); end
-
-  def self.default_url_options=(val); end
-
-  def self.default_url_options?(); end
 end
 
 class TrueClass
