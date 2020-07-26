@@ -8,7 +8,7 @@ class TrackPairingCommand < SlackCommand
   MESSAGE_REGEX = T.let(/(with )?@(.*)/.freeze, Regexp)
 
   sig { params(message: String, slack_id: String, response_url: String, slack_client: SlackClient).void }
-  def initialize(message:, slack_id:, response_url:, slack_client: SlackClient.new)
+  def initialize(message:, slack_id:, response_url:, slack_client:)
     @message = message
     @slack_id = slack_id
     @response_url = response_url
