@@ -14,4 +14,4 @@ en:
       partner_has_no_slack_account: '<@#{partner}> has not registered their slack account, please ask them to do so using this <#{link}|link>'
       initiator_has_no_slack_account: 'You do not have a slack account connected, please do so <#{link}|here>'
       no_team: 'You do not have a team, please <#{link}|create one> or ask your team to invite you'
-      invalid_command: 'The command must match /pairing (with) @name'
+      unknown_command: 'The command must match /pairing (with) @name'

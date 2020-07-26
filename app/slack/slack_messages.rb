@@ -36,8 +36,8 @@ class SlackMessages
   end
 
   sig { returns(String) }
-  def invalid_command
-    message('invalid_command')
+  def unknown_command
+    message('unknown_command')
   end
 
   private

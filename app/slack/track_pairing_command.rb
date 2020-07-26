@@ -16,6 +16,11 @@ class TrackPairingCommand < SlackCommand
     @team = T.let(nil, T.nilable(Team))
   end
 
+  sig { params(message: SlackMessage).returns(T::Boolean) }
+  def self.handles?(message)
+    message.match(MESSAGE_REGEX).present?
+  end
+
   sig { void }
   def execute
     load_slack_account
@@ -23,8 +28,6 @@ class TrackPairingCommand < SlackCommand
     return unless validate_slack_account_present
 
     return unless validate_team_present
-
-    return unless validate_message
 
     load_partner_slack_account
 
@@ -99,18 +102,6 @@ class TrackPairingCommand < SlackCommand
     if @partner_slack_account.nil?
       @slack_client.send(@message.response_url,
                          @slack_messages.partner_has_no_slack_account(partner: partner_from_message),
-                         type: :ephemeral)
-      return false
-    end
-
-    true
-  end
-
-  sig { returns(T::Boolean) }
-  def validate_message
-    unless @message.match(MESSAGE_REGEX)
-      @slack_client.send(@message.response_url,
-                         @slack_messages.invalid_command,
                          type: :ephemeral)
       return false
     end
