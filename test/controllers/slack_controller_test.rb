@@ -31,7 +31,7 @@ class SlackControllerTest < ActionDispatch::IntegrationTest
   def stub_slack_client
     slack_client = Minitest::Mock.new
 
-    def slack_client.send_message(_url, _text); end
+    def slack_client.send(_url, _text); end
 
     def slack_client.is_a?(klass)
       klass == SlackClient
