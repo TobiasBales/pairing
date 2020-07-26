@@ -18,7 +18,7 @@ class SlackController < ApplicationController
   def message_from_params(params)
     SlackMessage.new(
       message: T.cast(params[:text], String),
-      slack_id: T.cast(params[:user_id], String),
+      sender: T.cast(params[:user_id], String),
       response_url: T.cast(params[:response_url], String)
     )
   end

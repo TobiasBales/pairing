@@ -56,7 +56,7 @@ class TrackPairingCommand < SlackCommand
 
   sig { void }
   def load_slack_account
-    @slack_account = SlackAccount.find_by(slack_id: @message.slack_id)
+    @slack_account = SlackAccount.find_by(slack_id: @message.sender)
   end
 
   sig { void }

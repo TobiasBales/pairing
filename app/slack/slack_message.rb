@@ -5,12 +5,12 @@ class SlackMessage
   extend T::Sig
 
   sig { returns(String) }
-  attr_reader :response_url, :slack_id
+  attr_reader :response_url, :sender
 
-  sig { params(message: String, slack_id: String, response_url: String).void }
-  def initialize(message:, slack_id:, response_url:)
+  sig { params(message: String, sender: String, response_url: String).void }
+  def initialize(message:, sender:, response_url:)
     @message = message
-    @slack_id = slack_id
+    @sender = sender
     @response_url = response_url
   end
 
