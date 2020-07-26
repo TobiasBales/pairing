@@ -4,7 +4,7 @@
 class SlackController < ApplicationController
   skip_forgery_protection
 
-  def track_pairing
+  def pairing
     TrackPairingCommand.new(
       message: T.cast(params[:text], String),
       slack_id: T.cast(params[:user_id], String),

@@ -1340,6 +1340,10 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
 
   def new_user_session_url(*args); end
 
+  def pairing_path(*args); end
+
+  def pairing_url(*args); end
+
   def pg_hero_path(*args); end
 
   def pg_hero_url(*args); end
@@ -1379,10 +1383,6 @@ module ActiveAdmin::Helpers::Routes::UrlHelpers
   def teams_path(*args); end
 
   def teams_url(*args); end
-
-  def track_pairing_path(*args); end
-
-  def track_pairing_url(*args); end
 
   def user_password_path(*args); end
 
@@ -18252,40 +18252,40 @@ module Polyfill
   VERSION = ::T.let(nil, ::T.untyped)
 end
 
-module Polyfill::Module::M70128710361840
+module Polyfill::Module::M70318905098800
 end
 
-module Polyfill::Module::M70128710361840
+module Polyfill::Module::M70318905098800
 end
 
-module Polyfill::Module::M70128711496780
+module Polyfill::Module::M70318916450040
 end
 
-module Polyfill::Module::M70128711496780
+module Polyfill::Module::M70318916450040
 end
 
-module Polyfill::Module::M70128715577580
+module Polyfill::Module::M70318918112280
 end
 
-module Polyfill::Module::M70128715577580
+module Polyfill::Module::M70318918112280
 end
 
-module Polyfill::Module::M70128720000940
+module Polyfill::Module::M70318918201940
 end
 
-module Polyfill::Module::M70128720000940
+module Polyfill::Module::M70318918201940
 end
 
-module Polyfill::Module::M70128723180180
+module Polyfill::Module::M70318918242300
 end
 
-module Polyfill::Module::M70128723180180
+module Polyfill::Module::M70318918242300
 end
 
-module Polyfill::Module::M70128723277400
+module Polyfill::Module::M70318918480200
 end
 
-module Polyfill::Module::M70128723277400
+module Polyfill::Module::M70318918480200
 end
 
 class Proc
