@@ -1,4 +1,4 @@
-# typed: false
+# typed: strict
 # frozen_string_literal: true
 
 class SlackClient
@@ -18,11 +18,6 @@ class SlackClient
 
   sig { params(response_url: String, text: String, type: T.nilable(Symbol)).void }
   def send(response_url, text, type: nil)
-    Faraday.post(response_url, { text: text, "response_type": type }.to_json, headers).inspect
-  end
-
-  sig { returns(T::Hash[Symbol, String]) }
-  def headers
-    { "Content-Type": 'application/json' }
+    HttpClient.instance.post(response_url, { text: text, "response_type": type }.to_json)
   end
 end
