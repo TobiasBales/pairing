@@ -13,3 +13,11 @@ updates:
       - bundler
       - dependencies
       - automerge
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - npm
+      - dependencies
+      - automerge
