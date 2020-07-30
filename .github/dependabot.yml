@@ -21,3 +21,11 @@ updates:
       - npm
       - dependencies
       - automerge
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - github-actions
+      - dependencies
+      - automerge
