@@ -9,3 +9,7 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    labels:
+      - bundler
+      - dependencies
+      - automerge
