@@ -31,7 +31,7 @@ gem 'sidekiq', '~> 6.1'
 gem 'sidekiq-statistic', '~> 1.4'
 gem 'sorbet-rails', '~> 0.7.0'
 gem 'sorbet-runtime', '~> 0.5.5859'
-gem 'strong_migrations', '~> 0.6.8'
+gem 'strong_migrations', '~> 0.7.1'
 gem 'turbolinks', '~> 5.2'
 gem 'tzinfo-data', '~> 1.2', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'webpacker', '~> 5.1'
