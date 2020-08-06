@@ -65,10 +65,10 @@ module GeneratedUrlHelpers
 
   # Sigs for route /slack/pairing(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def track_pairing_path(*args, **kwargs); end
+  def pairing_path(*args, **kwargs); end
 
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def track_pairing_url(*args, **kwargs); end
+  def pairing_url(*args, **kwargs); end
 
   # Sigs for route /pghero
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }

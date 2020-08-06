@@ -127,7 +127,7 @@ Rails.application.routes.draw do
   get 'dashboard/index'
 
   scope :slack do
-    post 'pairing', to: 'slack#track_pairing', as: 'track_pairing'
+    post 'pairing', to: 'slack#pairing', as: 'pairing'
   end
 
   mount PgHero::Engine, at: 'pghero'
