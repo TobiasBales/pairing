@@ -11,8 +11,6 @@ class TrackPairingCommand < SlackCommand
     @message = message
     @slack_messages = slack_messages
     @slack_client = slack_client
-    @slack_account = T.let(nil, T.nilable(SlackAccount))
-    @partner_slack_account = T.let(nil, T.nilable(SlackAccount))
     @team = T.let(nil, T.nilable(Team))
   end
 
@@ -21,40 +19,42 @@ class TrackPairingCommand < SlackCommand
     message.match(MESSAGE_REGEX).present?
   end
 
+  # rubocop:disable Metrics/MethodLength
   sig { void }
   def execute
-    load_slack_account
+    initiator = SlackAccount.find_by(slack_id: @message.sender)
+    if initiator.nil?
+      @slack_client.send(@message.response_url,
+                         @slack_messages.initiator_has_no_initiator,
+                         type: :ephemeral)
+      return
+    end
 
-    return unless validate_slack_account_present
+    if initiator.user.teams.empty?
+      @slack_client.send(@message.response_url,
+                         @slack_messages.no_team,
+                         type: :ephemeral)
+      return
+    end
 
-    return unless validate_team_present
+    partner = SlackAccount.find_by(slack_name: partner_from_message)
 
-    load_partner_slack_account
+    if partner.nil?
+      @slack_client.send(@message.response_url,
+                         @slack_messages.partner_has_no_slack_account(partner: partner_from_message),
+                         type: :ephemeral)
+      return false
+    end
 
-    return unless validate_partner
+    team = initiator.user.teams.find { |t| t.members.include?(partner.user) }
+    if team.nil?
+      @slack_client.send(@message.response_url,
+                         @slack_messages.not_same_team(partner: partner_from_message),
+                         type: :ephemeral)
+      return
+    end
 
-    find_team
-
-    return unless validate_team
-
-    save_session
-  end
-
-  private
-
-  sig { returns(SlackAccount) }
-  def initiator
-    T.must(@slack_account)
-  end
-
-  sig { returns(SlackAccount) }
-  def partner
-    T.must(@partner_slack_account)
-  end
-
-  sig { void }
-  def save_session
-    session = T.must(@team).build_session([initiator.user, partner.user], Time.zone.today)
+    session = team.build_session([initiator.user, partner.user], Time.zone.today)
     if session.save
       @slack_client.send(@message.response_url,
                          @slack_messages.pairing_recorded(initiator: initiator, partner: partner))
@@ -64,74 +64,12 @@ class TrackPairingCommand < SlackCommand
                          type: :ephemeral)
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
-  sig { void }
-  def load_slack_account
-    @slack_account = SlackAccount.find_by(slack_id: @message.sender)
-  end
-
-  sig { void }
-  def load_partner_slack_account
-    @partner_slack_account = SlackAccount.find_by(slack_name: partner_from_message)
-  end
-
-  sig { void }
-  def find_team
-    @team = T.must(@slack_account).user.teams.find { |t| t.members.include?(T.must(@partner_slack_account).user) }
-  end
+  private
 
   sig { returns(String) }
   def partner_from_message
     T.must(T.must(@message.match(MESSAGE_REGEX))[2])
-  end
-
-  sig { returns(T::Boolean) }
-  def validate_team
-    if @team.nil?
-      @slack_client.send(@message.response_url,
-                         @slack_messages.not_same_team(partner: partner_from_message),
-                         type: :ephemeral)
-      return false
-    end
-
-    true
-  end
-
-  sig { returns(T::Boolean) }
-  def validate_partner
-    if @partner_slack_account.nil?
-      @slack_client.send(@message.response_url,
-                         @slack_messages.partner_has_no_slack_account(partner: partner_from_message),
-                         type: :ephemeral)
-      return false
-    end
-
-    true
-  end
-
-  sig { returns(T::Boolean) }
-  def validate_slack_account_present
-    if @slack_account.nil?
-      @slack_client.send(@message.response_url,
-                         @slack_messages.initiator_has_no_slack_account,
-                         type: :ephemeral)
-
-      return false
-    end
-
-    true
-  end
-
-  sig { returns(T::Boolean) }
-  def validate_team_present
-    if T.must(@slack_account).user.teams.empty?
-      @slack_client.send(@message.response_url,
-                         @slack_messages.no_team,
-                         type: :ephemeral)
-
-      return false
-    end
-
-    true
   end
 end
