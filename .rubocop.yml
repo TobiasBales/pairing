@@ -24,6 +24,8 @@ Layout/SpaceAroundMethodCallOperator:
   Enabled: true
 Lint/DeprecatedOpenSSLConstant:
   Enabled: true
+Lint/DuplicateElsifCondition:
+  Enabled: true
 Lint/MixedRegexpCaptureTypes:
   Enabled: true
 Lint/RaiseException:
@@ -36,6 +38,34 @@ Metrics/BlockLength:
   Enabled: true
   Exclude:
     - 'config/environments/development.rb'
+Minitest/AssertInDelta:
+  Enabled: true
+Minitest/AssertionInLifecycleHook:
+  Enabled: true
+Minitest/AssertKindOf:
+  Enabled: true
+Minitest/AssertKindOf:
+  Enabled: true
+Minitest/AssertOutput:
+  Enabled: true
+Minitest/AssertPathExists:
+  Enabled: true
+Minitest/AssertSilent:
+  Enabled: true
+Minitest/LiteralAsActualArgument:
+  Enabled: true
+Minitest/MultipleAssertions:
+  Enabled: true
+Minitest/RefuteInDelta:
+  Enabled: true
+Minitest/RefuteKindOf:
+  Enabled: true
+Minitest/RefutePathExists:
+  Enabled: true
+Minitest/TestMethodName:
+  Enabled: true
+Minitest/UnspecifiedException:
+  Enabled: true
 Performance/AncestorsInclude:
   Enabled: true
 Performance/BigDecimalWithNumericArgument:
@@ -80,7 +110,11 @@ Rails/WhereExists:
   Enabled: true
 Style/AccessorGrouping:
   Enabled: true
+Style/ArrayCoercion:
+  Enabled: true
 Style/BisectedAttrAccessor:
+  Enabled: true
+Style/CaseLikeIf:
   Enabled: true
 Style/ClassAndModuleChildren:
   Enabled: true
@@ -89,7 +123,11 @@ Style/Documentation:
   Enabled: false
 Style/ExponentialNotation:
   Enabled: true
+Style/HashAsLastArrayItem:
+  Enabled: true
 Style/HashEachMethods:
+  Enabled: true
+Style/HashLikeCase:
   Enabled: true
 Style/HashTransformKeys:
   Enabled: true
@@ -98,6 +136,8 @@ Style/HashTransformValues:
 Style/RedundantAssignment:
   Enabled: true
 Style/RedundantFetchBlock:
+  Enabled: true
+Style/RedundantFileExtensionInRequire:
   Enabled: true
 Style/RedundantRegexpCharacterClass:
   Enabled: true
