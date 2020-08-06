@@ -60,7 +60,7 @@ group :development, :test do
   gem 'rubocop-performance', '~> 1.7'
   gem 'rubocop-rails', '~> 2.7'
   gem 'rubocop-sorbet', '~> 0.4.0'
-  gem 'sorbet', '~> 0.5.5855'
+  gem 'sorbet', '~> 0.5.5863'
   gem 'terminal-notifier-guard', '~> 1.7'
 end
 
