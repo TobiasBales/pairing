@@ -34,7 +34,7 @@ gem 'sorbet-runtime', '~> 0.5.5869'
 gem 'strong_migrations', '~> 0.7.1'
 gem 'turbolinks', '~> 5.2'
 gem 'tzinfo-data', '~> 1.2', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'webpacker', '~> 5.1'
+gem 'webpacker', '~> 5.2'
 
 group :development, :test do
   gem 'bullet', '~> 6.1'
