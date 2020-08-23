@@ -7,7 +7,7 @@ ruby '2.6.3'
 
 gem 'activeadmin', '~> 2.7'
 gem 'bcrypt', '~> 3.1'
-gem 'bootsnap', '~> 1.4', '>= 1.4.2'
+gem 'bootsnap', '~> 1.4'
 gem 'cocoon', '~> 1.2'
 gem 'devise', '~> 4.7'
 gem 'devise-bootstrapped', github: 'king601/devise-bootstrapped', branch: 'bootstrap4'
