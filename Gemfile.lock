@@ -399,7 +399,7 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 0.87.0)
-    rubocop-sorbet (0.4.0)
+    rubocop-sorbet (0.4.1)
       rubocop
     ruby-progressbar (1.10.1)
     ruby_parser (3.14.2)
@@ -558,7 +558,7 @@ DEPENDENCIES
   rubocop-minitest (~> 0.10.1)
   rubocop-performance (~> 1.7)
   rubocop-rails (~> 2.7)
-  rubocop-sorbet (~> 0.4.0)
+  rubocop-sorbet (~> 0.4.1)
   sass-rails (~> 6.0)
   selenium-webdriver (~> 3.142)
   sidekiq (~> 6.1)
