@@ -57,7 +57,7 @@ group :development, :test do
   gem 'pronto-stylelint', '~> 0.10.0'
   gem 'rubocop', '~> 0.89.1'
   gem 'rubocop-minitest', '~> 0.10.1'
-  gem 'rubocop-performance', '~> 1.7'
+  gem 'rubocop-performance', '~> 1.8'
   gem 'rubocop-rails', '~> 2.7'
   gem 'rubocop-sorbet', '~> 0.4.1'
   gem 'sorbet', '~> 0.5.5881'
