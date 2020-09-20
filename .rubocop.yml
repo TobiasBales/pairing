@@ -44,8 +44,6 @@ Minitest/AssertionInLifecycleHook:
   Enabled: true
 Minitest/AssertKindOf:
   Enabled: true
-Minitest/AssertKindOf:
-  Enabled: true
 Minitest/AssertOutput:
   Enabled: true
 Minitest/AssertPathExists:
