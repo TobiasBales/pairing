@@ -3,7 +3,7 @@ set -euo pipefail
 
 
 echo "Running rubocop"
-bundle exec rubocop
+bundle exec rubocop -c .rubocop.yml
 
 
 echo "Running annotate"
