@@ -19,7 +19,7 @@ class PairingStatistics
 
   sig { params(users: T::Array[User]).returns(Numeric) }
   def number_of_sessions_for(users)
-    sessions.filter { |session| session.matching_participants(users) }.length
+    sessions.count { |session| session.matching_participants(users) }
   end
 
   sig { returns(Integer) }
