@@ -55,7 +55,7 @@ group :development, :test do
   gem 'pronto-shellcheck', '~> 0.1.4'
   gem 'pronto-sorbet', '~> 0.2.0'
   gem 'pronto-stylelint', '~> 0.10.0'
-  gem 'rubocop', '~> 0.89.1'
+  gem 'rubocop', '~> 0.91.0'
   gem 'rubocop-minitest', '~> 0.10.1'
   gem 'rubocop-performance', '~> 1.7'
   gem 'rubocop-rails', '~> 2.7'
