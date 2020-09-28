@@ -71,7 +71,7 @@ group :development do
   gem 'brakeman', '~> 4.9'
   gem 'bundler-audit', '~> 0.7.0'
   gem 'cancancan', '~> 3.1'
-  gem 'database_consistency', '~> 0.8.4'
+  gem 'database_consistency', '~> 0.8.8'
   gem 'listen', '~> 3.2'
   gem 'pundit', '~> 2.1'
   gem 'rails_best_practices', '~> 1.20'
