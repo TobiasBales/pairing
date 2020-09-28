@@ -122,7 +122,7 @@ GEM
     concurrent-ruby (1.1.7)
     connection_pool (2.2.3)
     crass (1.0.6)
-    database_consistency (0.8.4)
+    database_consistency (0.8.8)
       activerecord (>= 3.2)
     debug_inspector (0.0.3)
     devise (4.7.3)
@@ -520,7 +520,7 @@ DEPENDENCIES
   cancancan (~> 3.1)
   capybara (~> 3.33)
   cocoon (~> 1.2)
-  database_consistency (~> 0.8.4)
+  database_consistency (~> 0.8.8)
   devise (~> 4.7)
   devise-bootstrapped!
   devise-pwned_password (~> 0.1.9)
