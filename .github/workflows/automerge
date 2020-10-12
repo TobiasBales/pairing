@@ -18,11 +18,21 @@ on:
       - completed
   status: {}
 jobs:
-  automerge:
+  automerge-dependabot:
     runs-on: ubuntu-latest
     steps:
       - name: automerge
-        uses: "docker://docker.pkg.github.com/pascalgn/automerge-action/automerge-action:c7859ab63774304798c4dd36ed106b59bbf728974117a9f350cac756d80d9e37"
+        uses: "pascalgn/automerge-action@v0.12.0"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          MERGE_LABELS: "automerge,!wip"
+          MERGE_FORKS: "false"
+          MERGE_FILTER_AUTHOR: "dependabot[bot]"
+  automerge-tobiasbales:
+    runs-on: ubuntu-latest
+    steps:
+      - name: automerge
+        uses: "pascalgn/automerge-action@v0.12.0"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_FORKS: "false"
+          MERGE_FILTER_AUTHOR: "TobiasBales"
