@@ -179,7 +179,7 @@ jobs:
             app-name: 'pairing'
 
       - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@1.30.0
+        uses: anothrNick/github-tag-action@1.32.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: major
