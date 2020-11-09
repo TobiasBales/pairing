@@ -66,7 +66,7 @@ end
 
 group :development do
   gem 'annotate', '~> 3.1'
-  gem 'better_errors', '~> 2.7'
+  gem 'better_errors', '~> 2.9'
   gem 'binding_of_caller', '~> 0.8.0'
   gem 'brakeman', '~> 4.9'
   gem 'bundler-audit', '~> 0.7.0'
