@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
-gem 'activeadmin', '~> 2.7'
+gem 'activeadmin', '~> 2.9'
 gem 'bcrypt', '~> 3.1'
 gem 'bootsnap', '~> 1.4'
 gem 'cocoon', '~> 1.2'
